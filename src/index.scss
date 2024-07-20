@@ -1,10 +1,14 @@
 :host,
 :root {
-  --color-one: #fafafa;
-  --color-two: #112a46;
-  --color-three: #acc8e5;
-  --color-four: #82a5ca;
+  --color-one: #f3f3f3;
+  --color-two: #0d357b;
+  --color-three: #ffc107;
+  --color-four: black;
+  //
   --color-five: #5caafd;
+  --color-six: #112a46;
+  --color-seven: #acc8e5;
+  --color-eight: #82a5ca;
 }
 
 html,
@@ -19,7 +23,7 @@ html {
 }
 
 body {
-  color: var(--color-two);
-  background-color: var(--color-three);
-  font-family: "Times New Roman", Times, serif !important;
+  color: var(--color-four);
+  background-color: var(--color-one);
+  font-family: Arial, Helvetica, sans-serif !important;
 }
