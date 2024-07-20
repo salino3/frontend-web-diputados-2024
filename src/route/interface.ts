@@ -3,5 +3,5 @@ interface Route {
 }
 
 export const appRoute: Route = {
-  root: "/web-diputados-2024/",
+  root: "/frontend-web-diputados-2024/",
 };

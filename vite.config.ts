@@ -4,7 +4,7 @@ import sass from "sass";
 import path from "path";
 
 export default defineConfig({
-  base: "/web-diputados-2024/",
+  base: "/frontend-web-diputados-2024/",
   plugins: [react()],
   css: {
     preprocessorOptions: {
