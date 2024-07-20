@@ -1,0 +1,29 @@
+:host,
+:root {
+  --color-one: #f3f3f3;
+  --color-two: #0d357b;
+  --color-three: #ffc107;
+  --color-four: black;
+  //
+  --color-five: #5caafd;
+  --color-six: #112a46;
+  --color-seven: #acc8e5;
+  --color-eight: #82a5ca;
+}
+
+html,
+#root,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  color: var(--color-four);
+  background-color: var(--color-one);
+  font-family: Arial, Helvetica, sans-serif !important;
+}
