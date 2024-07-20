@@ -5,7 +5,7 @@ import "./home-page.styles.scss";
 
 export const HomePage: React.FC = () => {
   const { fetchPaginatedData } = ServicesApp();
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
 
   //
   useEffect(() => {
@@ -17,6 +17,7 @@ export const HomePage: React.FC = () => {
         console.error(err);
       });
   }, []);
+
   return (
     <div className="rootHomePage">
       <h1 className="titleHomePage">{t("home.title")}</h1>

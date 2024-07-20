@@ -1,4 +1,8 @@
 {
+  "header": {
+    "title": "Título",
+    "languages": "Idiomas"
+  },
   "home": {
     "title": "Página inicial"
   }
