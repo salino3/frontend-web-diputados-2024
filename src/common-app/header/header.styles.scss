@@ -1,0 +1,25 @@
+.rootHeaderHome {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 1rem;
+  border: solid;
+  .boxLanguages {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    .listLanguages {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      list-style-type: none;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
