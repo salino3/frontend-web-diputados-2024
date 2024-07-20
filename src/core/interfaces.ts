@@ -1,6 +1,5 @@
 export interface CongresoPreguntas {
   Expediente: string;
-
   Presentada: string;
   Contenido: string;
   url: string;
