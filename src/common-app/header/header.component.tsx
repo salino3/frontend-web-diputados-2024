@@ -16,16 +16,16 @@ export const HeaderHome: React.FC = () => {
     <header className="rootHeaderHome">
       <h2 className="titleHeaderHome">{t("header.title")}</h2>
       <nav className="boxLanguages">
-        <h3>{t("header.languages")}</h3>
+        <h4>{t("header.languages")}</h4>
         <ul className="listLanguages">
           <li>
-            <button onClick={() => changeLanguage("es")}>ES</button>
+            <button onClick={() => changeLanguage("es")}>es</button>
           </li>
           <li>
-            <button onClick={() => changeLanguage("en")}>EN</button>
+            <button onClick={() => changeLanguage("en")}>en</button>
           </li>
           <li>
-            <button onClick={() => changeLanguage("it")}>IT</button>
+            <button onClick={() => changeLanguage("it")}>it</button>
           </li>
         </ul>
       </nav>
