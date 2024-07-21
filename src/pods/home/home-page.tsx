@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import "./home-page.styles.scss";
-import { GlobalContext } from "@/core";
+import { GlobalContext, MyState } from "@/core";
 import { Link } from "react-router-dom";
+import "./home-page.styles.scss";
 
 interface Tabs {
   id: string;
@@ -13,7 +13,9 @@ interface Tabs {
 export const HomePage: React.FC = () => {
   const [t] = useTranslation("global");
 
-  const { state } = useContext(GlobalContext);
+  const { state, fetchApi } = useContext<MyState>(GlobalContext);
+
+  const [selectedTab, setSelectedTab] = useState<string>("search");
 
   const tabs: Tabs[] = [
     {
@@ -28,7 +30,9 @@ export const HomePage: React.FC = () => {
     },
   ];
 
-  const [selectedTab, setSelectedTab] = useState<string>("search");
+  // useEffect(() => {
+  //   fetchApi(1, 20);
+  // }, []);
 
   const link: string =
     "https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_medioAmbiente_contenedoresRopa-25830.csv";
@@ -50,7 +54,7 @@ export const HomePage: React.FC = () => {
         <div className="boxTabs">
           {tabs &&
             tabs.map((tab) => (
-              <div>
+              <div key={tab?.id}>
                 <span
                   id={state.theme}
                   key={tab.id}

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { GlobalContext } from "./global-context";
-import { ReducerApp, ServicesApp, initialState } from ".";
+import { ReducerApp, ServicesApp, initialState, GlobalContext } from ".";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
