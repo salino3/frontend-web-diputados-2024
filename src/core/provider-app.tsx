@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { GlobalContext } from "./global-context";
 import { ReducerApp, ServicesApp, initialState } from ".";
 
@@ -17,18 +17,36 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
     });
   };
 
+  const fetchApi = useCallback(
+    (
+      page: number = 1,
+      pageSize: number = 5,
+      body: any = {},
+      exactFilters: string[] | any = [],
+      rangeFilters: string[] | any = []
+    ) => {
+      fetchPaginatedData(page, pageSize, body, exactFilters, rangeFilters)
+        .then((res) => {
+          console.log("Filters:", res?.data);
+          dispatch({
+            type: "LOAD_DATA",
+            payload: res?.data,
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    []
+  );
+
   useEffect(() => {
-    fetchPaginatedData(1, 5, {})
-      .then((res) => {
-        console.log("Filters:", res?.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    fetchApi(1, 10);
   }, []);
 
+  console.log("DATA:", state?.data);
   return (
-    <GlobalContext.Provider value={{ state, dispatch, toggleTheme }}>
+    <GlobalContext.Provider value={{ state, dispatch, toggleTheme, fetchApi }}>
       <div id={state.theme}>{children}</div>
     </GlobalContext.Provider>
   );
