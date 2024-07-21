@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GlobalContext, MyState } from "@/core";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ interface Tabs {
 export const HomePage: React.FC = () => {
   const [t] = useTranslation("global");
 
-  const { state, fetchApi } = useContext<MyState>(GlobalContext);
+  const { state } = useContext<MyState>(GlobalContext);
 
   const [selectedTab, setSelectedTab] = useState<string>("search");
 
@@ -29,10 +29,6 @@ export const HomePage: React.FC = () => {
       component: <>Table</>,
     },
   ];
-
-  // useEffect(() => {
-  //   fetchApi(1, 20);
-  // }, []);
 
   const link: string =
     "https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_";
