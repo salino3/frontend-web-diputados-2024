@@ -7,6 +7,8 @@
   },
   "home": {
     "title": "CSV Sistema Referencia ESPG 25830",
-    "previsualization": "Previsualización disponible en"
+    "previsualization": "Previsualización disponible en",
+    "search": "Buscar",
+    "table": "Tabla"
   }
 }

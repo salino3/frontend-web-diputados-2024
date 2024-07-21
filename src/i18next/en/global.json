@@ -7,6 +7,8 @@
   },
   "home": {
     "title": "CSV Reference System ESPG 25830",
-    "previsualization": "Preview available at"
+    "previsualization": "Preview available at",
+    "search": "Search",
+    "table": "Table"
   }
 }

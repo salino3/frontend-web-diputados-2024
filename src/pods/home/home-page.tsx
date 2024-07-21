@@ -20,13 +20,13 @@ export const HomePage: React.FC = () => {
   const tabs: Tabs[] = [
     {
       id: "search",
-      title: t("home.search"),
-      component: <>Search</>,
+      title: "home.search",
+      component: <h3>This is a Search component</h3>,
     },
     {
       id: "table",
-      title: t("home.table"),
-      component: <>Table</>,
+      title: "home.table",
+      component: <h3>This is a Table component</h3>,
     },
   ];
 
@@ -59,7 +59,7 @@ export const HomePage: React.FC = () => {
                   }`}
                   onClick={() => setSelectedTab(tab.id)}
                 >
-                  {tab.title}
+                  {t(tab.title)}
                 </span>
               </div>
             ))}
