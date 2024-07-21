@@ -43,4 +43,8 @@ body {
       background-color: var(--color-two);
     }
   }
+  button:active {
+    scale: 0.97;
+    opacity: 0.5;
+  }
 }
