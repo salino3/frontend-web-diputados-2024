@@ -12,6 +12,8 @@ export const HeaderHome: React.FC = () => {
     sessionStorage.setItem("selectedLanguage", language);
   };
 
+  console.log(i18next.language);
+
   return (
     <header className="rootHeaderHome">
       <h2 className="titleHeaderHome">{t("header.title")}</h2>
@@ -20,14 +22,24 @@ export const HeaderHome: React.FC = () => {
         <h4>{t("header.languages")}</h4>
         <ul className="listLanguages">
           <li>
-            <button onClick={() => changeLanguage("es")}>es</button>
+            <button
+              className={`${i18next.language == "es" && "selectedLanguage"}`}
+              onClick={() => changeLanguage("es")}
+            >
+              es
+            </button>
           </li>
           <li>
-            <button onClick={() => changeLanguage("en")}>en</button>
+            <button
+              className={`${i18next.language == "en" && "selectedLanguage"}`}
+              onClick={() => changeLanguage("en")}
+            >
+              en
+            </button>
           </li>
-          <li>
-            <button onClick={() => changeLanguage("it")}>it</button>
-          </li>
+          {/* <li>
+            <button  className={`${i18next.language == "it" && "selectedLanguage"}`} onClick={() => changeLanguage("it")}>it</button>
+          </li> */}
         </ul>
       </nav>
     </header>

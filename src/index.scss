@@ -9,6 +9,7 @@
   --color-six: #112a46;
   --color-seven: #acc8e5;
   --color-eight: #82a5ca;
+  --color-nine: #e4faff;
 }
 
 html,
@@ -32,6 +33,9 @@ body {
 
       background-color: var(--color-seven);
     }
+    .selectedLanguage {
+      background-color: var(--color-five);
+    }
   }
 
   #dark {
@@ -41,6 +45,9 @@ body {
       color: var(--color-seven);
 
       background-color: var(--color-two);
+    }
+    .selectedLanguage {
+      background-color: var(--color-nine);
     }
   }
   button:active {

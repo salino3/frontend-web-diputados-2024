@@ -6,6 +6,7 @@
     "dark_mode": "Dark Mode"
   },
   "home": {
-    "title": "Home page"
+    "title": "CSV Reference System ESPG 25830",
+    "previsualization": "Preview available at"
   }
 }
