@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { GlobalContext, MyState } from "@/core";
-import { Link } from "react-router-dom";
+import { SearchPage, TablePage } from "./components";
 import "./home-page.styles.scss";
 
 interface Tabs {
@@ -21,12 +22,12 @@ export const HomePage: React.FC = () => {
     {
       id: "search",
       title: "home.search",
-      component: <h3>This is a Search component</h3>,
+      component: <SearchPage />,
     },
     {
       id: "table",
       title: "home.table",
-      component: <h3>This is a Table component</h3>,
+      component: <TablePage />,
     },
   ];
 
@@ -52,21 +53,21 @@ export const HomePage: React.FC = () => {
             tabs.map((tab) => (
               <div key={tab?.id}>
                 <span
-                  id={state.theme}
+                  id={state?.theme}
                   key={tab.id}
                   className={`tab tab_${tab?.id} ${
                     tab?.id === selectedTab ? "selectedTab" : ""
                   }`}
-                  onClick={() => setSelectedTab(tab.id)}
+                  onClick={() => setSelectedTab(tab?.id)}
                 >
-                  {t(tab.title)}
+                  {t(tab?.title)}
                 </span>
               </div>
             ))}
         </div>
       </div>
       <div className="boxContent">
-        {tabs && tabs.find((tab) => tab?.id == selectedTab)?.component}
+        {tabs && tabs.find((tab: Tabs) => tab?.id == selectedTab)?.component}
       </div>
     </div>
   );
