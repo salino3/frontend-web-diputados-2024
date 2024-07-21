@@ -8,19 +8,51 @@
   padding: 1rem;
   border: solid;
   position: relative;
+
   .boxLanguages {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    border: 1px solid;
+    border-radius: 20px 0px 0px 0px;
+    border-bottom: none;
+    border-right: none;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 5px;
+    h4 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
     .listLanguages {
+      padding: 0;
+      margin: 0;
       display: flex;
       flex-direction: row;
       gap: 1rem;
       list-style-type: none;
       align-items: center;
       justify-content: center;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid;
+        border-radius: 50%;
+        width: 1.8rem;
+        height: 1.8rem;
+      }
     }
   }
 }

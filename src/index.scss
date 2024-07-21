@@ -9,6 +9,7 @@
   --color-six: #112a46;
   --color-seven: #acc8e5;
   --color-eight: #82a5ca;
+  --color-nine: #e4faff;
 }
 
 html,
@@ -27,10 +28,30 @@ body {
   #light {
     color: var(--color-four);
     background-color: var(--color-one);
+    button {
+      background-color: var(--color-one);
+
+      background-color: var(--color-seven);
+    }
+    .selectedLanguage {
+      background-color: var(--color-five);
+    }
   }
 
   #dark {
     color: var(--color-seven);
     background-color: var(--color-six);
+    button {
+      color: var(--color-seven);
+
+      background-color: var(--color-two);
+    }
+    .selectedLanguage {
+      background-color: var(--color-nine);
+    }
+  }
+  button:active {
+    scale: 0.97;
+    opacity: 0.5;
   }
 }

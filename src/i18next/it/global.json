@@ -1,7 +1,9 @@
 {
   "header": {
     "title": "Titolo",
-    "languages": "Lingue"
+    "languages": "Lingue",
+    "light_mode": "Modo chiaro",
+    "dark_mode": "Modo scuro"
   },
   "home": {
     "title": "Pagina iniziale"

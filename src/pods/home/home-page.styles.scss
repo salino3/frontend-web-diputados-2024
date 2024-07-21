@@ -1,4 +1,67 @@
 .rootHomePage {
-  .titleHomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  .topContainerHome {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: solid 1px;
+    min-height: 200px;
+    width: 100%;
+
+    .contentTopContentHome {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      width: 100%;
+      .titleHomePage {
+        font-size: 2rem;
+      }
+      .subTitleHomePage {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .boxTabs {
+    position: absolute;
+    bottom: -1px;
+    left: 10px;
+
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    .tab {
+      position: absolute;
+      padding: 0.5rem;
+      cursor: pointer;
+      border-radius: 5px 5px 0 0;
+    }
+    .tab_search {
+      top: -42px;
+      border: solid 1px;
+    }
+    .tab_table {
+      top: -42px;
+      left: 8.2rem;
+      border: solid 1px;
+    }
+    .selectedTab {
+      font-weight: bold;
+      border-bottom: none;
+      top: -41px;
+    }
   }
 }
