@@ -1,6 +1,7 @@
 import React from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { Switcher } from "@/common";
 import "./header.styles.scss";
 
 export const HeaderHome: React.FC = () => {
@@ -28,6 +29,7 @@ export const HeaderHome: React.FC = () => {
           </li>
         </ul>
       </nav>
+      <Switcher />
     </header>
   );
 };
