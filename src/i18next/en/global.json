@@ -1,7 +1,9 @@
 {
   "header": {
     "title": "Title",
-    "languages": "Languages"
+    "languages": "Languages",
+    "light_mode": "Light Mode",
+    "dark_mode": "Dark Mode"
   },
   "home": {
     "title": "Home page"

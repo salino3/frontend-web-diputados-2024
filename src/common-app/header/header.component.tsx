@@ -16,6 +16,7 @@ export const HeaderHome: React.FC = () => {
     <header className="rootHeaderHome">
       <h2 className="titleHeaderHome">{t("header.title")}</h2>
       <nav className="boxLanguages">
+        <Switcher />
         <h4>{t("header.languages")}</h4>
         <ul className="listLanguages">
           <li>
@@ -29,7 +30,6 @@ export const HeaderHome: React.FC = () => {
           </li>
         </ul>
       </nav>
-      <Switcher />
     </header>
   );
 };

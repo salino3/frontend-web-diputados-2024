@@ -27,10 +27,20 @@ body {
   #light {
     color: var(--color-four);
     background-color: var(--color-one);
+    button {
+      background-color: var(--color-one);
+
+      background-color: var(--color-seven);
+    }
   }
 
   #dark {
     color: var(--color-seven);
     background-color: var(--color-six);
+    button {
+      color: var(--color-seven);
+
+      background-color: var(--color-two);
+    }
   }
 }
