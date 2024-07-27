@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { useTranslation } from "react-i18next";
-import "./home-page.styles.scss";
-import { GlobalContext } from "@/core";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { GlobalContext, MyState } from "@/core";
+import { SearchPage, TablePage } from "./components";
+import "./home-page.styles.scss";
 
 interface Tabs {
   id: string;
@@ -13,26 +14,26 @@ interface Tabs {
 export const HomePage: React.FC = () => {
   const [t] = useTranslation("global");
 
-  const { state } = useContext(GlobalContext);
+  const { state } = useContext<MyState>(GlobalContext);
+
+  const [selectedTab, setSelectedTab] = useState<string>("search");
 
   const tabs: Tabs[] = [
     {
       id: "search",
-      title: t("home.search"),
-      component: <>Search</>,
+      title: "home.search",
+      component: <SearchPage />,
     },
     {
       id: "table",
-      title: t("home.table"),
-      component: <>Table</>,
+      title: "home.table",
+      component: <TablePage />,
     },
   ];
 
-  const [selectedTab, setSelectedTab] = useState<string>("search");
-
   const link: string =
-    "https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_medioAmbiente_contenedoresRopa-25830.csv";
-
+    "https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_";
+  // https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_medioAmbiente_contenedoresRopa-25830.csv
   return (
     <div className="rootHomePage">
       <div className="topContainerHome">
@@ -50,23 +51,29 @@ export const HomePage: React.FC = () => {
         <div className="boxTabs">
           {tabs &&
             tabs.map((tab) => (
-              <div>
+              <div key={tab?.id}>
                 <span
-                  id={state.theme}
+                  id={state?.theme}
                   key={tab.id}
                   className={`tab tab_${tab?.id} ${
-                    tab?.id === selectedTab ? "selectedTab" : ""
+                    tab?.id === selectedTab
+                      ? `${
+                          state?.theme == "dark"
+                            ? "selectedTabDark"
+                            : "selectedTabLight"
+                        } `
+                      : ""
                   }`}
-                  onClick={() => setSelectedTab(tab.id)}
+                  onClick={() => setSelectedTab(tab?.id)}
                 >
-                  {tab.title}
+                  {t(tab?.title)}
                 </span>
               </div>
             ))}
         </div>
       </div>
       <div className="boxContent">
-        {tabs && tabs.find((tab) => tab?.id == selectedTab)?.component}
+        {tabs && tabs.find((tab: Tabs) => tab?.id == selectedTab)?.component}
       </div>
     </div>
   );

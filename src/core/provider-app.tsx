@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { GlobalContext } from "./global-context";
-import { ReducerApp, ServicesApp, initialState } from ".";
+import { ReducerApp, ServicesApp, initialState, GlobalContext } from ".";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -44,7 +43,6 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
     fetchApi(1, 10);
   }, []);
 
-  console.log("DATA:", state?.data);
   return (
     <GlobalContext.Provider value={{ state, dispatch, toggleTheme, fetchApi }}>
       <div id={state.theme}>{children}</div>

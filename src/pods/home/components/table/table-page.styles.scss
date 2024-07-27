@@ -1,0 +1,11 @@
+.rootTablePage {
+  //   height: 100%;
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  padding: 1rem;
+}
