@@ -48,11 +48,12 @@ export const SearchPage: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isValid = Object.keys(formData).every(
+    const isValid: boolean = Object.keys(formData).every(
       (key) =>
         formData[key as keyof FormData].trim() !== "" || key === "Contenido"
     );
-    console.log("isValid", isValid);
+
+    // const isValid = true;
 
     if (isValid) {
       console.log("submit", formData);

@@ -43,7 +43,6 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
     fetchApi(1, 10);
   }, []);
 
-  console.log("DATA:", state?.data);
   return (
     <GlobalContext.Provider value={{ state, dispatch, toggleTheme, fetchApi }}>
       <div id={state.theme}>{children}</div>
