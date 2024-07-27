@@ -56,7 +56,13 @@ export const HomePage: React.FC = () => {
                   id={state?.theme}
                   key={tab.id}
                   className={`tab tab_${tab?.id} ${
-                    tab?.id === selectedTab ? "selectedTab" : ""
+                    tab?.id === selectedTab
+                      ? `${
+                          state?.theme == "dark"
+                            ? "selectedTabDark"
+                            : "selectedTabLight"
+                        } `
+                      : ""
                   }`}
                   onClick={() => setSelectedTab(tab?.id)}
                 >

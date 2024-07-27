@@ -10,5 +10,27 @@
     "previsualization": "Preview available at",
     "search": "Search",
     "table": "Table"
+  },
+  "search": {
+    "search_title": "Search Page",
+    "requiered_field": "Require Field",
+    "search": "Search",
+    "clear": "Clear",
+    "no_results": "No results found",
+    "filter": "Filter",
+    "reset": "Reset",
+    "all": "All",
+    "apply": "Apply",
+    "remove": "Remove",
+    "expedient": "Expedient",
+    "content": "Content",
+    "author_deputies": "Author Deputies",
+    "parliamentary_group": "Parliamentary Group",
+    "communities_tags": "Communities tags",
+    "provinces_tags": "Provinces tags",
+    "municipalities_tags": "Municipalities tags"
+  },
+  "table": {
+    "table_title": "Table search results"
   }
 }

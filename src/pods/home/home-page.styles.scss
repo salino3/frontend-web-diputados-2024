@@ -62,9 +62,13 @@
         border: solid 1px;
         z-index: 3;
       }
-      .selectedTab {
+      .selectedTabDark {
         font-weight: bold;
+        border-bottom: 3px solid var(--color-six);
+      }
+      .selectedTabLight {
         border-bottom: 3px solid var(--color-one);
+        font-weight: bold;
       }
     }
   }
@@ -75,12 +79,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: start;
-    padding: 1rem;
     border: solid 1px;
     width: 100%;
     min-height: 80vh;
     gap: 1rem;
-    z-index: 2;
     background-color: var(--color-one);
     z-index: 2;
   }

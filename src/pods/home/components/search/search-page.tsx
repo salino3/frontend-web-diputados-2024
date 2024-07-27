@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { GlobalContext, MyState } from "@/core";
 import { Button, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
@@ -15,7 +16,9 @@ interface FormData {
 }
 
 export const SearchPage: React.FC = () => {
-  const { fetchApi } = useContext<MyState>(GlobalContext);
+  const [t] = useTranslation("global");
+
+  const { fetchApi, state } = useContext<MyState>(GlobalContext);
 
   const [formData, setFormData] = useState<FormData>({
     Expediente: "",
@@ -68,7 +71,7 @@ export const SearchPage: React.FC = () => {
           formData[key as keyof FormData].trim() === "" &&
           key !== "Contenido"
         ) {
-          updatedErrors[key as keyof FormData] = "Campo requerido";
+          updatedErrors[key as keyof FormData] = t("search.requiered_field");
         }
       });
 
@@ -77,67 +80,75 @@ export const SearchPage: React.FC = () => {
   };
 
   return (
-    <div className="rootSearchPage">
-      <h3>Search Page</h3>
+    <div id={state?.theme} className="rootSearchPage">
+      <h3>{t("search.search_title")}</h3>
       <form id="formTableSearch" onSubmit={handleSubmit} action="/filter ">
         <CustomInputText
-          lbl="Expediente"
+          lbl={t("search.expedient")}
           name="Expediente"
           inputValue={formData?.Expediente}
           handleChange={handleChange("Expediente")}
           errorMsg={errorForm?.Expediente}
         />
         <CustomInputText
-          lbl="Contenido"
+          lbl={t("search.content")}
           name="Contenido"
           inputValue={formData?.Contenido}
           handleChange={handleChange("Contenido")}
         />
         <CustomInputText
-          lbl="Grupo Parlamentario"
+          lbl={t("search.parliamentary_group")}
           name="Grupo_Parlamentario"
           inputValue={formData?.Grupo_Parlamentario}
           handleChange={handleChange("Grupo_Parlamentario")}
           errorMsg={errorForm?.Grupo_Parlamentario}
         />
         <CustomInputText
-          lbl="Presentadas"
+          lbl={t("search.parliamentary_group")}
           name="Presentadas"
           inputValue={formData?.Presentadas}
           handleChange={handleChange("Presentadas")}
           errorMsg={errorForm?.Presentadas}
         />
         <CustomInputText
-          lbl="Diputados tags"
+          lbl={t("search.author_deputies")}
           name="diputados_autores"
           inputValue={formData?.diputados_autores}
           handleChange={handleChange("diputados_autores")}
           errorMsg={errorForm?.diputados_autores}
         />
         <CustomInputText
-          lbl="Comunidades tags"
+          lbl={t("search.communities_tags")}
           name="comunidades_tags"
           inputValue={formData?.comunidades_tags}
           handleChange={handleChange("comunidades_tags")}
           errorMsg={errorForm?.comunidades_tags}
         />
         <CustomInputText
-          lbl="Municipios tags"
-          name="municipios_tags"
-          inputValue={formData?.municipios_tags}
-          handleChange={handleChange("municipios_tags")}
-          errorMsg={errorForm?.municipios_tags}
-        />{" "}
-        <CustomInputText
-          lbl="Provincia tags"
+          lbl={t("search.provinces_tags")}
           name="provincias_tags"
           inputValue={formData?.provincias_tags}
           handleChange={handleChange("provincias_tags")}
           errorMsg={errorForm?.provincias_tags}
         />{" "}
+        <CustomInputText
+          lbl={t("search.municipalities_tags")}
+          name="municipios_tags"
+          inputValue={formData?.municipios_tags}
+          handleChange={handleChange("municipios_tags")}
+          errorMsg={errorForm?.municipios_tags}
+        />{" "}
         <div className="boxBtnsSearchForm">
-          <Button customStyles="primaryBtn" type="submit" txt="Buscar" />
-          <Button customStyles="secundaryBtn" type="reset" txt="Cancelar" />
+          <Button
+            customStyles="primaryBtn"
+            type="submit"
+            txt={t("search.search")}
+          />
+          <Button
+            customStyles="secundaryBtn"
+            type="reset"
+            txt={t("search.clear")}
+          />
         </div>
       </form>
     </div>
