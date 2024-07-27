@@ -1,0 +1,51 @@
+.rootCustomInputText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  .containerInput {
+    position: relative;
+    width: 60%;
+    min-width: 240px;
+    .inputText {
+      border-radius: 0.5rem;
+      padding: 1rem 0.5rem 0.5rem 1rem;
+      box-shadow: var(--color-two) 0px 0px 16px;
+      min-width: 240px;
+      width: 100%;
+      outline: none;
+      border: 0.5px solid;
+    }
+
+    .inputLabel {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      color: #999;
+    }
+
+    .inputText:focus + .inputLabel,
+    .shrink {
+      top: 0;
+      left: 1rem;
+      font-size: 0.8rem;
+      transform: translateY(-110%);
+      color: black;
+    }
+
+    .inputText:focus {
+      box-shadow: #ffec1f 0px 0px 16px;
+    }
+  }
+
+  .errorMsg {
+    color: red;
+    align-self: start;
+    padding-left: 0.5rem;
+    height: 1rem;
+  }
+}

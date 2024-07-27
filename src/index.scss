@@ -29,12 +29,19 @@ body {
     color: var(--color-four);
     background-color: var(--color-one);
     button {
-      background-color: var(--color-one);
-
+      color: var(--color-four);
       background-color: var(--color-seven);
     }
     .selectedLanguage {
       background-color: var(--color-five);
+    }
+    .primaryBtn button {
+      color: var(--color-four);
+      background-color: var(--color-seven);
+    }
+    .secundaryBtn button {
+      color: var(--color-four);
+      background-color: var(--color-nine);
     }
   }
 
@@ -43,11 +50,18 @@ body {
     background-color: var(--color-six);
     button {
       color: var(--color-seven);
-
       background-color: var(--color-two);
     }
     .selectedLanguage {
       background-color: var(--color-nine);
+    }
+    .primaryBtn button {
+      color: var(--color-seven);
+      background-color: var(--color-two);
+    }
+    .secundaryBtn button {
+      color: var(--color-seven);
+      background-color: var(--color-five);
     }
   }
   button:active {
