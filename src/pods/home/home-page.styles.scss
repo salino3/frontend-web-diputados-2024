@@ -23,11 +23,14 @@
       justify-content: center;
       align-items: start;
       width: 100%;
+      margin-bottom: 1.5rem;
       .titleHomePage {
         font-size: 2rem;
       }
       .subTitleHomePage {
         font-size: 1.2rem;
+        word-break: break-all; // Break long words at any character to avoid overflow
+        text-align: start;
       }
     }
     .boxTabs {

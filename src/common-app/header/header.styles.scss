@@ -3,7 +3,7 @@
   flex-direction: row;
   gap: 1rem;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
   padding: 1rem;
   border: solid;
@@ -54,5 +54,12 @@
         height: 1.8rem;
       }
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .rootHeaderHome {
+    align-items: start;
+    min-height: 90px;
   }
 }
