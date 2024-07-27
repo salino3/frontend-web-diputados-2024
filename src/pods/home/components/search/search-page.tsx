@@ -1,6 +1,7 @@
-import React, { ChangeEvent, useState } from "react";
-import "./search-page.styles.scss";
+import React, { ChangeEvent, useContext, useState } from "react";
+import { GlobalContext, MyState } from "@/core";
 import { Button, CustomInputText } from "@/common";
+import "./search-page.styles.scss";
 
 interface FormData {
   Expediente: string;
@@ -14,6 +15,8 @@ interface FormData {
 }
 
 export const SearchPage: React.FC = () => {
+  const { fetchApi } = useContext<MyState>(GlobalContext);
+
   const [formData, setFormData] = useState<FormData>({
     Expediente: "",
     Contenido: "",
@@ -53,6 +56,9 @@ export const SearchPage: React.FC = () => {
 
     if (isValid) {
       console.log("submit", formData);
+      const exactFilters = [""];
+      const rangeFilters = [""];
+      fetchApi(1, 10, formData, exactFilters, rangeFilters);
     } else {
       const updatedErrors: Partial<FormData> = {};
 
@@ -72,8 +78,7 @@ export const SearchPage: React.FC = () => {
   return (
     <div className="rootSearchPage">
       <h3>Search Page</h3>
-      {/* action /filter */}
-      <form id="formTableSearch" onSubmit={handleSubmit} action="">
+      <form id="formTableSearch" onSubmit={handleSubmit} action="/filter ">
         <CustomInputText
           lbl="Expediente"
           name="Expediente"
