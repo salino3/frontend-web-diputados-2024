@@ -25,7 +25,7 @@
       transform: translateY(-50%);
       transition: all 0.3s ease;
       pointer-events: none;
-      color: #999;
+      // color: #999;
     }
 
     .inputText:focus + .inputLabel,
@@ -34,7 +34,7 @@
       left: 1rem;
       font-size: 0.8rem;
       transform: translateY(-110%);
-      color: black;
+      // color: black;
     }
 
     .inputText:focus {

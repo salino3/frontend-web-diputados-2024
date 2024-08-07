@@ -41,6 +41,13 @@ export const SearchPage: React.FC = () => {
     municipios_tags: "",
   });
 
+  function valuesAreValids(formData: FormData) {
+    return Object.keys(formData).every(
+      (key) =>
+        formData[key as keyof FormData].trim() !== "" || key === "Contenido"
+    );
+  }
+
   const handleChange =
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
@@ -51,10 +58,7 @@ export const SearchPage: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isValid: boolean = Object.keys(formData).every(
-      (key) =>
-        formData[key as keyof FormData].trim() !== "" || key === "Contenido"
-    );
+    const isValid: boolean = valuesAreValids(formData);
 
     // const isValid = true;
 
@@ -89,6 +93,7 @@ export const SearchPage: React.FC = () => {
           inputValue={formData?.Expediente}
           handleChange={handleChange("Expediente")}
           errorMsg={errorForm?.Expediente}
+          rq={t("search.requiered")}
         />
         <CustomInputText
           lbl={t("search.content")}
@@ -137,14 +142,30 @@ export const SearchPage: React.FC = () => {
           inputValue={formData?.municipios_tags}
           handleChange={handleChange("municipios_tags")}
           errorMsg={errorForm?.municipios_tags}
+          rq={t("search.requiered")}
         />{" "}
         <div className="boxBtnsSearchForm">
           <Button
-            customStyles="primaryBtn"
+            // disabled={!valuesAreValids(formData)}
+            customStyles={`primaryBtn ${
+              !valuesAreValids(formData) && "btnRequiredValues"
+            }`}
             type="submit"
             txt={t("search.search")}
           />
           <Button
+            click={() =>
+              setFormData({
+                Expediente: "",
+                Contenido: "",
+                Presentadas: "",
+                diputados_autores: "",
+                Grupo_Parlamentario: "",
+                comunidades_tags: "",
+                provincias_tags: "",
+                municipios_tags: "",
+              })
+            }
             customStyles="secundaryBtn"
             type="reset"
             txt={t("search.clear")}

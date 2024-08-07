@@ -13,7 +13,8 @@
   },
   "search": {
     "search_title": "Search Page",
-    "requiered_field": "Require Field",
+    "requiered": "Required",
+    "requiered_field": "Required Field",
     "search": "Search",
     "clear": "Clear",
     "no_results": "No results found",

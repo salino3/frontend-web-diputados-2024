@@ -20,6 +20,12 @@
       gap: 0.5rem;
       align-items: center;
       justify-content: center;
+
+      .btnRequiredValues {
+        .buttonApp_01 {
+          opacity: 0.5;
+        }
+      }
     }
   }
 }

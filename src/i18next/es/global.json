@@ -13,6 +13,7 @@
   },
   "search": {
     "search_title": "Página de filtrado",
+    "requiered": "requerido",
     "requiered_field": "Campo requerido",
     "search": "Buscar",
     "clear": "Cancelar",

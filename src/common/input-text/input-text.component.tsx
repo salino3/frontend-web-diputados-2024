@@ -7,10 +7,11 @@ interface Props {
   inputValue: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   errorMsg?: string;
+  rq?: string;
 }
 
 export const CustomInputText: React.FC<Props> = (props) => {
-  const { lbl, name, inputValue, handleChange, errorMsg } = props;
+  const { lbl, name, inputValue, handleChange, errorMsg, rq = "" } = props;
 
   return (
     <div className="rootCustomInputText">
@@ -27,7 +28,7 @@ export const CustomInputText: React.FC<Props> = (props) => {
           htmlFor={name}
           className={`inputLabel ${inputValue ? "shrink" : ""}`}
         >
-          {lbl}
+          {lbl} {rq && <small>({rq})</small>}
         </label>
       </div>
       <span className="errorMsg">{errorMsg}</span>
