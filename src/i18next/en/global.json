@@ -1,15 +1,15 @@
 {
   "header": {
-    "title": "Title",
+    "title": "Questions in the Congress of Deputies",
     "languages": "Languages",
     "light_mode": "Light Mode",
     "dark_mode": "Dark Mode"
   },
   "home": {
-    "title": "CSV Reference System ESPG 25830",
+    "title": "Questions in the Congress of Deputies",
     "previsualization": "Preview available at",
     "search": "Search",
-    "table": "Table"
+    "table": "Answers"
   },
   "search": {
     "search_title": "Search Page",
@@ -32,6 +32,6 @@
     "municipalities_tags": "Municipalities tags"
   },
   "table": {
-    "table_title": "Table search results"
+    "table_title": "Answers"
   }
 }

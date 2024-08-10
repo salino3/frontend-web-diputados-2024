@@ -24,7 +24,13 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
       exactFilters: string[] | any = [],
       rangeFilters: string[] | any = []
     ) => {
-      fetchPaginatedData(page, pageSize, body, exactFilters, rangeFilters)
+      return fetchPaginatedData(
+        page,
+        pageSize,
+        body,
+        exactFilters,
+        rangeFilters
+      )
         .then((res) => {
           console.log("Filters:", res?.data);
           dispatch({

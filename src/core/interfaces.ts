@@ -44,7 +44,7 @@ export interface MyState {
     body?: any,
     exactFilters?: string[] | any,
     rangeFilters?: string[] | any
-  ) => void;
+  ) => any;
 }
 
 export const initialState: State = {

@@ -1,15 +1,15 @@
 {
   "header": {
-    "title": "Título",
+    "title": "Preguntas en el Congreso de los Diputados",
     "languages": "Idiomas",
     "light_mode": "Modo claro",
     "dark_mode": "Modo oscuro"
   },
   "home": {
-    "title": "CSV Sistema Referencia ESPG 25830",
+    "title": "Preguntas en el Congreso de los Diputados",
     "previsualization": "Previsualización disponible en",
     "search": "Buscar",
-    "table": "Tabla"
+    "table": "Respuestas"
   },
   "search": {
     "search_title": "Página de filtrado",
@@ -32,6 +32,6 @@
     "municipalities_tags": "Municipalidades tags"
   },
   "table": {
-    "table_title": "Tabla resultados de la búsqueda"
+    "table_title": "Respuestas"
   }
 }

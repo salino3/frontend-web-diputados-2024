@@ -30,12 +30,12 @@ export const SearchPage: React.FC = () => {
     municipios_tags: "",
   });
 
-  function valuesAreValids(formData: FormData) {
-    return Object.keys(formData).every(
-      (key) =>
-        formData[key as keyof FormData].trim() !== "" || key === "Contenido"
-    );
-  }
+  // function valuesAreValids(formData: FormData) {
+  //   return Object.keys(formData).every(
+  //     (key) =>
+  //       formData[key as keyof FormData].trim() !== "" || key === "Contenido"
+  //   );
+  // }
 
   const handleChange =
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,29 +47,12 @@ export const SearchPage: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isValid: boolean = valuesAreValids(formData);
-
-    // const isValid = true;
-
-    if (isValid) {
-      console.log("submit", formData);
-      const exactFilters = [""];
-      const rangeFilters = [""];
-      fetchApi(1, 10, formData, exactFilters, rangeFilters);
-    } else {
-      const updatedErrors: Partial<FormData> = {};
-
-      Object.keys(formData).forEach((key) => {
-        if (
-          formData[key as keyof FormData].trim() === "" &&
-          key !== "Contenido"
-        ) {
-          updatedErrors[key as keyof FormData] = t("search.requiered_field");
-        }
-      });
-
-      setErrorForm({ ...errorForm, ...updatedErrors });
-    }
+    console.log("submit", formData);
+    const exactFilters = [""];
+    const rangeFilters = [""];
+    fetchApi(1, 10, formData, exactFilters, rangeFilters).then(() => {
+      console.log("Filters fetched successfully");
+    });
   };
 
   return (
@@ -82,7 +65,6 @@ export const SearchPage: React.FC = () => {
           inputValue={formData?.Expediente}
           handleChange={handleChange("Expediente")}
           errorMsg={errorForm?.Expediente}
-          rq={t("search.requiered")}
         />
         <CustomInputText
           lbl={t("search.content")}
@@ -131,14 +113,13 @@ export const SearchPage: React.FC = () => {
           inputValue={formData?.municipios_tags}
           handleChange={handleChange("municipios_tags")}
           errorMsg={errorForm?.municipios_tags}
-          rq={t("search.requiered")}
         />{" "}
         <div className="boxBtnsSearchForm">
           <Button
             // disabled={!valuesAreValids(formData)}
-            customStyles={`primaryBtn ${
-              !valuesAreValids(formData) && "btnRequiredValues"
-            }`}
+            // customStyles={`primaryBtn ${
+            //   !valuesAreValids(formData) && "btnRequiredValues"
+            // }`}
             type="submit"
             txt={t("search.search")}
           />

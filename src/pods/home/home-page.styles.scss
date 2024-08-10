@@ -12,8 +12,8 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    border: solid 1px;
-    min-height: 200px;
+    border-top: solid 1px;
+    min-height: 150px;
     width: 100%;
 
     .contentTopContentHome {
@@ -23,12 +23,9 @@
       justify-content: center;
       align-items: start;
       width: 100%;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       .titleHomePage {
         font-size: 2rem;
-      }
-      .subTitleHomePage {
-        font-size: 1.2rem;
         word-break: break-all; // Break long words at any character to avoid overflow
         text-align: start;
       }
