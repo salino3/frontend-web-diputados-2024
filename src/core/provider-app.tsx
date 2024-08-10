@@ -17,14 +17,14 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
   };
 
   const fetchApi = useCallback(
-    (
+    async (
       page: number = 1,
       pageSize: number = 5,
       body: any = {},
       exactFilters: string[] | any = [],
       rangeFilters: string[] | any = []
     ) => {
-      return fetchPaginatedData(
+      return await fetchPaginatedData(
         page,
         pageSize,
         body,
@@ -32,7 +32,6 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
         rangeFilters
       )
         .then((res) => {
-          console.log("Filters:", res?.data);
           dispatch({
             type: "LOAD_DATA",
             payload: res?.data,

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   CongresoPreguntas,
@@ -25,7 +25,7 @@ interface Row {
 export const TablePage: React.FC = () => {
   const [t] = useTranslation("global");
 
-  const { state } = useContext<MyState>(GlobalContext);
+  const { state, fetchApi } = useContext<MyState>(GlobalContext);
 
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -33,17 +33,56 @@ export const TablePage: React.FC = () => {
 
   // Filters
   const [filterExpediente, setFilterExpediente] = useState<string>("");
+  const [filterContenido, setFilterContenido] = useState<string>("");
+  const [filterPresentada, setFilterPresentada] = useState<string>("");
 
   const array: Row[] = [
     {
       key: "Expediente",
       title: "Expediente",
+      tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
       setFilter: setFilterExpediente,
       filter: filterExpediente,
     },
+    {
+      key: "Presentada",
+      title: "Presentada",
+      tooltip: (item: string) => item,
+      typeFilter: typesFilter?.text,
+      setFilter: setFilterPresentada,
+      filter: filterPresentada,
+    },
+    {
+      key: "Contenido",
+      title: "Contenido",
+      tooltip: (item: string) => item,
+      typeFilter: typesFilter?.text,
+      setFilter: setFilterContenido,
+      filter: filterContenido,
+    },
   ];
-  console.log("Statte", state);
+
+  useEffect(() => {
+    const body = {
+      Expediente: filterExpediente,
+      Contenido: filterContenido,
+      Presentada: filterPresentada,
+      // name: filterName,
+      // city: filterCity,
+      // email: filterEmail,
+      // age: filterAge,
+      // birthDate: filterBirthDate,
+      // gender: filterGender,
+      // employee: filterEmployee,
+    };
+    console.log("here4", body);
+    const exactFilters = [""];
+    const rangeFilters = [""];
+    fetchApi(page, pageSize, body, exactFilters, rangeFilters);
+  }, [page, pageSize, flag]);
+
+  console.log("State", state);
   return (
     <div id={state?.theme} className="rootTablePage">
       <h3>{t("table.table_title")}</h3>

@@ -109,18 +109,6 @@ export const TableComponet: React.FC<TableProps> = ({
     setFlag && setFlag((prev) => !prev);
   };
 
-  // const handleChange = (
-  //   event: React.ChangeEvent<HTMLInputElement> | any,
-  //   index: number
-  // ) => {
-  //   const { value } = event.target;
-  //   setFiltersTable((prevFilters: any) =>
-  //     prevFilters.map((filter: any, i: number) =>
-  //       i === index ? { ...filter, filter: value } : filter
-  //     )
-  //   );
-  // };
-
   // Version 2
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement> | any,
@@ -346,8 +334,19 @@ export const TableComponet: React.FC<TableProps> = ({
                               ? values[uniqueKey]
                               : rowIndex
                           }_${colIndex}`}
+                          style={{
+                            width: key == "Contenido" ? "400px" : "",
+                          }}
                         >
-                          {key && tooltip && <span>{tooltip}</span>}
+                          {key && tooltip && (
+                            <span
+                              className={`${
+                                key == "Contenido" && "table_x02_spanTooltip"
+                              }`}
+                            >
+                              {tooltip}
+                            </span>
+                          )}
                           {content}
                         </td>
                       );
