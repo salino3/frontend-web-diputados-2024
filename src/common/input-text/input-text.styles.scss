@@ -6,6 +6,8 @@
   margin-top: 0.5rem;
   .containerInput {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 60%;
     min-width: 300px;
     .inputText {

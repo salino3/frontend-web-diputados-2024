@@ -27,7 +27,14 @@ export const CustomInputSelect: React.FC<Props> = ({
   return (
     <div className="rootCustomInputText">
       <div className="containerInput">
-        <label htmlFor={name}>{lbl}</label>
+        <label
+          htmlFor={name}
+          style={{
+            fontSize: "0.8rem",
+          }}
+        >
+          {lbl}
+        </label>
         <select
           value={inputValue}
           autoFocus

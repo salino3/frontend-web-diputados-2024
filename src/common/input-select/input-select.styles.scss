@@ -7,6 +7,8 @@
   .containerInput {
     position: relative;
     width: 60%;
+    display: flex;
+    flex-direction: column;
     min-width: 300px;
     .inputSelect {
       border-radius: 0.5rem;
@@ -17,6 +19,7 @@
       width: 100%;
       outline: none;
       border: 0.5px solid;
+      height: 49px;
     }
 
     .inputSelect:focus {

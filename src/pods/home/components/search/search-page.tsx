@@ -103,6 +103,7 @@ export const SearchPage: React.FC<Props> = (props) => {
             handleChange={handleChange("comunidades_tags")}
             errorMsg={errorForm?.comunidades_tags}
             valuesFilter={[
+              { text: "", value: "" },
               { text: "Spain *", value: "spain" },
               { text: "Italy *", value: "italy" },
             ]}
