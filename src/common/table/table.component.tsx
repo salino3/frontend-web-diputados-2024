@@ -335,15 +335,22 @@ export const TableComponet: React.FC<TableProps> = ({
                               : rowIndex
                           }_${colIndex}`}
                           style={{
-                            width: key == "Contenido" ? "400px" : "",
+                            width:
+                              key == "Contenido" || key == "diputados_autores"
+                                ? "400px"
+                                : "",
                             wordBreak:
-                              key == "Contenido" ? "break-all" : "unset",
+                              key == "Contenido" || key == "diputados_autores"
+                                ? "break-all"
+                                : "unset",
                           }}
                         >
                           {key && tooltip && (
                             <span
                               className={`${
-                                key == "Contenido" && "table_x02_spanTooltip"
+                                key == "Contenido" ||
+                                (key == "diputados_autores" &&
+                                  "table_x02_spanTooltip")
                               }`}
                             >
                               {tooltip}

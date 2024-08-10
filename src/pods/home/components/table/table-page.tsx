@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   CongresoPreguntas,
@@ -7,6 +8,7 @@ import {
   ValuesFilter,
 } from "@/core";
 import { TableComponet, typesFilter } from "@/common/table";
+import { Button } from "@/common";
 import "./table-page.styles.scss";
 
 interface Row {
@@ -26,6 +28,7 @@ export const TablePage: React.FC = () => {
   const [t] = useTranslation("global");
 
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
+  console.log("here12", state);
 
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -39,6 +42,10 @@ export const TablePage: React.FC = () => {
     useState<string>("");
   const [filterGrupoParlamentario, setFilterGrupoParlamentario] =
     useState<string>("");
+  const [filterComunidadesTags, setFilterComunidadesTags] =
+    useState<string>("");
+  const [filterProvinciasTags, setFilterProvinciasTags] = useState<string>("");
+  const [filterMunicipiosTags, setFilterMunicipiosTags] = useState<string>("");
 
   const array: Row[] = [
     {
@@ -68,7 +75,13 @@ export const TablePage: React.FC = () => {
     {
       key: "diputados_autores",
       title: "Diputados autores",
-      tooltip: (item: string) => item,
+      tooltip: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
       typeFilter: typesFilter?.text,
       setFilter: setFilterDiputadosAutores,
       filter: filterDiputadosAutores,
@@ -83,7 +96,13 @@ export const TablePage: React.FC = () => {
     {
       key: "Grupo_Parlamentario",
       title: "Grupo Parlamentario",
-      tooltip: (item: string) => item,
+      tooltip: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
       typeFilter: typesFilter?.select,
       setFilter: setFilterGrupoParlamentario,
       filter: filterGrupoParlamentario,
@@ -115,6 +134,84 @@ export const TablePage: React.FC = () => {
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
     },
+    {
+      key: "comunidades_tags",
+      title: "Comunidades (Tags)",
+      tooltip: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+      typeFilter: typesFilter?.text,
+      setFilter: setFilterComunidadesTags,
+      filter: filterComunidadesTags,
+      render: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+    },
+    {
+      key: "provincias_tags",
+      title: "Provincias (Tags)",
+      tooltip: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+      typeFilter: typesFilter?.text,
+      setFilter: setFilterProvinciasTags,
+      filter: filterProvinciasTags,
+      render: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+    },
+    {
+      key: "municipios_tags",
+      title: "Municipios (Tags)",
+      tooltip: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+      typeFilter: typesFilter?.text,
+      setFilter: setFilterMunicipiosTags,
+      filter: filterMunicipiosTags,
+      render: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+    },
+    {
+      key: "url",
+
+      title: "Action",
+      render: (_: any, row: CongresoPreguntas) => {
+        console.log("RRR", row);
+        return (
+          <div className="boxBtnRow">
+            <Link target="_blank" to={row?.url}>
+              <Button txt="Enlace" type="button" />
+            </Link>
+          </div>
+        );
+      },
+    },
   ];
 
   useEffect(() => {
@@ -122,14 +219,36 @@ export const TablePage: React.FC = () => {
       filterGrupoParlamentario != ""
         ? "['" + filterGrupoParlamentario + "']"
         : filterGrupoParlamentario;
+    //
+    let deputiesAuthorsCorrected =
+      filterDiputadosAutores != ""
+        ? "['" + filterDiputadosAutores + "']"
+        : filterDiputadosAutores;
+    //
+    let deputiesComunidadesCorrected =
+      filterComunidadesTags != ""
+        ? "['" + filterComunidadesTags + "']"
+        : filterComunidadesTags;
+    //
+    let filterProvinciasCorrected =
+      filterProvinciasTags != ""
+        ? "['" + filterProvinciasTags + "']"
+        : filterProvinciasTags;
+    //
+    let filterMuniciosCorrected =
+      filterMunicipiosTags != ""
+        ? "['" + filterMunicipiosTags + "']"
+        : filterMunicipiosTags;
 
     const body = {
       Expediente: filterExpediente,
       Contenido: filterContenido,
       Presentada: filterPresentada,
-      diputados_autores: filterDiputadosAutores,
+      diputados_autores: deputiesAuthorsCorrected,
       Grupo_Parlamentario: parlamentGroupCorrected,
-      // name: filterName,
+      comunidades_tags: deputiesComunidadesCorrected,
+      provincias_tags: filterProvinciasCorrected,
+      municipios_tags: filterMuniciosCorrected,
       // city: filterCity,
       // email: filterEmail,
       // age: filterAge,
