@@ -37,7 +37,6 @@ export const CustomInputSelect: React.FC<Props> = ({
         </label>
         <select
           value={inputValue}
-          autoFocus
           onChange={handleChange}
           id={name}
           className="inputSelect"

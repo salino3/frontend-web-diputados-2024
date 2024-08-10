@@ -28,9 +28,9 @@
       thead tr,
       thead th,
       thead td {
-        background-color: var(--color-four);
+        background-color: var(--color-eight);
         color: var(--color-two);
-        width: 200px;
+        width: 140px;
       }
 
       thead tr th:last-child {
@@ -39,9 +39,9 @@
       tbody tr,
       tbody th,
       tbody td {
-        background-color: var(--color-three);
-        color: var(--color-two);
-        width: 200px;
+        background-color: var(--color-seven);
+        color: var(--color-four);
+        width: 140px;
       }
 
       .table_x02_trTable:hover td {
@@ -115,6 +115,16 @@
         justify-content: center;
         align-items: center;
         white-space: nowrap;
+        z-index: 10;
+      }
+      td .table_x02_spanTooltip {
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        white-space: unset !important;
+        min-width: 100% !important;
+        max-width: 500px !important;
         z-index: 10;
       }
 

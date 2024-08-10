@@ -80,7 +80,6 @@ export const TableComponet: React.FC<TableProps> = ({
     });
 
   const totalPages: number = Math.ceil(totalData / pageSize);
-  console.log(totalPages);
   const startRow = (page - 1) * pageSize + 1;
   const endRow = Math.min(page * pageSize, totalData);
 
@@ -98,7 +97,6 @@ export const TableComponet: React.FC<TableProps> = ({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("here3", filtersTable);
     // Update the filters in the parent component
     filtersTable.forEach((filter: any) => {
       if (filter?.setFilter) {
@@ -108,18 +106,6 @@ export const TableComponet: React.FC<TableProps> = ({
     setPage && setPage(1);
     setFlag && setFlag((prev) => !prev);
   };
-
-  // const handleChange = (
-  //   event: React.ChangeEvent<HTMLInputElement> | any,
-  //   index: number
-  // ) => {
-  //   const { value } = event.target;
-  //   setFiltersTable((prevFilters: any) =>
-  //     prevFilters.map((filter: any, i: number) =>
-  //       i === index ? { ...filter, filter: value } : filter
-  //     )
-  //   );
-  // };
 
   // Version 2
   const handleChange = (
@@ -346,8 +332,28 @@ export const TableComponet: React.FC<TableProps> = ({
                               ? values[uniqueKey]
                               : rowIndex
                           }_${colIndex}`}
+                          style={{
+                            width:
+                              key == "Contenido" || key == "diputados_autores"
+                                ? "400px"
+                                : "",
+                            wordBreak:
+                              key == "Contenido" || key == "diputados_autores"
+                                ? "break-all"
+                                : "unset",
+                          }}
                         >
-                          {key && tooltip && <span>{tooltip}</span>}
+                          {key && tooltip && (
+                            <span
+                              className={`${
+                                key == "Contenido" ||
+                                (key == "diputados_autores" &&
+                                  "table_x02_spanTooltip")
+                              }`}
+                            >
+                              {tooltip}
+                            </span>
+                          )}
                           {content}
                         </td>
                       );
