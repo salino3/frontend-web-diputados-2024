@@ -28,7 +28,6 @@ export const TablePage: React.FC = () => {
   const [t] = useTranslation("global");
 
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
-  console.log("here12", state);
 
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -202,7 +201,6 @@ export const TablePage: React.FC = () => {
 
       title: "Action",
       render: (_: any, row: CongresoPreguntas) => {
-        console.log("RRR", row);
         return (
           <div className="boxBtnRow">
             <Link target="_blank" to={row?.url}>
@@ -256,13 +254,12 @@ export const TablePage: React.FC = () => {
       // gender: filterGender,
       // employee: filterEmployee,
     };
-    console.log("here4", body);
+    console.log("Body:", body);
     const exactFilters = ["Grupo_Parlamentario"];
     const rangeFilters = [""];
     fetchApi(page, pageSize, body, exactFilters, rangeFilters);
   }, [page, pageSize, flag]);
 
-  console.log("State", state);
   return (
     <div id={state?.theme} className="rootTablePage">
       <h3>{t("table.table_title")}</h3>

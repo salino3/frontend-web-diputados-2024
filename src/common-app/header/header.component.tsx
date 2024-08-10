@@ -12,8 +12,6 @@ export const HeaderHome: React.FC = () => {
     sessionStorage.setItem("selectedLanguage", language);
   };
 
-  console.log(i18next.language);
-
   return (
     <header className="rootHeaderHome">
       <h2 className="titleHeaderHome">{t("title")}</h2>

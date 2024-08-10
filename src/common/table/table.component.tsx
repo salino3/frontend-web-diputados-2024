@@ -80,7 +80,6 @@ export const TableComponet: React.FC<TableProps> = ({
     });
 
   const totalPages: number = Math.ceil(totalData / pageSize);
-  console.log(totalPages);
   const startRow = (page - 1) * pageSize + 1;
   const endRow = Math.min(page * pageSize, totalData);
 
@@ -98,7 +97,6 @@ export const TableComponet: React.FC<TableProps> = ({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("here3", filtersTable);
     // Update the filters in the parent component
     filtersTable.forEach((filter: any) => {
       if (filter?.setFilter) {
