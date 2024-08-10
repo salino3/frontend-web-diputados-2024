@@ -37,6 +37,8 @@ export const TablePage: React.FC = () => {
   const [filterPresentada, setFilterPresentada] = useState<string>("");
   const [filterDiputadosAutores, setFilterDiputadosAutores] =
     useState<string>("");
+  const [filterGrupoParlamentario, setFilterGrupoParlamentario] =
+    useState<string>("");
 
   const array: Row[] = [
     {
@@ -78,14 +80,55 @@ export const TablePage: React.FC = () => {
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
     },
+    {
+      key: "Grupo_Parlamentario",
+      title: "Grupo Parlamentario",
+      tooltip: (item: string) => item,
+      typeFilter: typesFilter?.select,
+      setFilter: setFilterGrupoParlamentario,
+      filter: filterGrupoParlamentario,
+      valuesFilter: [
+        { text: "", value: "" },
+        { text: "G.P. Republicano", value: "G.P. Republicano" },
+        {
+          text: "G.P. Popular en el Congreso",
+          value: "G.P. Popular en el Congreso",
+        },
+        {
+          text: "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común",
+          value:
+            "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común",
+        },
+        { text: "G.P. VOX", value: "G.P. VOX" },
+        { text: "G.P. Ciudadanos", value: "G.P. Ciudadanos" },
+        { text: "G.P. EH Bildu", value: "G.P. EH Bildu" },
+        { text: "G.P. Plural", value: "G.P. Plural" },
+        { text: "G.P. Mixto", value: "G.P. Mixto" },
+        { text: "G.P. Vasco (EAJ-PNV)", value: "G.P. Vasco (EAJ-PNV)" },
+        { text: "G.P. Socialista", value: "G.P. Socialista" },
+      ],
+      render: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+    },
   ];
 
   useEffect(() => {
+    let parlamentGroupCorrected =
+      filterGrupoParlamentario != ""
+        ? "['" + filterGrupoParlamentario + "']"
+        : filterGrupoParlamentario;
+
     const body = {
       Expediente: filterExpediente,
       Contenido: filterContenido,
       Presentada: filterPresentada,
       diputados_autores: filterDiputadosAutores,
+      Grupo_Parlamentario: parlamentGroupCorrected,
       // name: filterName,
       // city: filterCity,
       // email: filterEmail,
@@ -95,7 +138,7 @@ export const TablePage: React.FC = () => {
       // employee: filterEmployee,
     };
     console.log("here4", body);
-    const exactFilters = [""];
+    const exactFilters = ["Grupo_Parlamentario"];
     const rangeFilters = [""];
     fetchApi(page, pageSize, body, exactFilters, rangeFilters);
   }, [page, pageSize, flag]);
