@@ -336,6 +336,8 @@ export const TableComponet: React.FC<TableProps> = ({
                           }_${colIndex}`}
                           style={{
                             width: key == "Contenido" ? "400px" : "",
+                            wordBreak:
+                              key == "Contenido" ? "break-all" : "unset",
                           }}
                         >
                           {key && tooltip && (

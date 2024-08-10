@@ -35,6 +35,8 @@ export const TablePage: React.FC = () => {
   const [filterExpediente, setFilterExpediente] = useState<string>("");
   const [filterContenido, setFilterContenido] = useState<string>("");
   const [filterPresentada, setFilterPresentada] = useState<string>("");
+  const [filterDiputadosAutores, setFilterDiputadosAutores] =
+    useState<string>("");
 
   const array: Row[] = [
     {
@@ -61,6 +63,21 @@ export const TablePage: React.FC = () => {
       setFilter: setFilterContenido,
       filter: filterContenido,
     },
+    {
+      key: "diputados_autores",
+      title: "Diputados autores",
+      tooltip: (item: string) => item,
+      typeFilter: typesFilter?.text,
+      setFilter: setFilterDiputadosAutores,
+      filter: filterDiputadosAutores,
+      render: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+    },
   ];
 
   useEffect(() => {
@@ -68,6 +85,7 @@ export const TablePage: React.FC = () => {
       Expediente: filterExpediente,
       Contenido: filterContenido,
       Presentada: filterPresentada,
+      diputados_autores: filterDiputadosAutores,
       // name: filterName,
       // city: filterCity,
       // email: filterEmail,
