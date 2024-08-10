@@ -54,3 +54,15 @@ export const initialState: State = {
     products: [],
   },
 };
+
+//
+export interface FormData {
+  Expediente: string;
+  Contenido: string;
+  Presentadas: string;
+  diputados_autores: string;
+  Grupo_Parlamentario: string;
+  comunidades_tags: string;
+  provincias_tags: string;
+  municipios_tags: string;
+}

@@ -1,19 +1,8 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { GlobalContext, MyState } from "@/core";
+import { FormData, GlobalContext, MyState } from "@/core";
 import { Button, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
-
-interface FormData {
-  Expediente: string;
-  Contenido: string;
-  Presentadas: string;
-  diputados_autores: string;
-  Grupo_Parlamentario: string;
-  comunidades_tags: string;
-  provincias_tags: string;
-  municipios_tags: string;
-}
 
 export const SearchPage: React.FC = () => {
   const [t] = useTranslation("global");
