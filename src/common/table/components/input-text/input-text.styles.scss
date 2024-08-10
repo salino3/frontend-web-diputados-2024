@@ -1,0 +1,61 @@
+.table_x02_rootCustomInputText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+
+  .table_x02_containerInput {
+    position: relative;
+    width: 60%;
+    min-width: 200px;
+
+    .table_x02_inputText {
+      border-radius: 0.5rem;
+      padding: 1rem 0.5rem 0.5rem 1rem;
+      box-shadow: var(--color-two) 0px 0px 16px;
+      width: 100%;
+      outline: none;
+      border: 0.5px solid;
+    }
+
+    .table_x02_inputTextMultiselect {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-radius: 0.5rem;
+      padding: 0.25rem;
+      box-shadow: var(--color-two) 0px 0px 16px;
+      width: 100%;
+      height: 200px;
+      outline: none;
+      .table_x02_option {
+        padding: 0.2rem 0rem;
+      }
+    }
+
+    .table_x02_inputLabel {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      color: #999;
+    }
+
+    .table_x02_inputText:focus + .table_x02_inputLabel,
+    .table_x02_shrink {
+      top: 0;
+      left: 1rem;
+      font-size: 0.8rem;
+      transform: translateY(-110%);
+      color: black;
+    }
+
+    .table_x02_inputText:focus {
+      box-shadow: #ffec1f 0px 0px 16px;
+    }
+  }
+}

@@ -1,0 +1,244 @@
+.table_x02_rootTableComponet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 0.5rem;
+  width: 100%;
+  .table_x02_containerTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+
+    .table_x02_totalResults {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      font-weight: bold;
+      font-size: 20px;
+      min-width: max-content;
+    }
+
+    .table {
+      thead th:first-child {
+        border-radius: 12px 0 0 0 !important;
+      }
+
+      thead tr,
+      thead th,
+      thead td {
+        background-color: var(--color-four);
+        color: var(--color-two);
+        width: 200px;
+      }
+
+      thead tr th:last-child {
+        border-radius: 0 12px 0 0 !important;
+      }
+      tbody tr,
+      tbody th,
+      tbody td {
+        background-color: var(--color-three);
+        color: var(--color-two);
+        width: 200px;
+      }
+
+      .table_x02_trTable:hover td {
+        background-color: var(--color-five);
+      }
+      thead th {
+        position: relative;
+      }
+
+      thead {
+        .table_x02_thHeader {
+          //* Form
+          .table_x02_containerFormFilter {
+            z-index: 999999;
+            min-height: 110px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+              rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            background-color: var(--color-three);
+            padding: 0 0.25rem 0.5rem;
+            border-radius: 1rem;
+
+            #table_x02_formFilter {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              justify-content: center;
+              align-items: stretch;
+              span {
+                align-self: end;
+                cursor: pointer;
+              }
+              .table_x02_inputFilter {
+              }
+              .table_x02_btnsContainer {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                justify-content: space-between;
+                align-items: center;
+
+                .table_x02_btnFilter {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  height: 2.2rem;
+                  font-size: 1.2rem;
+                  letter-spacing: 1px;
+                  width: 5.5rem;
+                }
+              }
+            }
+          }
+
+          .table_x02_spanTitleIcon {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            width: fit-content;
+            white-space: nowrap;
+          }
+        }
+      }
+      //
+      td span {
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        z-index: 10;
+      }
+
+      tbody td {
+        position: relative;
+      }
+
+      tbody td:hover span {
+        display: flex;
+        position: absolute;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+          rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        padding: 0.5rem;
+        border-radius: 12px;
+        background-color: var(--color-one);
+        top: -10px;
+        left: 20px;
+        width: min-content;
+        min-width: 30px;
+      }
+    }
+
+    .table_x02_rootPagination {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      min-width: max-content;
+      padding-bottom: 14rem;
+
+      .table_x02_containerPagination {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 1rem;
+        padding: 0.1rem 0.5rem;
+        width: fit-content;
+        gap: 1.5rem;
+      }
+      .table_x02_contentChoosePages {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        .table_x02_containerSpanRowsInfo {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+
+          .table_x02_spanChoosePages_01 {
+            padding: 0 0.2rem;
+            border-radius: 4px;
+            line-height: 1.3rem;
+            white-space: nowrap;
+          }
+
+          .table_x02_spanChoosePages_02 {
+            background-color: var(--color-one);
+            padding: 0 0.2rem;
+            border-radius: 4px;
+            line-height: 1.3rem;
+          }
+        }
+
+        .table_x02_detailsPages {
+          position: relative;
+          .table_x02_containerPages {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
+            position: absolute;
+            z-index: 999;
+            top: 12px;
+            padding: 0.3rem 0;
+            left: 15px;
+            border-radius: 0.25rem;
+            background-color: var(--color-one);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+              0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombras en tres niveles */
+
+            .table_x02_rowPages {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              line-height: 1.1rem;
+              min-width: 1.5rem;
+              width: 100%;
+              cursor: pointer;
+            }
+            .table_x02_rowPages:hover {
+              background-color: var(--color-four);
+            }
+          }
+        }
+      }
+
+      .table_x02_contentArrows {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: stretch;
+        border-radius: 1rem;
+        width: fit-content;
+        .table_x02_iconPagination {
+          font-size: 1.5rem;
+          border-radius: 1rem;
+        }
+
+        .table_x02_infoPagination {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          min-width: 6rem;
+          gap: 0.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
