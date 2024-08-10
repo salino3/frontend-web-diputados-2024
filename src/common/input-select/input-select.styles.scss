@@ -1,0 +1,33 @@
+.rootCustomInputText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  .containerInput {
+    position: relative;
+    width: 60%;
+    min-width: 300px;
+    .inputSelect {
+      border-radius: 0.5rem;
+      padding: 1rem 0.5rem 0.5rem 1rem;
+      box-shadow: var(--color-two) 0px 0px 16px;
+      min-width: 300px;
+      max-width: 300px;
+      width: 100%;
+      outline: none;
+      border: 0.5px solid;
+    }
+
+    .inputSelect:focus {
+      box-shadow: #ffec1f 0px 0px 16px;
+    }
+  }
+
+  .errorMsg {
+    color: red;
+    align-self: start;
+    padding-left: 0.5rem;
+    height: 1rem;
+  }
+}

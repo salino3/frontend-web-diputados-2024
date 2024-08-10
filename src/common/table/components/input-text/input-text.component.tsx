@@ -1,5 +1,5 @@
 import React from "react";
-import { ValuesFilter } from "@/pods";
+import { ValuesFilter } from "@/core";
 import "./input-text.styles.scss";
 
 interface PropsInput {

@@ -66,3 +66,8 @@ export interface FormData {
   provincias_tags: string;
   municipios_tags: string;
 }
+
+export interface ValuesFilter {
+  text: string;
+  value: any;
+}

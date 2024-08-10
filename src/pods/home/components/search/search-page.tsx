@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormData, GlobalContext, MyState } from "@/core";
-import { Button, CustomInputText } from "@/common";
+import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
 
 interface Props {
@@ -96,12 +96,16 @@ export const SearchPage: React.FC<Props> = (props) => {
           />
         </div>
         <div className="containerInputs4">
-          <CustomInputText
+          <CustomInputSelect
             lbl={t("search.communities_tags")}
             name="comunidades_tags"
             inputValue={formData?.comunidades_tags}
             handleChange={handleChange("comunidades_tags")}
             errorMsg={errorForm?.comunidades_tags}
+            valuesFilter={[
+              { text: "Spain *", value: "spain" },
+              { text: "Italy *", value: "italy" },
+            ]}
           />
           <CustomInputText
             lbl={t("search.provinces_tags")}
