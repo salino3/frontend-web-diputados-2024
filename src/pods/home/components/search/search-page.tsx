@@ -74,6 +74,7 @@ export const SearchPage: React.FC<Props> = (props) => {
         <CustomInputText
           lbl={t("search.content")}
           name="Contenido"
+          textarea
           inputValue={formData?.Contenido}
           handleChange={handleChange("Contenido")}
         />

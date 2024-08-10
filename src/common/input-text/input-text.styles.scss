@@ -28,7 +28,17 @@
       // color: #999;
     }
 
+    .inputAreaLabel {
+      position: absolute;
+      top: 20%;
+      left: 1rem;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
     .inputText:focus + .inputLabel,
+    .inputText:focus + .inputAreaLabel,
     .shrink {
       top: 0;
       left: 1rem;
