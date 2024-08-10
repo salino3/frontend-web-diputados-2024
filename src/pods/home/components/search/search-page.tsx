@@ -4,7 +4,12 @@ import { FormData, GlobalContext, MyState } from "@/core";
 import { Button, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
 
-export const SearchPage: React.FC = () => {
+interface Props {
+  setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchPage: React.FC<Props> = (props) => {
+  const { setSelectedTab } = props;
   const [t] = useTranslation("global");
 
   const { fetchApi, state } = useContext<MyState>(GlobalContext);
@@ -51,7 +56,7 @@ export const SearchPage: React.FC = () => {
     const exactFilters = [""];
     const rangeFilters = [""];
     fetchApi(1, 10, formData, exactFilters, rangeFilters).then(() => {
-      console.log("Filters fetched successfully");
+      setSelectedTab("table");
     });
   };
 
@@ -116,7 +121,6 @@ export const SearchPage: React.FC = () => {
         />{" "}
         <div className="boxBtnsSearchForm">
           <Button
-            // disabled={!valuesAreValids(formData)}
             // customStyles={`primaryBtn ${
             //   !valuesAreValids(formData) && "btnRequiredValues"
             // }`}

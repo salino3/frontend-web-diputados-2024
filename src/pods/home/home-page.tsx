@@ -21,7 +21,7 @@ export const HomePage: React.FC = () => {
     {
       id: "search",
       title: "home.search",
-      component: <SearchPage />,
+      component: <SearchPage setSelectedTab={setSelectedTab} />,
     },
     {
       id: "table",

@@ -4,6 +4,7 @@ import "./input-text.styles.scss";
 interface Props {
   lbl: string;
   name: string;
+  type?: "text" | "email" | "number" | "password" | "textarea";
   inputValue: string;
   handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   errorMsg?: string;
@@ -11,13 +12,21 @@ interface Props {
 }
 
 export const CustomInputText: React.FC<Props> = (props) => {
-  const { lbl, name, inputValue, handleChange, errorMsg, rq = "" } = props;
+  const {
+    lbl,
+    name,
+    type = "text",
+    inputValue,
+    handleChange,
+    errorMsg,
+    rq = "",
+  } = props;
 
   return (
     <div className="rootCustomInputText">
       <div className="containerInput">
         <input
-          type="text"
+          type={type}
           id={name}
           className="inputText"
           name={name}
