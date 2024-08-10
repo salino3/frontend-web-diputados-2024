@@ -78,48 +78,46 @@ export const SearchPage: React.FC<Props> = (props) => {
           inputValue={formData?.Contenido}
           handleChange={handleChange("Contenido")}
         />
-        <CustomInputText
-          lbl={t("search.parliamentary_group")}
-          name="Grupo_Parlamentario"
-          inputValue={formData?.Grupo_Parlamentario}
-          handleChange={handleChange("Grupo_Parlamentario")}
-          errorMsg={errorForm?.Grupo_Parlamentario}
-        />
-        <CustomInputText
-          lbl={t("search.parliamentary_group")}
-          name="Presentadas"
-          inputValue={formData?.Presentadas}
-          handleChange={handleChange("Presentadas")}
-          errorMsg={errorForm?.Presentadas}
-        />
-        <CustomInputText
-          lbl={t("search.author_deputies")}
-          name="diputados_autores"
-          inputValue={formData?.diputados_autores}
-          handleChange={handleChange("diputados_autores")}
-          errorMsg={errorForm?.diputados_autores}
-        />
-        <CustomInputText
-          lbl={t("search.communities_tags")}
-          name="comunidades_tags"
-          inputValue={formData?.comunidades_tags}
-          handleChange={handleChange("comunidades_tags")}
-          errorMsg={errorForm?.comunidades_tags}
-        />
-        <CustomInputText
-          lbl={t("search.provinces_tags")}
-          name="provincias_tags"
-          inputValue={formData?.provincias_tags}
-          handleChange={handleChange("provincias_tags")}
-          errorMsg={errorForm?.provincias_tags}
-        />{" "}
-        <CustomInputText
-          lbl={t("search.municipalities_tags")}
-          name="municipios_tags"
-          inputValue={formData?.municipios_tags}
-          handleChange={handleChange("municipios_tags")}
-          errorMsg={errorForm?.municipios_tags}
-        />{" "}
+
+        <div className="containerInputs3">
+          <CustomInputText
+            lbl={t("search.parliamentary_group")}
+            name="Presentadas"
+            inputValue={formData?.Presentadas}
+            handleChange={handleChange("Presentadas")}
+            errorMsg={errorForm?.Presentadas}
+          />
+          <CustomInputText
+            lbl={t("search.author_deputies")}
+            name="diputados_autores"
+            inputValue={formData?.diputados_autores}
+            handleChange={handleChange("diputados_autores")}
+            errorMsg={errorForm?.diputados_autores}
+          />
+        </div>
+        <div className="containerInputs4">
+          <CustomInputText
+            lbl={t("search.communities_tags")}
+            name="comunidades_tags"
+            inputValue={formData?.comunidades_tags}
+            handleChange={handleChange("comunidades_tags")}
+            errorMsg={errorForm?.comunidades_tags}
+          />
+          <CustomInputText
+            lbl={t("search.provinces_tags")}
+            name="provincias_tags"
+            inputValue={formData?.provincias_tags}
+            handleChange={handleChange("provincias_tags")}
+            errorMsg={errorForm?.provincias_tags}
+          />{" "}
+          <CustomInputText
+            lbl={t("search.municipalities_tags")}
+            name="municipios_tags"
+            inputValue={formData?.municipios_tags}
+            handleChange={handleChange("municipios_tags")}
+            errorMsg={errorForm?.municipios_tags}
+          />
+        </div>
         <div className="boxBtnsSearchForm">
           <Button
             // customStyles={`primaryBtn ${
