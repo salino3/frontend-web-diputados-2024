@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { GlobalContext, MyState } from "@/core";
 import { SearchPage, TablePage } from "./components";
@@ -22,7 +21,7 @@ export const HomePage: React.FC = () => {
     {
       id: "search",
       title: "home.search",
-      component: <SearchPage />,
+      component: <SearchPage setSelectedTab={setSelectedTab} />,
     },
     {
       id: "table",
@@ -31,21 +30,11 @@ export const HomePage: React.FC = () => {
     },
   ];
 
-  const link: string =
-    "https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_";
-  // https://datosabiertos.malaga.eu/recursos/ambiente/contenedores/da_medioAmbiente_contenedoresRopa-25830.csv
   return (
     <div className="rootHomePage">
       <div className="topContainerHome">
         <div className="contentTopContentHome">
           <h1 className="titleHomePage">{t("home.title")}</h1>
-          <h2 className="subTitleHomePage">
-            URL: <Link to={link}>{link}</Link>
-          </h2>
-          <p>
-            {t("home.title")}. {t("previsualization")}{" "}
-            <Link to={"#"}>Geoportal</Link>
-          </p>
         </div>
 
         <div className="boxTabs">

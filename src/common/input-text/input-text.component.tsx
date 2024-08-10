@@ -4,30 +4,58 @@ import "./input-text.styles.scss";
 interface Props {
   lbl: string;
   name: string;
+  type?: "text" | "email" | "number" | "password" | "textarea";
+  textarea?: boolean;
   inputValue: string;
-  handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  handleChange:
+    | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined;
   errorMsg?: string;
+  rq?: string;
 }
 
 export const CustomInputText: React.FC<Props> = (props) => {
-  const { lbl, name, inputValue, handleChange, errorMsg } = props;
+  const {
+    lbl,
+    name,
+    type = "text",
+    textarea = false,
+    inputValue,
+    handleChange,
+    errorMsg,
+    rq = "",
+  } = props;
 
   return (
     <div className="rootCustomInputText">
       <div className="containerInput">
-        <input
-          type="text"
-          id={name}
-          className="inputText"
-          name={name}
-          value={inputValue}
-          onChange={handleChange}
-        />
+        {textarea ? (
+          <textarea
+            id={name}
+            className="inputText"
+            name={name}
+            value={inputValue}
+            onChange={handleChange}
+            cols={100}
+            rows={4}
+          ></textarea>
+        ) : (
+          <input
+            type={type}
+            id={name}
+            className="inputText"
+            name={name}
+            value={inputValue}
+            onChange={handleChange}
+          />
+        )}
         <label
           htmlFor={name}
-          className={`inputLabel ${inputValue ? "shrink" : ""}`}
+          className={`${textarea ? "inputAreaLabel" : "inputLabel"} ${
+            inputValue ? "shrink" : ""
+          }`}
         >
-          {lbl}
+          {lbl} {rq && <small>({rq})</small>}
         </label>
       </div>
       <span className="errorMsg">{errorMsg}</span>

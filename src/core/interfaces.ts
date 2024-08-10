@@ -44,7 +44,7 @@ export interface MyState {
     body?: any,
     exactFilters?: string[] | any,
     rangeFilters?: string[] | any
-  ) => void;
+  ) => any;
 }
 
 export const initialState: State = {
@@ -54,3 +54,20 @@ export const initialState: State = {
     products: [],
   },
 };
+
+//
+export interface FormData {
+  Expediente: string;
+  Contenido: string;
+  Presentadas: string;
+  diputados_autores: string;
+  Grupo_Parlamentario: string;
+  comunidades_tags: string;
+  provincias_tags: string;
+  municipios_tags: string;
+}
+
+export interface ValuesFilter {
+  text: string;
+  value: any;
+}

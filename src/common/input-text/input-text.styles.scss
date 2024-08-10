@@ -6,13 +6,16 @@
   margin-top: 0.5rem;
   .containerInput {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 60%;
-    min-width: 240px;
+    min-width: 300px;
     .inputText {
       border-radius: 0.5rem;
       padding: 1rem 0.5rem 0.5rem 1rem;
       box-shadow: var(--color-two) 0px 0px 16px;
-      min-width: 240px;
+      min-width: 300px;
+      max-width: 300px;
       width: 100%;
       outline: none;
       border: 0.5px solid;
@@ -25,16 +28,26 @@
       transform: translateY(-50%);
       transition: all 0.3s ease;
       pointer-events: none;
-      color: #999;
+      // color: #999;
+    }
+
+    .inputAreaLabel {
+      position: absolute;
+      top: 20%;
+      left: 1rem;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+      pointer-events: none;
     }
 
     .inputText:focus + .inputLabel,
+    .inputText:focus + .inputAreaLabel,
     .shrink {
       top: 0;
       left: 1rem;
       font-size: 0.8rem;
       transform: translateY(-110%);
-      color: black;
+      // color: black;
     }
 
     .inputText:focus {

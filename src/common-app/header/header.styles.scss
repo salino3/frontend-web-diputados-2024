@@ -5,14 +5,24 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 1rem;
-  border: solid;
+  // padding: 1rem;
+  border-bottom: solid;
   position: relative;
+  min-height: 100px;
+
+  .titleHeaderHome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    padding-bottom: 1rem;
+  }
 
   .boxLanguages {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    position: absolute;
     align-items: center;
     justify-content: center;
     border: 1px solid;
@@ -20,7 +30,7 @@
     border-bottom: none;
     border-right: none;
     height: auto;
-    position: absolute;
+    // position: absolute;
     bottom: 0;
     right: 0;
     padding-right: 5px;
@@ -61,5 +71,9 @@
   .rootHeaderHome {
     align-items: start;
     min-height: 90px;
+
+    .titleHeaderHome {
+      padding-bottom: unset;
+    }
   }
 }
