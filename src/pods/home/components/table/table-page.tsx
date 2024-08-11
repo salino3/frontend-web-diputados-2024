@@ -155,7 +155,7 @@ export const TablePage: React.FC = () => {
       },
     },
     {
-      key: "provincias_tags",
+      key: "provincia_tags",
       title: "Provincias (Tags)",
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
@@ -245,7 +245,7 @@ export const TablePage: React.FC = () => {
       diputados_autores: deputiesAuthorsCorrected,
       Grupo_Parlamentario: parlamentGroupCorrected,
       comunidades_tags: deputiesComunidadesCorrected,
-      provincias_tags: filterProvinciasCorrected,
+      provincia_tags: filterProvinciasCorrected,
       municipios_tags: filterMuniciosCorrected,
       // city: filterCity,
       // email: filterEmail,

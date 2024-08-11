@@ -1,6 +1,13 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FormData, GlobalContext, MyState } from "@/core";
+import {
+  arrayComunidades_tags,
+  arrayMunicipios_tags,
+  arrayProvincia_tags,
+  FormData,
+  GlobalContext,
+  MyState,
+} from "@/core";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
 
@@ -21,7 +28,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     diputados_autores: "",
     Grupo_Parlamentario: "",
     comunidades_tags: "",
-    provincias_tags: "",
+    provincia_tags: "",
     municipios_tags: "",
   });
   const [errorForm, setErrorForm] = useState<FormData>({
@@ -31,7 +38,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     diputados_autores: "",
     Grupo_Parlamentario: "",
     comunidades_tags: "",
-    provincias_tags: "",
+    provincia_tags: "",
     municipios_tags: "",
   });
 
@@ -101,26 +108,21 @@ export const SearchPage: React.FC<Props> = (props) => {
             name="comunidades_tags"
             inputValue={formData?.comunidades_tags}
             handleChange={handleChange("comunidades_tags")}
-            errorMsg={errorForm?.comunidades_tags}
-            valuesFilter={[
-              { text: "", value: "" },
-              { text: "Spain *", value: "spain" },
-              { text: "Italy *", value: "italy" },
-            ]}
+            valuesFilter={arrayComunidades_tags}
           />
-          <CustomInputText
+          <CustomInputSelect
             lbl={t("search.provinces_tags")}
-            name="provincias_tags"
-            inputValue={formData?.provincias_tags}
-            handleChange={handleChange("provincias_tags")}
-            errorMsg={errorForm?.provincias_tags}
+            name="provincia_tags"
+            inputValue={formData?.provincia_tags}
+            handleChange={handleChange("provincia_tags")}
+            valuesFilter={arrayProvincia_tags}
           />{" "}
-          <CustomInputText
+          <CustomInputSelect
             lbl={t("search.municipalities_tags")}
             name="municipios_tags"
             inputValue={formData?.municipios_tags}
             handleChange={handleChange("municipios_tags")}
-            errorMsg={errorForm?.municipios_tags}
+            valuesFilter={arrayMunicipios_tags}
           />
         </div>
         <div className="boxBtnsSearchForm">
@@ -140,7 +142,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 diputados_autores: "",
                 Grupo_Parlamentario: "",
                 comunidades_tags: "",
-                provincias_tags: "",
+                provincia_tags: "",
                 municipios_tags: "",
               })
             }
