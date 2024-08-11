@@ -4,12 +4,14 @@
   justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
+
   .containerInput {
     position: relative;
     width: 60%;
     display: flex;
     flex-direction: column;
     min-width: 300px;
+
     .inputSelect {
       border-radius: 0.5rem;
       padding: 1rem 0.5rem 0.5rem 1rem;
@@ -20,10 +22,19 @@
       outline: none;
       border: 0.5px solid;
       height: 49px;
+      background: white; /* Asegura un fondo blanco para el select */
+      appearance: none; /* Oculta la flecha predeterminada del select */
+      transition: height 0.3s ease; /* Transición suave para el cambio de altura */
+      overflow: hidden; /* Oculta el overflow cuando no está enfocado */
     }
 
-    .inputSelect:focus {
+    .inputSelect.focus {
+      position: absolute;
+      bottom: 0px;
       box-shadow: #ffec1f 0px 0px 16px;
+      height: auto; /* Ajusta la altura automáticamente para mostrar todas las opciones */
+      min-height: 200px; /* Ajusta la altura máxima cuando está abierto */
+      overflow-y: auto; /* Permite el desplazamiento vertical si hay muchas opciones */
     }
   }
 

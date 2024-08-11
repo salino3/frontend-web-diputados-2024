@@ -27,7 +27,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     Expediente: "",
     Contenido: "",
     Presentadas: "",
-    diputados_autores: "",
+    diputados_autores: [],
     Grupo_Parlamentario: "",
     comunidades_tags: "",
     provincia_tags: "",
@@ -38,6 +38,38 @@ export const SearchPage: React.FC<Props> = (props) => {
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
       setFormData({ ...formData, [key]: value });
+    };
+
+  const handleChangeMultiple =
+    (key: keyof FormData) => (event: ChangeEvent<HTMLSelectElement>) => {
+      const { options } = event.target;
+      const selectedValues = Array.from(options)
+        .filter((option) => option.selected)
+        .map((option) => option.value);
+
+      // Actualizamos el estado con los valores seleccionados, agregando nuevos valores y eliminando los desmarcados
+      setFormData((prevFormData) => {
+        const currentValues = prevFormData[key] as string[]; // Obtiene el array actual del estado
+
+        console.log("here50", currentValues);
+
+        const updatedValues = selectedValues.reduce(
+          (acc: string[], value: string) => {
+            // Si el valor ya está en el array, lo quitamos; si no está, lo agregamos
+            if (acc.includes(value)) {
+              return acc.filter((item) => item !== value);
+            } else {
+              return [...acc, value];
+            }
+          },
+          currentValues
+        );
+
+        return {
+          ...prevFormData,
+          [key]: updatedValues,
+        };
+      });
     };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -87,8 +119,9 @@ export const SearchPage: React.FC<Props> = (props) => {
             lbl={t("search.author_deputies")}
             name="diputados_autores"
             inputValue={formData?.diputados_autores}
-            handleChange={handleChange("diputados_autores")}
+            handleChange={handleChangeMultiple("diputados_autores")}
             valuesFilter={arrayDiputados_autores}
+            multiple
           />
         </div>
         <div className="containerInputs4">
@@ -128,7 +161,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 Expediente: "",
                 Contenido: "",
                 Presentadas: "",
-                diputados_autores: "",
+                diputados_autores: [],
                 Grupo_Parlamentario: "",
                 comunidades_tags: "",
                 provincia_tags: "",

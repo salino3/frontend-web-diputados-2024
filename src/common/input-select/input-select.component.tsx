@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ValuesFilter } from "@/core";
 import "./input-select.styles.scss";
 
@@ -14,6 +14,7 @@ interface Props {
   rq?: string;
   multiple?: boolean;
 }
+
 export const CustomInputSelect: React.FC<Props> = ({
   lbl,
   inputValue,
@@ -24,27 +25,26 @@ export const CustomInputSelect: React.FC<Props> = ({
   rq,
   multiple = false,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <div className="rootCustomInputText">
+    <div className={`rootCustomInputText  ${multiple ? "multiple" : ""}`}>
       <div className="containerInput">
-        <label
-          htmlFor={name}
-          style={{
-            fontSize: "0.8rem",
-          }}
-        >
+        <label htmlFor={name} style={{ fontSize: "0.8rem" }}>
           {lbl}
         </label>
         <select
           value={inputValue}
           onChange={handleChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           id={name}
-          className="inputSelect"
+          className={`inputSelect ${multiple && isFocused ? "focus" : ""}`}
           name={name}
-          multiple={multiple}
+          multiple={isFocused && multiple}
         >
           {valuesFilter &&
-            valuesFilter?.length &&
+            valuesFilter.length &&
             valuesFilter.map((item: ValuesFilter) => (
               <option key={item?.value} value={item?.value}>
                 {item?.text}
