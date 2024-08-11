@@ -14,7 +14,8 @@
     .table_x02_totalResults {
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: start;
+      padding-left: 1rem;
       font-weight: bold;
       font-size: 20px;
       min-width: max-content;

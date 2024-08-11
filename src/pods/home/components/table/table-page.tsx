@@ -262,7 +262,7 @@ export const TablePage: React.FC = () => {
 
   return (
     <div id={state?.theme} className="rootTablePage">
-      <h3>{t("table.table_title")}</h3>
+      <h3 className="titleTable_89">{t("table.table_title")}</h3>
       <div className="containerTablePage">
         <TableComponet
           uniqueKey="Expediente"
