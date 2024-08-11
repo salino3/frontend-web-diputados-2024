@@ -9,7 +9,6 @@ import {
   FormData,
   GlobalContext,
   MyState,
-  ValuesFilter,
 } from "@/core";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
@@ -34,29 +33,11 @@ export const SearchPage: React.FC<Props> = (props) => {
     provincia_tags: "",
     municipios_tags: "",
   });
-  const [errorForm, setErrorForm] = useState<FormData>({
-    Expediente: "",
-    Contenido: "",
-    Presentadas: "",
-    diputados_autores: "",
-    Grupo_Parlamentario: "",
-    comunidades_tags: "",
-    provincia_tags: "",
-    municipios_tags: "",
-  });
-
-  // function valuesAreValids(formData: FormData) {
-  //   return Object.keys(formData).every(
-  //     (key) =>
-  //       formData[key as keyof FormData].trim() !== "" || key === "Contenido"
-  //   );
-  // }
 
   const handleChange =
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
       setFormData({ ...formData, [key]: value });
-      setErrorForm({ ...errorForm, [key]: "" });
     };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -79,7 +60,6 @@ export const SearchPage: React.FC<Props> = (props) => {
           name="Expediente"
           inputValue={formData?.Expediente}
           handleChange={handleChange("Expediente")}
-          errorMsg={errorForm?.Expediente}
         />
         <CustomInputText
           lbl={t("search.content")}
@@ -95,7 +75,6 @@ export const SearchPage: React.FC<Props> = (props) => {
             name="Presentadas"
             inputValue={formData?.Presentadas}
             handleChange={handleChange("Presentadas")}
-            errorMsg={errorForm?.Presentadas}
           />
           <CustomInputSelect
             lbl={t("search.parliamentary_group")}
