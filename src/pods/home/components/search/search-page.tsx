@@ -51,7 +51,12 @@ export const SearchPage: React.FC<Props> = (props) => {
       setFormData((prevFormData) => {
         const currentValues = prevFormData[key] as string[]; // Obtiene el array actual del estado
 
-        console.log("here50", currentValues);
+        if (selectedValues.includes("")) {
+          return {
+            ...prevFormData,
+            [key]: [],
+          };
+        }
 
         const updatedValues = selectedValues.reduce(
           (acc: string[], value: string) => {
