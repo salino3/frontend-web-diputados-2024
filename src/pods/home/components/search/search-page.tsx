@@ -2,11 +2,14 @@ import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   arrayComunidades_tags,
+  arrayDiputados_autores,
+  arrayGrupo_Parlamentario,
   arrayMunicipios_tags,
   arrayProvincia_tags,
   FormData,
   GlobalContext,
   MyState,
+  ValuesFilter,
 } from "@/core";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
@@ -88,18 +91,25 @@ export const SearchPage: React.FC<Props> = (props) => {
 
         <div className="containerInputs3">
           <CustomInputText
-            lbl={t("search.parliamentary_group")}
+            lbl={t("search.presented")}
             name="Presentadas"
             inputValue={formData?.Presentadas}
             handleChange={handleChange("Presentadas")}
             errorMsg={errorForm?.Presentadas}
           />
-          <CustomInputText
+          <CustomInputSelect
+            lbl={t("search.parliamentary_group")}
+            name="Grupo_Parlamentario"
+            inputValue={formData?.Grupo_Parlamentario}
+            handleChange={handleChange("Grupo_Parlamentario")}
+            valuesFilter={arrayGrupo_Parlamentario}
+          />
+          <CustomInputSelect
             lbl={t("search.author_deputies")}
             name="diputados_autores"
             inputValue={formData?.diputados_autores}
             handleChange={handleChange("diputados_autores")}
-            errorMsg={errorForm?.diputados_autores}
+            valuesFilter={arrayDiputados_autores}
           />
         </div>
         <div className="containerInputs4">

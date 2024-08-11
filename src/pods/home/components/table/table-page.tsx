@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
+  arrayGrupo_Parlamentario,
   CongresoPreguntas,
   GlobalContext,
   MyState,
@@ -105,26 +106,7 @@ export const TablePage: React.FC = () => {
       typeFilter: typesFilter?.select,
       setFilter: setFilterGrupoParlamentario,
       filter: filterGrupoParlamentario,
-      valuesFilter: [
-        { text: "", value: "" },
-        { text: "G.P. Republicano", value: "G.P. Republicano" },
-        {
-          text: "G.P. Popular en el Congreso",
-          value: "G.P. Popular en el Congreso",
-        },
-        {
-          text: "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común",
-          value:
-            "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común",
-        },
-        { text: "G.P. VOX", value: "G.P. VOX" },
-        { text: "G.P. Ciudadanos", value: "G.P. Ciudadanos" },
-        { text: "G.P. EH Bildu", value: "G.P. EH Bildu" },
-        { text: "G.P. Plural", value: "G.P. Plural" },
-        { text: "G.P. Mixto", value: "G.P. Mixto" },
-        { text: "G.P. Vasco (EAJ-PNV)", value: "G.P. Vasco (EAJ-PNV)" },
-        { text: "G.P. Socialista", value: "G.P. Socialista" },
-      ],
+      valuesFilter: arrayGrupo_Parlamentario,
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
