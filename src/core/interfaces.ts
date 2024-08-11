@@ -60,7 +60,7 @@ export interface FormData {
   Expediente: string;
   Contenido: string;
   Presentadas: string;
-  diputados_autores: string;
+  diputados_autores: string[];
   Grupo_Parlamentario: string;
   comunidades_tags: string;
   provincia_tags: string;
