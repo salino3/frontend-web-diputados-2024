@@ -25,7 +25,14 @@ interface Row {
   maxDate?: string | number | undefined;
 }
 
-export const TablePage: React.FC = () => {
+interface Props {
+  refreshTable: boolean;
+  setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const TablePage: React.FC<Props> = (props) => {
+  const { refreshTable, setRefreshTable } = props;
+
   const [t] = useTranslation("global");
 
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
@@ -195,45 +202,48 @@ export const TablePage: React.FC = () => {
   ];
 
   useEffect(() => {
-    let parlamentGroupCorrected =
-      filterGrupoParlamentario != ""
-        ? "['" + filterGrupoParlamentario + "']"
-        : filterGrupoParlamentario;
-    //
-    let deputiesAuthorsCorrected =
-      filterDiputadosAutores != ""
-        ? "['" + filterDiputadosAutores + "']"
-        : filterDiputadosAutores;
-    //
-    let deputiesComunidadesCorrected =
-      filterComunidadesTags != ""
-        ? "['" + filterComunidadesTags + "']"
-        : filterComunidadesTags;
-    //
-    let filterProvinciasCorrected =
-      filterProvinciasTags != ""
-        ? "['" + filterProvinciasTags + "']"
-        : filterProvinciasTags;
-    //
-    let filterMuniciosCorrected =
-      filterMunicipiosTags != ""
-        ? "['" + filterMunicipiosTags + "']"
-        : filterMunicipiosTags;
+    if (refreshTable) {
+      let parlamentGroupCorrected =
+        filterGrupoParlamentario != ""
+          ? "['" + filterGrupoParlamentario + "']"
+          : filterGrupoParlamentario;
+      //
+      // let deputiesAuthorsCorrected =
+      //   filterDiputadosAutores != ""
+      //     ? "['" + filterDiputadosAutores + "']"
+      //     : filterDiputadosAutores;
+      //
+      let deputiesComunidadesCorrected =
+        filterComunidadesTags != ""
+          ? "['" + filterComunidadesTags + "']"
+          : filterComunidadesTags;
+      //
+      let filterProvinciasCorrected =
+        filterProvinciasTags != ""
+          ? "['" + filterProvinciasTags + "']"
+          : filterProvinciasTags;
+      //
+      let filterMuniciosCorrected =
+        filterMunicipiosTags != ""
+          ? "['" + filterMunicipiosTags + "']"
+          : filterMunicipiosTags;
 
-    const body = {
-      Expediente: filterExpediente,
-      Contenido: filterContenido,
-      Presentada: filterPresentada,
-      diputados_autores: deputiesAuthorsCorrected,
-      Grupo_Parlamentario: parlamentGroupCorrected,
-      comunidades_tags: deputiesComunidadesCorrected,
-      provincia_tags: filterProvinciasCorrected,
-      municipios_tags: filterMuniciosCorrected,
-    };
-    console.log("Body:", body);
-    const exactFilters = ["Grupo_Parlamentario"];
-    const rangeFilters = [""];
-    fetchApi(page, pageSize, body, exactFilters, rangeFilters);
+      const body = {
+        Expediente: filterExpediente,
+        Contenido: filterContenido,
+        Presentada: filterPresentada,
+        diputados_autores: filterDiputadosAutores,
+        Grupo_Parlamentario: parlamentGroupCorrected,
+        comunidades_tags: deputiesComunidadesCorrected,
+        provincia_tags: filterProvinciasCorrected,
+        municipios_tags: filterMuniciosCorrected,
+      };
+      console.log("Body:", body);
+      const exactFilters = ["Grupo_Parlamentario"];
+      const rangeFilters = [""];
+      fetchApi(page, pageSize, body, exactFilters, rangeFilters);
+    }
+    setRefreshTable(true);
   }, [page, pageSize, flag]);
 
   return (

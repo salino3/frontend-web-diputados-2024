@@ -15,10 +15,11 @@ import "./search-page.styles.scss";
 
 interface Props {
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
+  setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const SearchPage: React.FC<Props> = (props) => {
-  const { setSelectedTab } = props;
+  const { setSelectedTab, setRefreshTable } = props;
   const [t] = useTranslation("global");
 
   const { fetchApi, state } = useContext<MyState>(GlobalContext);
@@ -83,8 +84,22 @@ export const SearchPage: React.FC<Props> = (props) => {
     console.log("submit", formData);
     const exactFilters = ["diputados_autores"];
     const rangeFilters = [""];
-    fetchApi(1, 10, formData, exactFilters, rangeFilters).then(() => {
+    const body = {
+      Expediente: formData?.Expediente,
+      Contenido: formData?.Contenido,
+      Presentadas: formData?.Presentadas,
+      diputados_autores:
+        formData?.diputados_autores?.length > 0
+          ? formData?.diputados_autores
+          : "",
+      Grupo_Parlamentario: formData?.Grupo_Parlamentario,
+      comunidades_tags: formData?.comunidades_tags,
+      provincia_tags: formData?.provincia_tags,
+      municipios_tags: formData?.municipios_tags,
+    };
+    fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {
       setSelectedTab("table");
+      setRefreshTable(false);
     });
   };
 

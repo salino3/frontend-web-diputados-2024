@@ -52,8 +52,8 @@ export const arrayDiputados_autores: ValuesFilter[] = [
     value: "",
   },
   {
-    text: "Isidro Manuel Martínez Oblanca",
-    value: "Isidro Manuel Martínez Oblanca",
+    text: "Isidro ManuelMartínez Oblanca",
+    value: "Isidro ManuelMartínez Oblanca",
   },
   { text: "Norma Pujol i Farré", value: "Norma Pujol i Farré" },
   { text: "Jordi Salvador i Duch", value: "Jordi Salvador i Duch" },
