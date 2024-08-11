@@ -63,7 +63,7 @@ export interface FormData {
   diputados_autores: string;
   Grupo_Parlamentario: string;
   comunidades_tags: string;
-  provincias_tags: string;
+  provincia_tags: string;
   municipios_tags: string;
 }
 
