@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
+  arrayGrupo_Parlamentario,
   CongresoPreguntas,
   GlobalContext,
   MyState,
@@ -24,7 +25,14 @@ interface Row {
   maxDate?: string | number | undefined;
 }
 
-export const TablePage: React.FC = () => {
+interface Props {
+  refreshTable: boolean;
+  setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const TablePage: React.FC<Props> = (props) => {
+  const { refreshTable, setRefreshTable } = props;
+
   const [t] = useTranslation("global");
 
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
@@ -105,26 +113,7 @@ export const TablePage: React.FC = () => {
       typeFilter: typesFilter?.select,
       setFilter: setFilterGrupoParlamentario,
       filter: filterGrupoParlamentario,
-      valuesFilter: [
-        { text: "", value: "" },
-        { text: "G.P. Republicano", value: "G.P. Republicano" },
-        {
-          text: "G.P. Popular en el Congreso",
-          value: "G.P. Popular en el Congreso",
-        },
-        {
-          text: "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común",
-          value:
-            "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común",
-        },
-        { text: "G.P. VOX", value: "G.P. VOX" },
-        { text: "G.P. Ciudadanos", value: "G.P. Ciudadanos" },
-        { text: "G.P. EH Bildu", value: "G.P. EH Bildu" },
-        { text: "G.P. Plural", value: "G.P. Plural" },
-        { text: "G.P. Mixto", value: "G.P. Mixto" },
-        { text: "G.P. Vasco (EAJ-PNV)", value: "G.P. Vasco (EAJ-PNV)" },
-        { text: "G.P. Socialista", value: "G.P. Socialista" },
-      ],
+      valuesFilter: arrayGrupo_Parlamentario,
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -155,7 +144,7 @@ export const TablePage: React.FC = () => {
       },
     },
     {
-      key: "provincias_tags",
+      key: "provincia_tags",
       title: "Provincias (Tags)",
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
@@ -213,56 +202,53 @@ export const TablePage: React.FC = () => {
   ];
 
   useEffect(() => {
-    let parlamentGroupCorrected =
-      filterGrupoParlamentario != ""
-        ? "['" + filterGrupoParlamentario + "']"
-        : filterGrupoParlamentario;
-    //
-    let deputiesAuthorsCorrected =
-      filterDiputadosAutores != ""
-        ? "['" + filterDiputadosAutores + "']"
-        : filterDiputadosAutores;
-    //
-    let deputiesComunidadesCorrected =
-      filterComunidadesTags != ""
-        ? "['" + filterComunidadesTags + "']"
-        : filterComunidadesTags;
-    //
-    let filterProvinciasCorrected =
-      filterProvinciasTags != ""
-        ? "['" + filterProvinciasTags + "']"
-        : filterProvinciasTags;
-    //
-    let filterMuniciosCorrected =
-      filterMunicipiosTags != ""
-        ? "['" + filterMunicipiosTags + "']"
-        : filterMunicipiosTags;
+    if (refreshTable) {
+      let parlamentGroupCorrected =
+        filterGrupoParlamentario != ""
+          ? "['" + filterGrupoParlamentario + "']"
+          : filterGrupoParlamentario;
+      //
+      // let deputiesAuthorsCorrected =
+      //   filterDiputadosAutores != ""
+      //     ? "['" + filterDiputadosAutores + "']"
+      //     : filterDiputadosAutores;
+      //
+      let deputiesComunidadesCorrected =
+        filterComunidadesTags != ""
+          ? "['" + filterComunidadesTags + "']"
+          : filterComunidadesTags;
+      //
+      let filterProvinciasCorrected =
+        filterProvinciasTags != ""
+          ? "['" + filterProvinciasTags + "']"
+          : filterProvinciasTags;
+      //
+      let filterMuniciosCorrected =
+        filterMunicipiosTags != ""
+          ? "['" + filterMunicipiosTags + "']"
+          : filterMunicipiosTags;
 
-    const body = {
-      Expediente: filterExpediente,
-      Contenido: filterContenido,
-      Presentada: filterPresentada,
-      diputados_autores: deputiesAuthorsCorrected,
-      Grupo_Parlamentario: parlamentGroupCorrected,
-      comunidades_tags: deputiesComunidadesCorrected,
-      provincias_tags: filterProvinciasCorrected,
-      municipios_tags: filterMuniciosCorrected,
-      // city: filterCity,
-      // email: filterEmail,
-      // age: filterAge,
-      // birthDate: filterBirthDate,
-      // gender: filterGender,
-      // employee: filterEmployee,
-    };
-    console.log("Body:", body);
-    const exactFilters = ["Grupo_Parlamentario"];
-    const rangeFilters = [""];
-    fetchApi(page, pageSize, body, exactFilters, rangeFilters);
+      const body = {
+        Expediente: filterExpediente,
+        Contenido: filterContenido,
+        Presentada: filterPresentada,
+        diputados_autores: filterDiputadosAutores,
+        Grupo_Parlamentario: parlamentGroupCorrected,
+        comunidades_tags: deputiesComunidadesCorrected,
+        provincia_tags: filterProvinciasCorrected,
+        municipios_tags: filterMuniciosCorrected,
+      };
+      console.log("Body:", body);
+      const exactFilters = ["Grupo_Parlamentario"];
+      const rangeFilters = [""];
+      fetchApi(page, pageSize, body, exactFilters, rangeFilters);
+    }
+    setRefreshTable(true);
   }, [page, pageSize, flag]);
 
   return (
     <div id={state?.theme} className="rootTablePage">
-      <h3>{t("table.table_title")}</h3>
+      <h3 className="titleTable_89">{t("table.table_title")}</h3>
       <div className="containerTablePage">
         <TableComponet
           uniqueKey="Expediente"

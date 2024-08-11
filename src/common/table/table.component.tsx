@@ -333,7 +333,7 @@ export const TableComponet: React.FC<TableProps> = ({
                               : rowIndex
                           }_${colIndex}`}
                           style={{
-                            width:
+                            minWidth:
                               key == "Contenido" || key == "diputados_autores"
                                 ? "400px"
                                 : "",
