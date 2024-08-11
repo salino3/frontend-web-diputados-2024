@@ -81,7 +81,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     event.preventDefault();
 
     console.log("submit", formData);
-    const exactFilters = [""];
+    const exactFilters = ["diputados_autores"];
     const rangeFilters = [""];
     fetchApi(1, 10, formData, exactFilters, rangeFilters).then(() => {
       setSelectedTab("table");

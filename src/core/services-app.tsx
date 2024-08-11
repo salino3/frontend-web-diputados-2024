@@ -312,10 +312,6 @@ export const arrayDiputados_autores: ValuesFilter[] = [
     text: "María Teresa Sánchez Fernández",
     value: "María Teresa Sánchez Fernández",
   },
-  {
-    text: "Francisco Javier Sánchez Rodríguez",
-    value: "Francisco Javier Sánchez Rodríguez",
-  },
 ];
 
 // comunidades_tags:
@@ -430,7 +426,6 @@ export const arrayProvincia_tags: ValuesFilter[] = [
   { text: "San Pablo", value: "San Pablo" },
   { text: "San Pedro Sacatepéquez", value: "San Pedro Sacatepéquez" },
   { text: "San Rafael Pie de la Cuesta", value: "San Rafael Pie de la Cuesta" },
-  { text: "San Marcos", value: "San Marcos" },
   { text: "Concepción Tutuapa", value: "Concepción Tutuapa" },
   { text: "Comitancillo", value: "Comitancillo" },
   { text: "El Quetzal", value: "El Quetzal" },

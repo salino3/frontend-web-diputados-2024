@@ -229,12 +229,6 @@ export const TablePage: React.FC = () => {
       comunidades_tags: deputiesComunidadesCorrected,
       provincia_tags: filterProvinciasCorrected,
       municipios_tags: filterMuniciosCorrected,
-      // city: filterCity,
-      // email: filterEmail,
-      // age: filterAge,
-      // birthDate: filterBirthDate,
-      // gender: filterGender,
-      // employee: filterEmployee,
     };
     console.log("Body:", body);
     const exactFilters = ["Grupo_Parlamentario"];
