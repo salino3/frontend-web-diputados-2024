@@ -114,10 +114,12 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.select,
+      typeFilter: typesFilter?.multiselect,
       setFilter: setFilterGrupoParlamentario,
       filter: filterGrupoParlamentario,
-      valuesFilter: arrayGrupo_Parlamentario,
+      valuesFilter: arrayGrupo_Parlamentario.sort((a, b) =>
+        a?.text.localeCompare(b.text)
+      ),
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -207,10 +209,8 @@ export const TablePage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (refreshTable) {
-      let parlamentGroupCorrected =
-        filterGrupoParlamentario != ""
-          ? "['" + filterGrupoParlamentario + "']"
-          : filterGrupoParlamentario;
+      let parlamentGroupCorrected: any =
+        filterGrupoParlamentario != "" ? filterGrupoParlamentario : "";
       //
       let deputiesAuthorsCorrected: any =
         filterDiputadosAutores != "" ? filterDiputadosAutores : "";
@@ -238,13 +238,17 @@ export const TablePage: React.FC<Props> = (props) => {
           deputiesAuthorsCorrected && deputiesAuthorsCorrected.length > 0
             ? deputiesAuthorsCorrected
             : "",
-        Grupo_Parlamentario: parlamentGroupCorrected,
+        Grupo_Parlamentario:
+          parlamentGroupCorrected && parlamentGroupCorrected.length > 0
+            ? parlamentGroupCorrected
+            : "",
+
         comunidades_tags: deputiesComunidadesCorrected,
         provincia_tags: filterProvinciasCorrected,
         municipios_tags: filterMuniciosCorrected,
       };
       console.log("Body:", body);
-      const exactFilters = ["Grupo_Parlamentario"];
+      const exactFilters = [""];
       const rangeFilters = [""];
       fetchApi(page, pageSize, body, exactFilters, rangeFilters);
     }

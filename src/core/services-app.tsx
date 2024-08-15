@@ -26,7 +26,10 @@ export const ServicesApp = () => {
 
 // Grupo_Parlamentario:
 export const arrayGrupo_Parlamentario: ValuesFilter[] = [
-  { text: "", value: "" },
+  {
+    text: "* cancel all",
+    value: "",
+  },
   { text: "G.P. Republicano", value: "G.P. Republicano" },
   {
     text: "G.P. Popular en el Congreso",
@@ -48,7 +51,7 @@ export const arrayGrupo_Parlamentario: ValuesFilter[] = [
 // diputados_autores:
 export const arrayDiputados_autores: ValuesFilter[] = [
   {
-    text: "",
+    text: "* cancel all",
     value: "",
   },
   {

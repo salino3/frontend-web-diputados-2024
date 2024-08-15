@@ -161,8 +161,15 @@ export const TableComponet: React.FC<TableProps> = ({
           });
 
           updatedFilter.filter = currentFilters;
-
-          return updatedFilter;
+          console.log("updated", updatedFilter);
+          if (updatedFilter?.filter?.includes("")) {
+            const cancelButton = document.getElementById(`table_x02_cancelBtn`);
+            if (cancelButton) {
+              cancelButton.click();
+            }
+          } else {
+            return updatedFilter;
+          }
         }
         return filter;
       })
@@ -268,6 +275,7 @@ export const TableComponet: React.FC<TableProps> = ({
                             </button>
                             <button
                               type="reset"
+                              id="table_x02_cancelBtn"
                               onClick={() => handleReset(index)}
                               className="btn secundaryBtn table_x02_btnFilter"
                             >
