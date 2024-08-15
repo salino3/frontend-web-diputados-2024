@@ -90,9 +90,15 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      valuesFilter: arrayDiputados_autores?.sort((a, b) =>
-        a?.text.localeCompare(b.text)
-      ),
+      valuesFilter: [
+        {
+          text: "* cancel all",
+          value: "",
+        },
+        ...arrayDiputados_autores?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
+      ],
       typeFilter: typesFilter?.multiselect,
       setFilter: setFilterDiputadosAutores,
       filter: filterDiputadosAutores,
@@ -117,9 +123,15 @@ export const TablePage: React.FC<Props> = (props) => {
       typeFilter: typesFilter?.multiselect,
       setFilter: setFilterGrupoParlamentario,
       filter: filterGrupoParlamentario,
-      valuesFilter: arrayGrupo_Parlamentario.sort((a, b) =>
-        a?.text.localeCompare(b.text)
-      ),
+      valuesFilter: [
+        {
+          text: "* cancel all",
+          value: "",
+        },
+        ...arrayGrupo_Parlamentario.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
+      ],
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";

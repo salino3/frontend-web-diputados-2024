@@ -22,19 +22,30 @@
       outline: none;
       border: 0.5px solid;
       height: 49px;
-      background: white; /* Asegura un fondo blanco para el select */
-      appearance: none; /* Oculta la flecha predeterminada del select */
-      transition: height 0.3s ease; /* Transición suave para el cambio de altura */
-      overflow: hidden; /* Oculta el overflow cuando no está enfocado */
+      background: white;
+      appearance: none;
+      transition: height 0.3s ease;
+      overflow: hidden;
+    }
+
+    .bottomTitleInputSelect {
+      bottom: 200px;
     }
 
     .inputSelect.focus {
       position: absolute;
       bottom: 0px;
       box-shadow: #ffec1f 0px 0px 16px;
-      height: auto; /* Ajusta la altura automáticamente para mostrar todas las opciones */
-      min-height: 200px; /* Ajusta la altura máxima cuando está abierto */
-      overflow-y: auto; /* Permite el desplazamiento vertical si hay muchas opciones */
+      height: auto;
+      min-height: 200px;
+      overflow-y: auto;
+    }
+
+    .openInputMultiselect {
+      position: absolute;
+      bottom: 0px;
+      height: 200px;
+      overflow-y: auto;
     }
   }
 
@@ -43,5 +54,23 @@
     align-self: start;
     padding-left: 0.5rem;
     height: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .rootCustomInputText {
+    .containerInput {
+      .bottomTitleInputSelect {
+        bottom: 70px !important;
+      }
+
+      .inputSelect.focus {
+        min-height: 250px;
+      }
+
+      .openInputMultiselect {
+        height: 70px; /* Ajusta la altura automáticamente para mostrar todas las opciones */
+      }
+    }
   }
 }

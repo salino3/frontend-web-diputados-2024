@@ -29,7 +29,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     Contenido: "",
     Presentadas: "",
     diputados_autores: [],
-    Grupo_Parlamentario: "",
+    Grupo_Parlamentario: [],
     comunidades_tags: "",
     provincia_tags: "",
     municipios_tags: "",
@@ -82,7 +82,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     event.preventDefault();
 
     console.log("submit", formData);
-    const exactFilters = ["diputados_autores"];
+    const exactFilters = [""];
     const rangeFilters = [""];
     const body = {
       Expediente: formData?.Expediente,
@@ -92,7 +92,10 @@ export const SearchPage: React.FC<Props> = (props) => {
         formData?.diputados_autores?.length > 0
           ? formData?.diputados_autores
           : "",
-      Grupo_Parlamentario: formData?.Grupo_Parlamentario,
+      Grupo_Parlamentario:
+        formData?.Grupo_Parlamentario?.length > 0
+          ? formData?.Grupo_Parlamentario
+          : "",
       comunidades_tags: formData?.comunidades_tags,
       provincia_tags: formData?.provincia_tags,
       municipios_tags: formData?.municipios_tags,
@@ -132,15 +135,32 @@ export const SearchPage: React.FC<Props> = (props) => {
             lbl={t("search.parliamentary_group")}
             name="Grupo_Parlamentario"
             inputValue={formData?.Grupo_Parlamentario}
-            handleChange={handleChange("Grupo_Parlamentario")}
-            valuesFilter={arrayGrupo_Parlamentario}
+            handleChange={handleChangeMultiple("Grupo_Parlamentario")}
+            valuesFilter={[
+              {
+                text: "",
+                value: "",
+              },
+              ...arrayGrupo_Parlamentario?.sort((a, b) =>
+                a?.text.localeCompare(b.text)
+              ),
+            ]}
+            multiple
           />
           <CustomInputSelect
             lbl={t("search.author_deputies")}
             name="diputados_autores"
             inputValue={formData?.diputados_autores}
             handleChange={handleChangeMultiple("diputados_autores")}
-            valuesFilter={arrayDiputados_autores}
+            valuesFilter={[
+              {
+                text: "",
+                value: "",
+              },
+              ...arrayDiputados_autores?.sort((a, b) =>
+                a?.text.localeCompare(b.text)
+              ),
+            ]}
             multiple
           />
         </div>
@@ -182,7 +202,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 Contenido: "",
                 Presentadas: "",
                 diputados_autores: [],
-                Grupo_Parlamentario: "",
+                Grupo_Parlamentario: [],
                 comunidades_tags: "",
                 provincia_tags: "",
                 municipios_tags: "",
