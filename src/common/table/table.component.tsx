@@ -338,7 +338,7 @@ export const TableComponet: React.FC<TableProps> = ({
                           style={{
                             minWidth:
                               key == "Contenido" || key == "diputados_autores"
-                                ? "400px"
+                                ? "300px"
                                 : "",
                             wordBreak:
                               key == "Contenido" || key == "diputados_autores"

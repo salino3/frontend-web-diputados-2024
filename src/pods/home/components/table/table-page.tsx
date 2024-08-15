@@ -90,7 +90,9 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      valuesFilter: arrayDiputados_autores,
+      valuesFilter: arrayDiputados_autores?.sort((a, b) =>
+        a?.text.localeCompare(b.text)
+      ),
       typeFilter: typesFilter?.multiselect,
       setFilter: setFilterDiputadosAutores,
       filter: filterDiputadosAutores,
@@ -210,11 +212,9 @@ export const TablePage: React.FC<Props> = (props) => {
           ? "['" + filterGrupoParlamentario + "']"
           : filterGrupoParlamentario;
       //
-      // let deputiesAuthorsCorrected =
-      //   filterDiputadosAutores != ""
-      //     ? "['" + filterDiputadosAutores + "']"
-      //     : filterDiputadosAutores;
-      //
+      let deputiesAuthorsCorrected: any =
+        filterDiputadosAutores != "" ? filterDiputadosAutores : "";
+
       let deputiesComunidadesCorrected =
         filterComunidadesTags != ""
           ? "['" + filterComunidadesTags + "']"
@@ -234,7 +234,10 @@ export const TablePage: React.FC<Props> = (props) => {
         Expediente: filterExpediente,
         Contenido: filterContenido,
         Presentada: filterPresentada,
-        diputados_autores: filterDiputadosAutores,
+        diputados_autores:
+          deputiesAuthorsCorrected && deputiesAuthorsCorrected.length > 0
+            ? deputiesAuthorsCorrected
+            : "",
         Grupo_Parlamentario: parlamentGroupCorrected,
         comunidades_tags: deputiesComunidadesCorrected,
         provincia_tags: filterProvinciasCorrected,
