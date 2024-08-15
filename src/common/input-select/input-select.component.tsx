@@ -30,7 +30,17 @@ export const CustomInputSelect: React.FC<Props> = ({
   return (
     <div className={`rootCustomInputText  ${multiple ? "multiple" : ""}`}>
       <div className="containerInput">
-        <label htmlFor={name} style={{ fontSize: "0.8rem" }}>
+        <label
+          htmlFor={name}
+          className={`${
+            inputValue?.length > 0 || isFocused ? "bottomTitleInputSelect" : ""
+          }`}
+          style={{
+            position: multiple ? "absolute" : "initial",
+            bottom: inputValue?.length > 0 || isFocused ? "" : "100%",
+            fontSize: "0.8rem",
+          }}
+        >
           {lbl}
         </label>
         <select
@@ -39,15 +49,26 @@ export const CustomInputSelect: React.FC<Props> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           id={name}
-          className={`inputSelect ${multiple && isFocused ? "focus" : ""}`}
+          className={`inputSelect ${multiple && isFocused ? "focus" : ""}
+            
+            ${
+              inputValue.length > 0 && multiple && !isFocused
+                ? "openInputMultiselect"
+                : ""
+            }
+            `}
           name={name}
-          multiple={isFocused && multiple}
+          multiple={(isFocused && multiple) || (inputValue && multiple)}
         >
           {valuesFilter &&
             valuesFilter.length &&
             valuesFilter.map((item: ValuesFilter) => (
               <option key={item?.value} value={item?.value}>
-                {item?.text}
+                {(isFocused && multiple) ||
+                (multiple && inputValue.length > 0) ||
+                !multiple
+                  ? item?.text
+                  : ""}
               </option>
             ))}
         </select>
