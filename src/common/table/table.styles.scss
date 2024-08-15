@@ -30,7 +30,7 @@
       thead th,
       thead td {
         background-color: var(--color-eight);
-        color: var(--color-two);
+        // color: var(--color-two);
         width: 140px;
       }
 
@@ -40,8 +40,8 @@
       tbody tr,
       tbody th,
       tbody td {
-        background-color: var(--color-seven);
-        color: var(--color-four);
+        // background-color: var(--color-seven);
+        // color: var(--color-four);
         width: 140px;
       }
 
@@ -62,8 +62,9 @@
               rgba(0, 0, 0, 0.22) 0px 15px 12px;
             display: flex;
             flex-direction: column;
+
             position: absolute;
-            background-color: var(--color-three);
+            background-color: var(--color-one);
             padding: 0 0.25rem 0.5rem;
             border-radius: 1rem;
 
@@ -72,7 +73,8 @@
               flex-direction: column;
               gap: 0.5rem;
               justify-content: center;
-              align-items: stretch;
+              align-items: center;
+              width: auto;
               span {
                 align-self: end;
                 cursor: pointer;
@@ -91,8 +93,8 @@
                   flex-direction: column;
                   justify-content: center;
                   align-items: center;
-                  height: 2.2rem;
-                  font-size: 1.2rem;
+                  height: 1.8rem;
+                  // font-size: 1.2rem;
                   letter-spacing: 1px;
                   width: 5.5rem;
                 }
@@ -151,7 +153,7 @@
     .table_x02_rootPagination {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: flex-start;
       min-width: max-content;
       padding-bottom: 14rem;
 
@@ -187,7 +189,7 @@
           }
 
           .table_x02_spanChoosePages_02 {
-            background-color: var(--color-one);
+            // background-color: var(--color-one);
             padding: 0 0.2rem;
             border-radius: 4px;
             line-height: 1.3rem;
@@ -208,7 +210,7 @@
             padding: 0.3rem 0;
             left: 15px;
             border-radius: 0.25rem;
-            background-color: var(--color-one);
+            // background-color: var(--color-one);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
               0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombras en tres niveles */
 
@@ -222,7 +224,7 @@
               cursor: pointer;
             }
             .table_x02_rowPages:hover {
-              background-color: var(--color-four);
+              background-color: var(--color-five);
             }
           }
         }

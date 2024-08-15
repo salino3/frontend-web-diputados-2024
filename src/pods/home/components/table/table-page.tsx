@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
+  arrayDiputados_autores,
   arrayGrupo_Parlamentario,
   CongresoPreguntas,
   GlobalContext,
@@ -89,7 +90,8 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+      valuesFilter: arrayDiputados_autores,
+      typeFilter: typesFilter?.multiselect,
       setFilter: setFilterDiputadosAutores,
       filter: filterDiputadosAutores,
       render: (item: string) => {

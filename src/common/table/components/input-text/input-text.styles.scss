@@ -9,12 +9,16 @@
   .table_x02_containerInput {
     position: relative;
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-width: 200px;
 
     .table_x02_inputText {
       border-radius: 0.5rem;
       padding: 1rem 0.5rem 0.5rem 1rem;
-      box-shadow: var(--color-two) 0px 0px 16px;
+      box-shadow: var(--color-three) 0px 0px 16px;
       width: 100%;
       outline: none;
       border: 0.5px solid;
@@ -23,11 +27,12 @@
     .table_x02_inputTextMultiselect {
       display: flex;
       flex-direction: column;
+      margin: 0 1rem;
       gap: 1.5rem;
       border-radius: 0.5rem;
       padding: 0.25rem;
-      box-shadow: var(--color-two) 0px 0px 16px;
-      width: 100%;
+      box-shadow: var(--color-three) 0px 0px 16px;
+      width: max-content;
       height: 200px;
       outline: none;
       .table_x02_option {
@@ -42,7 +47,7 @@
       transform: translateY(-50%);
       transition: all 0.3s ease;
       pointer-events: none;
-      color: #999;
+      // color: #999;
     }
 
     .table_x02_inputText:focus + .table_x02_inputLabel,
@@ -51,11 +56,11 @@
       left: 1rem;
       font-size: 0.8rem;
       transform: translateY(-110%);
-      color: black;
+      // color: black;
     }
 
     .table_x02_inputText:focus {
-      box-shadow: #ffec1f 0px 0px 16px;
+      box-shadow: var(--color-three) 0px 0px 16px;
     }
   }
 }

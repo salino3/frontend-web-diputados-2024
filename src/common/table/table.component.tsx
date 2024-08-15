@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
@@ -6,6 +6,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import SearchIcon from "@mui/icons-material/Search";
 import { CustomInputText, InputRange } from "./components";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { GlobalContext, MyState } from "@/core";
 import "./table.styles.scss";
 
 interface TableProps {
@@ -51,6 +52,8 @@ export const TableComponet: React.FC<TableProps> = ({
   setPageSize,
   rowPerPages = [5, 10, 25, 50],
 }) => {
+  const { state } = useContext<MyState>(GlobalContext);
+
   // const keysToFilter = row.map((r, index) => r?.key || index);
   const keysToFilter = row.map((r) => r.key);
 
@@ -194,7 +197,7 @@ export const TableComponet: React.FC<TableProps> = ({
   }, []);
 
   return (
-    <div className="table_x02_rootTableComponet">
+    <div id={state?.theme} className="table_x02_rootTableComponet">
       <div className="table_x02_containerTable">
         <span className="table_x02_totalResults">
           Total results: {totalData || "No data"}
@@ -259,14 +262,14 @@ export const TableComponet: React.FC<TableProps> = ({
                           <div className="table_x02_btnsContainer">
                             <button
                               type="submit"
-                              className="btn btn-primary table_x02_btnFilter"
+                              className="btn primaryBtn table_x02_btnFilter"
                             >
                               Confirm
                             </button>
                             <button
                               type="reset"
                               onClick={() => handleReset(index)}
-                              className="btn btn-secondary table_x02_btnFilter"
+                              className="btn secundaryBtn table_x02_btnFilter"
                             >
                               Cancel
                             </button>
