@@ -100,6 +100,7 @@ export const SearchPage: React.FC<Props> = (props) => {
       provincia_tags: formData?.provincia_tags,
       municipios_tags: formData?.municipios_tags,
     };
+
     fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {
       setSelectedTab("table");
       setRefreshTable(false);

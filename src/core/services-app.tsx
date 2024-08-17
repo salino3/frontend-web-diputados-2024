@@ -10,7 +10,8 @@ export const ServicesApp = () => {
     exactFilters = [],
     rangeFilters = []
   ) => {
-    return axios.post(`${apisApp.baseBackend}/filter`, {
+    // filter - filter-by-cache
+    return axios.post(`${apisApp.baseBackend}/filter-by-cache`, {
       page,
       pageSize,
       body,

@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect } from "react";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Report } from "notiflix";
 import { ReducerApp, ServicesApp, initialState, GlobalContext } from ".";
 
 interface Props {
@@ -24,6 +26,7 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
       exactFilters: string[] | any = [],
       rangeFilters: string[] | any = []
     ) => {
+      Loading.circle();
       return await fetchPaginatedData(
         page,
         pageSize,
@@ -32,6 +35,7 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
         rangeFilters
       )
         .then((res) => {
+          console.log("execute endpoint!!");
           dispatch({
             type: "LOAD_DATA",
             payload: res?.data,
@@ -39,7 +43,9 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
         })
         .catch((err) => {
           console.error(err);
-        });
+          Report.failure("Error", "Error loading data", "OK");
+        })
+        .finally(() => Loading.remove());
     },
     []
   );
