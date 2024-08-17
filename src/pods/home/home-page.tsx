@@ -16,7 +16,7 @@ export const HomePage: React.FC = () => {
   const { state } = useContext<MyState>(GlobalContext);
 
   const [selectedTab, setSelectedTab] = useState<string>("search");
-  const [refreshTable, setRefreshTable] = useState<boolean>(true);
+  const [refreshTable, setRefreshTable] = useState<boolean>(false);
 
   const tabs: Tabs[] = [
     {
