@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
+  arrayComunidades_tags,
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
+  arrayMunicipios_tags,
+  arrayProvincia_tags,
   CongresoPreguntas,
   GlobalContext,
   MyState,
@@ -150,9 +153,17 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+
+      typeFilter: typesFilter?.multiselect,
       setFilter: setFilterComunidadesTags,
       filter: filterComunidadesTags,
+      valuesFilter: [
+        {
+          text: "* cancel all",
+          value: "",
+        },
+        ...arrayComunidades_tags.sort((a, b) => a?.text.localeCompare(b.text)),
+      ],
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -171,7 +182,14 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+      typeFilter: typesFilter?.multiselect,
+      valuesFilter: [
+        {
+          text: "* cancel all",
+          value: "",
+        },
+        ...arrayProvincia_tags.sort((a, b) => a?.text.localeCompare(b.text)),
+      ],
       setFilter: setFilterProvinciasTags,
       filter: filterProvinciasTags,
       render: (item: string) => {
@@ -192,7 +210,14 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+      typeFilter: typesFilter?.multiselect,
+      valuesFilter: [
+        {
+          text: "* cancel all",
+          value: "",
+        },
+        ...arrayMunicipios_tags.sort((a, b) => a?.text.localeCompare(b.text)),
+      ],
       setFilter: setFilterMunicipiosTags,
       filter: filterMunicipiosTags,
       render: (item: string) => {
@@ -221,43 +246,50 @@ export const TablePage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (refreshTable) {
-      let parlamentGroupCorrected: any =
+      let parlamentGroupCorrected =
         filterGrupoParlamentario != "" ? filterGrupoParlamentario : "";
       //
-      let deputiesAuthorsCorrected: any =
+      let deputiesAuthorsCorrected =
         filterDiputadosAutores != "" ? filterDiputadosAutores : "";
 
-      let deputiesComunidadesCorrected =
-        filterComunidadesTags != ""
-          ? "['" + filterComunidadesTags + "']"
-          : filterComunidadesTags;
+      // let deputiesComunidadesCorrected =
+      //   filterComunidadesTags != ""
+      //     ? "['" + filterComunidadesTags + "']"
+      //     : filterComunidadesTags;
+      let filterComunidadesCorrected =
+        filterComunidadesTags != "" ? filterComunidadesTags : "";
       //
       let filterProvinciasCorrected =
-        filterProvinciasTags != ""
-          ? "['" + filterProvinciasTags + "']"
-          : filterProvinciasTags;
+        filterProvinciasTags != "" ? filterProvinciasTags : "";
       //
       let filterMuniciosCorrected =
-        filterMunicipiosTags != ""
-          ? "['" + filterMunicipiosTags + "']"
-          : filterMunicipiosTags;
+        filterMunicipiosTags != "" ? filterMunicipiosTags : "";
 
       const body = {
         Expediente: filterExpediente,
         Contenido: filterContenido,
         Presentada: filterPresentada,
         diputados_autores:
-          deputiesAuthorsCorrected && deputiesAuthorsCorrected.length > 0
+          deputiesAuthorsCorrected && deputiesAuthorsCorrected?.length > 0
             ? deputiesAuthorsCorrected
             : "",
         Grupo_Parlamentario:
-          parlamentGroupCorrected && parlamentGroupCorrected.length > 0
+          parlamentGroupCorrected && parlamentGroupCorrected?.length > 0
             ? parlamentGroupCorrected
             : "",
 
-        comunidades_tags: deputiesComunidadesCorrected,
-        provincia_tags: filterProvinciasCorrected,
-        municipios_tags: filterMuniciosCorrected,
+        comunidades_tags:
+          filterComunidadesCorrected && filterComunidadesCorrected?.length > 0
+            ? filterComunidadesCorrected
+            : "",
+        provincia_tags:
+          filterProvinciasCorrected && filterProvinciasCorrected?.length > 0
+            ? filterProvinciasCorrected
+            : "",
+        municipios_tags:
+          filterMuniciosCorrected && filterMuniciosCorrected?.length > 0
+            ? filterMuniciosCorrected
+            : "",
       };
       console.log("Body:", body);
       const exactFilters = [""];

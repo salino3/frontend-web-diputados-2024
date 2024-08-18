@@ -41,7 +41,9 @@
       tbody th,
       tbody td {
         // background-color: var(--color-seven);
+        background-color: unset;
         // color: var(--color-four);
+        color: unset;
         width: 140px;
       }
 
@@ -143,6 +145,7 @@
         padding: 0.5rem;
         border-radius: 12px;
         background-color: var(--color-one);
+        color: var(--color-two);
         top: -10px;
         left: 20px;
         width: min-content;
