@@ -167,25 +167,44 @@ export const SearchPage: React.FC<Props> = (props) => {
         </div>
         <div className="containerInputs4">
           <CustomInputSelect
+            multiple
             lbl={t("search.communities_tags")}
             name="comunidades_tags"
             inputValue={formData?.comunidades_tags}
-            handleChange={handleChange("comunidades_tags")}
-            valuesFilter={arrayComunidades_tags}
+            handleChange={handleChangeMultiple("comunidades_tags")}
+            valuesFilter={[
+              {
+                text: "",
+                value: "",
+              },
+              ...arrayComunidades_tags,
+            ]}
           />
           <CustomInputSelect
             lbl={t("search.provinces_tags")}
             name="provincia_tags"
             inputValue={formData?.provincia_tags}
-            handleChange={handleChange("provincia_tags")}
-            valuesFilter={arrayProvincia_tags}
+            handleChange={handleChangeMultiple("provincia_tags")}
+            valuesFilter={[
+              {
+                text: "",
+                value: "",
+              },
+              ...arrayProvincia_tags,
+            ]}
           />{" "}
           <CustomInputSelect
             lbl={t("search.municipalities_tags")}
             name="municipios_tags"
             inputValue={formData?.municipios_tags}
-            handleChange={handleChange("municipios_tags")}
-            valuesFilter={arrayMunicipios_tags}
+            handleChange={handleChangeMultiple("municipios_tags")}
+            valuesFilter={[
+              {
+                text: "",
+                value: "",
+              },
+              ...arrayMunicipios_tags,
+            ]}
           />
         </div>
         <div className="boxBtnsSearchForm">
