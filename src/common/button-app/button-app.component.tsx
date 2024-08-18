@@ -16,7 +16,7 @@ export const Button: React.FC<Button> = (props) => {
       <button
         onClick={click}
         disabled={disabled}
-        className="buttonApp_01"
+        className={`buttonApp_01 ${type === "reset" && "secundaryBtn"} `}
         type={type}
       >
         {txt}

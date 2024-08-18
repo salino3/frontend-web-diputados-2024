@@ -228,7 +228,6 @@ export const SearchPage: React.FC<Props> = (props) => {
                 municipios_tags: "",
               })
             }
-            customStyles="secundaryBtn"
             type="reset"
             txt={t("search.clear")}
           />
