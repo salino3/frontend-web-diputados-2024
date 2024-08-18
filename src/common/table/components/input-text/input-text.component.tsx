@@ -37,7 +37,7 @@ export const CustomInputText: React.FC<PropsInput> = ({
           name={name}
         >
           {valuesFilter &&
-            valuesFilter?.length &&
+            valuesFilter?.length > 0 &&
             valuesFilter.map((item: ValuesFilter) => (
               <option key={item?.value} value={item?.value}>
                 {item?.text}
@@ -58,7 +58,7 @@ export const CustomInputText: React.FC<PropsInput> = ({
           name={name}
         >
           {valuesFilter &&
-            valuesFilter?.length &&
+            valuesFilter?.length > 0 &&
             valuesFilter.map((item: ValuesFilter) => (
               <option
                 className="table_x02_option"

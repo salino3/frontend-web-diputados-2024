@@ -1,4 +1,25 @@
 {
+  "general": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "expedient": "Expediente",
+    "presented": "Presented",
+    "content": "Contenido",
+    "author_deputies": "Autores Deputados",
+    "parliamentary_group": "Grupos parlamentarios",
+    "communities_tags": "Comunidades",
+    "provinces_tags": "Provincias",
+    "municipalities_tags": "Municipalidades",
+    "page": "Página",
+    "of": "de",
+    "cancel_all": "* cancelar todos",
+    "action": "Acción",
+    "link": "Enlace"
+  },
   "header": {
     "title": "Preguntas en el Congreso de los Diputados",
     "languages": "Idiomas",
@@ -16,23 +37,20 @@
     "requiered": "requerido",
     "requiered_field": "Campo requerido",
     "search": "Buscar",
-    "clear": "Cancelar",
     "no_results": "Resultados no encontrados",
     "filter": "Filtrar",
     "reset": "Resetear",
     "all": "Todo",
     "apply": "Aplicar",
-    "remove": "Remover",
-    "expedient": "Expediente",
-    "presented": "Presented",
-    "content": "Contenido",
-    "author_deputies": "Autores Deputados",
-    "parliamentary_group": "Grupos parlamentarios",
-    "communities_tags": "Comunidades tags",
-    "provinces_tags": "Provincias tags",
-    "municipalities_tags": "Municipalidades tags"
+    "remove": "Remover"
   },
   "table": {
     "table_title": "Respuestas"
+  },
+  "table_info": {
+    "total_results": "Resultados totales",
+    "no_data": "No datos",
+    "rows_per_page": "Filas por página",
+    "error_type_input": "Error: Tipo input invalido"
   }
 }

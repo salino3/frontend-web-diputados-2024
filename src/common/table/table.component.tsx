@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
@@ -52,6 +53,7 @@ export const TableComponet: React.FC<TableProps> = ({
   setPageSize,
   rowPerPages = [5, 10, 25, 50],
 }) => {
+  const [t] = useTranslation("global");
   const { state } = useContext<MyState>(GlobalContext);
 
   // const keysToFilter = row.map((r, index) => r?.key || index);
@@ -207,7 +209,7 @@ export const TableComponet: React.FC<TableProps> = ({
     <div id={state?.theme} className="table_x02_rootTableComponet">
       <div className="table_x02_containerTable">
         <span className="table_x02_totalResults">
-          Total results: {totalData || "No data"}
+          {t("table_info.total_results")}: {totalData || t("no_data")}
         </span>
         <table className="table">
           <thead>
@@ -271,7 +273,7 @@ export const TableComponet: React.FC<TableProps> = ({
                               type="submit"
                               className="btn primaryBtn table_x02_btnFilter"
                             >
-                              Confirm
+                              {t("general.confirm")}
                             </button>
                             <button
                               type="reset"
@@ -279,7 +281,7 @@ export const TableComponet: React.FC<TableProps> = ({
                               onClick={() => handleReset(index)}
                               className="btn secundaryBtn table_x02_btnFilter"
                             >
-                              Cancel
+                              {t("general.cancel")}
                             </button>
                           </div>
                         </form>
@@ -379,7 +381,7 @@ export const TableComponet: React.FC<TableProps> = ({
             <div className="table_x02_contentChoosePages">
               <div className="table_x02_containerSpanRowsInfo">
                 <span className="table_x02_spanChoosePages_01">
-                  Rows per page:
+                  {t("table_info.rows_per_page")}:
                 </span>
                 <span className="table_x02_spanChoosePages_02">{pageSize}</span>
               </div>

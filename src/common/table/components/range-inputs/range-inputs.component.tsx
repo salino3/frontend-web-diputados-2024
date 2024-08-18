@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./range-input.styles.scss";
 
 interface PropsInput {
@@ -25,6 +26,8 @@ export const InputRange: React.FC<PropsInput> = ({
   minDate,
   maxDate,
 }) => {
+  const [t] = useTranslation("global");
+
   let inputs;
 
   switch (type) {
@@ -108,7 +111,7 @@ export const InputRange: React.FC<PropsInput> = ({
       break;
 
     default:
-      inputs = <div>Error: Invalid input type</div>;
+      inputs = <div>{t("table_info.error_type_input")}</div>;
       break;
   }
 
