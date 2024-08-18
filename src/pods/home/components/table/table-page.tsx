@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
+  arrayComunidades_tags,
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
+  arrayMunicipios_tags,
+  arrayProvincia_tags,
   CongresoPreguntas,
   GlobalContext,
   MyState,
@@ -58,7 +61,7 @@ export const TablePage: React.FC<Props> = (props) => {
   const array: Row[] = [
     {
       key: "Expediente",
-      title: "Expediente",
+      title: t("general.expedient"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
       setFilter: setFilterExpediente,
@@ -66,7 +69,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "Presentada",
-      title: "Presentada",
+      title: t("general.presented"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
       setFilter: setFilterPresentada,
@@ -74,7 +77,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "Contenido",
-      title: "Contenido",
+      title: t("general.content"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
       setFilter: setFilterContenido,
@@ -82,7 +85,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "diputados_autores",
-      title: "Diputados autores",
+      title: t("general.author_deputies"),
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -92,11 +95,11 @@ export const TablePage: React.FC<Props> = (props) => {
       },
       valuesFilter: [
         {
-          text: "* cancel all",
+          text: t("general.cancel_all"),
           value: "",
         },
         ...arrayDiputados_autores?.sort((a, b) =>
-          a?.text.localeCompare(b.text)
+          a?.text?.localeCompare(b?.text)
         ),
       ],
       typeFilter: typesFilter?.multiselect,
@@ -112,7 +115,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "Grupo_Parlamentario",
-      title: "Grupo Parlamentario",
+      title: t("general.parliamentary_group"),
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -125,11 +128,11 @@ export const TablePage: React.FC<Props> = (props) => {
       filter: filterGrupoParlamentario,
       valuesFilter: [
         {
-          text: "* cancel all",
+          text: t("general.cancel_all"),
           value: "",
         },
         ...arrayGrupo_Parlamentario.sort((a, b) =>
-          a?.text.localeCompare(b.text)
+          a?.text?.localeCompare(b?.text)
         ),
       ],
       render: (item: string) => {
@@ -142,7 +145,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "comunidades_tags",
-      title: "Comunidades (Tags)",
+      title: t("general.communities_tags"),
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -150,9 +153,19 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+
+      typeFilter: typesFilter?.multiselect,
       setFilter: setFilterComunidadesTags,
       filter: filterComunidadesTags,
+      valuesFilter: [
+        {
+          text: t("general.cancel_all"),
+          value: "",
+        },
+        ...arrayComunidades_tags.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
+      ],
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -163,7 +176,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "provincia_tags",
-      title: "Provincias (Tags)",
+      title: t("general.provinces_tags"),
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -171,7 +184,14 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+      typeFilter: typesFilter?.multiselect,
+      valuesFilter: [
+        {
+          text: t("general.cancel_all"),
+          value: "",
+        },
+        ...arrayProvincia_tags.sort((a, b) => a?.text?.localeCompare(b?.text)),
+      ],
       setFilter: setFilterProvinciasTags,
       filter: filterProvinciasTags,
       render: (item: string) => {
@@ -184,7 +204,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "municipios_tags",
-      title: "Municipios (Tags)",
+      title: t("general.municipalities_tags"),
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -192,11 +212,18 @@ export const TablePage: React.FC<Props> = (props) => {
         const cleanedItem = item.replace(/['"]/g, "");
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
-      typeFilter: typesFilter?.text,
+      typeFilter: typesFilter?.multiselect,
+      valuesFilter: [
+        {
+          text: t("general.cancel_all"),
+          value: "",
+        },
+        ...arrayMunicipios_tags.sort((a, b) => a?.text?.localeCompare(b?.text)),
+      ],
       setFilter: setFilterMunicipiosTags,
       filter: filterMunicipiosTags,
       render: (item: string) => {
-        if (item === undefined || item === null || item.trim() === "") {
+        if (item === undefined || item === null || item?.trim() === "") {
           return "-";
         }
         const cleanedItem = item.replace(/['"]/g, "");
@@ -205,13 +232,12 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "url",
-
-      title: "Action",
+      title: t("general.action"),
       render: (_: any, row: CongresoPreguntas) => {
         return (
           <div className="boxBtnRow">
             <Link target="_blank" to={row?.url}>
-              <Button txt="Enlace" type="button" />
+              <Button txt={t("general.link")} type="button" />
             </Link>
           </div>
         );
@@ -221,43 +247,50 @@ export const TablePage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (refreshTable) {
-      let parlamentGroupCorrected: any =
+      let parlamentGroupCorrected =
         filterGrupoParlamentario != "" ? filterGrupoParlamentario : "";
       //
-      let deputiesAuthorsCorrected: any =
+      let deputiesAuthorsCorrected =
         filterDiputadosAutores != "" ? filterDiputadosAutores : "";
 
-      let deputiesComunidadesCorrected =
-        filterComunidadesTags != ""
-          ? "['" + filterComunidadesTags + "']"
-          : filterComunidadesTags;
+      // let deputiesComunidadesCorrected =
+      //   filterComunidadesTags != ""
+      //     ? "['" + filterComunidadesTags + "']"
+      //     : filterComunidadesTags;
+      let filterComunidadesCorrected =
+        filterComunidadesTags != "" ? filterComunidadesTags : "";
       //
       let filterProvinciasCorrected =
-        filterProvinciasTags != ""
-          ? "['" + filterProvinciasTags + "']"
-          : filterProvinciasTags;
+        filterProvinciasTags != "" ? filterProvinciasTags : "";
       //
       let filterMuniciosCorrected =
-        filterMunicipiosTags != ""
-          ? "['" + filterMunicipiosTags + "']"
-          : filterMunicipiosTags;
+        filterMunicipiosTags != "" ? filterMunicipiosTags : "";
 
       const body = {
         Expediente: filterExpediente,
         Contenido: filterContenido,
         Presentada: filterPresentada,
         diputados_autores:
-          deputiesAuthorsCorrected && deputiesAuthorsCorrected.length > 0
+          deputiesAuthorsCorrected && deputiesAuthorsCorrected?.length > 0
             ? deputiesAuthorsCorrected
             : "",
         Grupo_Parlamentario:
-          parlamentGroupCorrected && parlamentGroupCorrected.length > 0
+          parlamentGroupCorrected && parlamentGroupCorrected?.length > 0
             ? parlamentGroupCorrected
             : "",
 
-        comunidades_tags: deputiesComunidadesCorrected,
-        provincia_tags: filterProvinciasCorrected,
-        municipios_tags: filterMuniciosCorrected,
+        comunidades_tags:
+          filterComunidadesCorrected && filterComunidadesCorrected?.length > 0
+            ? filterComunidadesCorrected
+            : "",
+        provincia_tags:
+          filterProvinciasCorrected && filterProvinciasCorrected?.length > 0
+            ? filterProvinciasCorrected
+            : "",
+        municipios_tags:
+          filterMuniciosCorrected && filterMuniciosCorrected?.length > 0
+            ? filterMuniciosCorrected
+            : "",
       };
       console.log("Body:", body);
       const exactFilters = [""];

@@ -1,4 +1,23 @@
 {
+  "general": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "close": "Close",
+    "expedient": "Expedient",
+    "presented": "Presentadas",
+    "content": "Content",
+    "author_deputies": "Author Deputies",
+    "parliamentary_group": "Parliamentary Group",
+    "communities_tags": "Communities",
+    "provinces_tags": "Provinces",
+    "municipalities_tags": "Municipalities",
+    "cancel_all": "* cancel all",
+    "action": "Action",
+    "link": "Link"
+  },
   "header": {
     "title": "Questions in the Congress of Deputies",
     "languages": "Languages",
@@ -22,17 +41,15 @@
     "reset": "Reset",
     "all": "All",
     "apply": "Apply",
-    "remove": "Remove",
-    "expedient": "Expedient",
-    "presented": "Presentadas",
-    "content": "Content",
-    "author_deputies": "Author Deputies",
-    "parliamentary_group": "Parliamentary Group",
-    "communities_tags": "Communities tags",
-    "provinces_tags": "Provinces tags",
-    "municipalities_tags": "Municipalities tags"
+    "remove": "Remove"
   },
   "table": {
     "table_title": "Answers"
+  },
+  "table_info": {
+    "total_results": "Total Results",
+    "no_data": "No data",
+    "rows_per_page": " Rows per page",
+    "error_type_input": "Error: Invalid input type"
   }
 }

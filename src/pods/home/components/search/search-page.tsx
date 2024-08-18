@@ -112,13 +112,13 @@ export const SearchPage: React.FC<Props> = (props) => {
       <h3>{t("search.search_title")}</h3>
       <form id="formTableSearch" onSubmit={handleSubmit} action="/filter ">
         <CustomInputText
-          lbl={t("search.expedient")}
+          lbl={t("general.expedient")}
           name="Expediente"
           inputValue={formData?.Expediente}
           handleChange={handleChange("Expediente")}
         />
         <CustomInputText
-          lbl={t("search.content")}
+          lbl={t("general.content")}
           name="Contenido"
           textarea
           inputValue={formData?.Contenido}
@@ -127,19 +127,19 @@ export const SearchPage: React.FC<Props> = (props) => {
 
         <div className="containerInputs3">
           <CustomInputText
-            lbl={t("search.presented")}
+            lbl={t("general.presented")}
             name="Presentadas"
             inputValue={formData?.Presentadas}
             handleChange={handleChange("Presentadas")}
           />
           <CustomInputSelect
-            lbl={t("search.parliamentary_group")}
+            lbl={t("general.parliamentary_group")}
             name="Grupo_Parlamentario"
             inputValue={formData?.Grupo_Parlamentario}
             handleChange={handleChangeMultiple("Grupo_Parlamentario")}
             valuesFilter={[
               {
-                text: "",
+                text: t("general.cancel_all"),
                 value: "",
               },
               ...arrayGrupo_Parlamentario?.sort((a, b) =>
@@ -149,13 +149,13 @@ export const SearchPage: React.FC<Props> = (props) => {
             multiple
           />
           <CustomInputSelect
-            lbl={t("search.author_deputies")}
+            lbl={t("general.author_deputies")}
             name="diputados_autores"
             inputValue={formData?.diputados_autores}
             handleChange={handleChangeMultiple("diputados_autores")}
             valuesFilter={[
               {
-                text: "",
+                text: t("general.cancel_all"),
                 value: "",
               },
               ...arrayDiputados_autores?.sort((a, b) =>
@@ -167,25 +167,46 @@ export const SearchPage: React.FC<Props> = (props) => {
         </div>
         <div className="containerInputs4">
           <CustomInputSelect
-            lbl={t("search.communities_tags")}
+            multiple
+            lbl={t("general.communities_tags")}
             name="comunidades_tags"
             inputValue={formData?.comunidades_tags}
-            handleChange={handleChange("comunidades_tags")}
-            valuesFilter={arrayComunidades_tags}
+            handleChange={handleChangeMultiple("comunidades_tags")}
+            valuesFilter={[
+              {
+                text: t("general.cancel_all"),
+                value: "",
+              },
+              ...arrayComunidades_tags,
+            ]}
           />
           <CustomInputSelect
-            lbl={t("search.provinces_tags")}
+            lbl={t("general.provinces_tags")}
             name="provincia_tags"
             inputValue={formData?.provincia_tags}
-            handleChange={handleChange("provincia_tags")}
-            valuesFilter={arrayProvincia_tags}
-          />{" "}
+            handleChange={handleChangeMultiple("provincia_tags")}
+            valuesFilter={[
+              {
+                text: t("general.cancel_all"),
+                value: "",
+              },
+              ...arrayProvincia_tags,
+            ]}
+            multiple
+          />
           <CustomInputSelect
-            lbl={t("search.municipalities_tags")}
+            lbl={t("general.municipalities_tags")}
             name="municipios_tags"
             inputValue={formData?.municipios_tags}
-            handleChange={handleChange("municipios_tags")}
-            valuesFilter={arrayMunicipios_tags}
+            handleChange={handleChangeMultiple("municipios_tags")}
+            valuesFilter={[
+              {
+                text: t("general.cancel_all"),
+                value: "",
+              },
+              ...arrayMunicipios_tags,
+            ]}
+            multiple
           />
         </div>
         <div className="boxBtnsSearchForm">
@@ -209,9 +230,8 @@ export const SearchPage: React.FC<Props> = (props) => {
                 municipios_tags: "",
               })
             }
-            customStyles="secundaryBtn"
             type="reset"
-            txt={t("search.clear")}
+            txt={t("general.cancel")}
           />
         </div>
       </form>

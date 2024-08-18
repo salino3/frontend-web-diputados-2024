@@ -312,7 +312,6 @@ export const arrayDiputados_autores: ValuesFilter[] = [
 
 // comunidades_tags:
 export const arrayComunidades_tags: ValuesFilter[] = [
-  { text: "", value: "" },
   { text: "Asturias", value: "Asturias" },
   { text: "Galicia", value: "Galicia" },
   { text: "Murcia", value: "Murcia" },
@@ -338,7 +337,6 @@ export const arrayComunidades_tags: ValuesFilter[] = [
 
 // provincia_tags:
 export const arrayProvincia_tags: ValuesFilter[] = [
-  { text: "", value: "" },
   { text: "Alta Verapaz", value: "Alta Verapaz" },
   { text: "Baja Verapaz", value: "Baja Verapaz" },
   { text: "Chimaltenango", value: "Chimaltenango" },
@@ -452,7 +450,6 @@ export const arrayProvincia_tags: ValuesFilter[] = [
 
 // municipios_tags:
 export const arrayMunicipios_tags: ValuesFilter[] = [
-  { text: "", value: "" },
   { text: "Gijón", value: "Gijón" },
   { text: "Oviedo", value: "Oviedo" },
   { text: "Tarragona", value: "Tarragona" },
