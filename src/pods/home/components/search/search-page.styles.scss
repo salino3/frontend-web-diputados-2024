@@ -16,6 +16,10 @@
     gap: 1.2rem;
     padding: 0 1rem;
 
+    .containerInputs3 {
+      padding-bottom: 3.5rem;
+    }
+
     .containerInputs3,
     .containerInputs4 {
       display: flex;
@@ -49,14 +53,12 @@
     #formTableSearch {
       align-items: center;
 
-      .containerInputs3 {
+      .containerInputs3,
+      .containerInputs4 {
         justify-content: center;
         gap: 5rem;
       }
-      .containerInputs4 {
-        justify-content: center;
-        gap: 1rem;
-      }
+
       .btnRequiredValues {
         .buttonApp_01 {
           opacity: 0.5;
