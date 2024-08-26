@@ -1,15 +1,18 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  arrayComunidades_tags,
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
-  arrayMunicipios_tags,
-  arrayProvincia_tags,
   FormData,
   GlobalContext,
   MyState,
 } from "@/core";
+import {
+  newArrayComunidades_tags_01,
+  newArrayMunicipios_tags_01,
+  newArrayMunicipios_tags_02,
+  newArrayProvincias_tags_02,
+} from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
 
@@ -177,7 +180,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...arrayComunidades_tags,
+              ...newArrayComunidades_tags_01,
             ]}
           />
           <CustomInputSelect
@@ -190,7 +193,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...arrayProvincia_tags,
+              ...newArrayProvincias_tags_02,
             ]}
             multiple
           />
@@ -204,7 +207,8 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...arrayMunicipios_tags,
+              ...newArrayMunicipios_tags_01,
+              ...newArrayMunicipios_tags_02,
             ]}
             multiple
           />

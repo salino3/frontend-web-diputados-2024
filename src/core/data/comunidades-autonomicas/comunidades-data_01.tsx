@@ -1,6 +1,6 @@
 import { ValuesFilter } from "@/core/interfaces";
 
-export const arrayComunidades_tags: ValuesFilter[] = [
+export const newArrayComunidades_tags_01: ValuesFilter[] = [
   { text: "Asturias", value: "Asturias" },
   { text: "Galicia", value: "Galicia" },
   { text: "Murcia", value: "Murcia" },
