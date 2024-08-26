@@ -32,12 +32,8 @@ export const CustomInputSelect: React.FC<Props> = ({
       <div className="containerInput">
         <label
           htmlFor={name}
-          className={`${
-            inputValue?.length > 0 || isFocused ? "bottomTitleInputSelect" : ""
-          }`}
+          className={`${"bottomTitleInputSelect"}`}
           style={{
-            position: multiple ? "absolute" : "initial",
-            bottom: inputValue?.length > 0 || isFocused ? "" : "100%",
             fontSize: "0.8rem",
           }}
         >
@@ -58,17 +54,13 @@ export const CustomInputSelect: React.FC<Props> = ({
             }
             `}
           name={name}
-          multiple={(isFocused && multiple) || (inputValue && multiple)}
+          multiple={multiple}
         >
           {valuesFilter &&
             valuesFilter.length &&
             valuesFilter.map((item: ValuesFilter) => (
               <option key={item?.value} value={item?.value}>
-                {(isFocused && multiple) ||
-                (multiple && inputValue.length > 0) ||
-                !multiple
-                  ? item?.text
-                  : ""}
+                {item?.text}
               </option>
             ))}
         </select>
