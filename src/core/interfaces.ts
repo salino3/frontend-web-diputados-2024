@@ -62,9 +62,13 @@ export interface FormData {
   Presentadas: string;
   diputados_autores: string[];
   Grupo_Parlamentario: string[];
-  comunidades_tags: string;
-  provincia_tags: string;
-  municipios_tags: string;
+  comunidades_tags: string[];
+  provincia_tags: string[];
+  municipios_tags: string[];
+}
+
+export interface FilteringValuesFilter {
+  [key: string]: ValuesFilter[];
 }
 
 export interface ValuesFilter {

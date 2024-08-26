@@ -8,6 +8,7 @@ import {
   MyState,
 } from "@/core";
 import {
+  filterArrayProvincencies,
   newArrayComunidades_tags_01,
   newArrayMunicipios_tags_01,
   newArrayMunicipios_tags_02,
@@ -33,9 +34,9 @@ export const SearchPage: React.FC<Props> = (props) => {
     Presentadas: "",
     diputados_autores: [],
     Grupo_Parlamentario: [],
-    comunidades_tags: "",
-    provincia_tags: "",
-    municipios_tags: "",
+    comunidades_tags: [],
+    provincia_tags: [],
+    municipios_tags: [],
   });
 
   const handleChange =
@@ -109,6 +110,13 @@ export const SearchPage: React.FC<Props> = (props) => {
       setRefreshTable(false);
     });
   };
+
+  // console.log(
+  //   "Filtering fn",
+  //   filterArrayProvincencies(["Andalucía", "Galicia"])
+  // );
+
+  console.log("CCAA", formData?.comunidades_tags);
 
   return (
     <div id={state?.theme} className="rootSearchPage">
@@ -193,7 +201,8 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...newArrayProvincias_tags_02,
+              ...filterArrayProvincencies(formData?.comunidades_tags),
+              // ...newArrayProvincias_tags_02,
             ]}
             multiple
           />
@@ -229,9 +238,9 @@ export const SearchPage: React.FC<Props> = (props) => {
                 Presentadas: "",
                 diputados_autores: [],
                 Grupo_Parlamentario: [],
-                comunidades_tags: "",
-                provincia_tags: "",
-                municipios_tags: "",
+                comunidades_tags: [],
+                provincia_tags: [],
+                municipios_tags: [],
               })
             }
             type="reset"
