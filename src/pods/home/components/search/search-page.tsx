@@ -198,7 +198,11 @@ export const SearchPage: React.FC<Props> = (props) => {
             handleChange={handleChangeMultiple("provincia_tags")}
             valuesFilter={[
               {
-                text: t("general.cancel_all"),
+                text: t(
+                  formData?.comunidades_tags?.length > 0
+                    ? "general.cancel_all"
+                    : "search.choose_region"
+                ),
                 value: "",
               },
               ...filterArrayProvincencies(formData?.comunidades_tags),

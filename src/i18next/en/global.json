@@ -41,7 +41,8 @@
     "reset": "Reset",
     "all": "All",
     "apply": "Apply",
-    "remove": "Remove"
+    "remove": "Remove",
+    "choose_region": "Choose a Region"
   },
   "table": {
     "table_title": "Answers"

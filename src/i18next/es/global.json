@@ -42,7 +42,8 @@
     "reset": "Resetear",
     "all": "Todo",
     "apply": "Aplicar",
-    "remove": "Remover"
+    "remove": "Remover",
+    "choose_region": "Elije una Comunidad"
   },
   "table": {
     "table_title": "Respuestas"
