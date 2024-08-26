@@ -21,7 +21,7 @@
       width: 100%;
       outline: none;
       border: 0.5px solid;
-      height: 49px;
+      height: 120px;
       background: white;
       appearance: none;
       transition: height 0.3s ease;
@@ -29,22 +29,18 @@
     }
 
     .bottomTitleInputSelect {
-      bottom: 200px;
+      bottom: 120px;
     }
 
     .inputSelect.focus {
-      position: absolute;
       bottom: 0px;
       box-shadow: #ffec1f 0px 0px 16px;
-      height: auto;
-      min-height: 200px;
       overflow-y: auto;
     }
 
     .openInputMultiselect {
-      position: absolute;
       bottom: 0px;
-      height: 70px;
+      height: 120px;
       overflow-y: auto;
     }
   }
@@ -62,14 +58,6 @@
     .containerInput {
       .bottomTitleInputSelect {
         bottom: 70px !important;
-      }
-
-      .inputSelect.focus {
-        min-height: 250px;
-      }
-
-      .openInputMultiselect {
-        height: 70px; /* Ajusta la altura automáticamente para mostrar todas las opciones */
       }
     }
   }

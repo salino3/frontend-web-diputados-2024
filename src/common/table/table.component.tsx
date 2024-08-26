@@ -352,7 +352,7 @@ export const TableComponet: React.FC<TableProps> = ({
                                 : "",
                             wordBreak:
                               key == "Contenido" || key == "diputados_autores"
-                                ? "break-all"
+                                ? "break-word"
                                 : "unset",
                           }}
                         >
