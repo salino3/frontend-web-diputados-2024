@@ -188,7 +188,9 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...newArrayComunidades_tags_01,
+              ...newArrayComunidades_tags_01?.sort((a, b) =>
+                a?.text.localeCompare(b.text)
+              ),
             ]}
           />
           <CustomInputSelect
@@ -205,7 +207,9 @@ export const SearchPage: React.FC<Props> = (props) => {
                 ),
                 value: "",
               },
-              ...filterArrayProvincencies(formData?.comunidades_tags),
+              ...filterArrayProvincencies(formData?.comunidades_tags)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
+              ),
               // ...newArrayProvincias_tags_02,
             ]}
             multiple
@@ -220,8 +224,12 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...newArrayMunicipios_tags_01,
-              ...newArrayMunicipios_tags_02,
+              ...newArrayMunicipios_tags_01?.sort((a, b) =>
+                a?.text.localeCompare(b.text)
+              ),
+              ...newArrayMunicipios_tags_02?.sort((a, b) =>
+                a?.text.localeCompare(b.text)
+              ),
             ]}
             multiple
           />

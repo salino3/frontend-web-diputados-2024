@@ -173,9 +173,9 @@ export function filterArrayProvincencies(items: string[]): ValuesFilter[] | [] {
     "Euskadi": arrayEuskadiProvincias_tags,
     "Galicia": arrayGaliciaProvincias_tags,
     "La Rioja": arrayLaRiojaProvincias_tags,
-    Madrid: arrayMadridProvincias_tags,
+    "Madrid": arrayMadridProvincias_tags,
     "Melilla": arrayMelillaProvincias_tags,
-    Murcia: arrayMurciaProvincias_tags,
+    "Murcia": arrayMurciaProvincias_tags,
     "Navarra": arrayNavarraProvincias_tags,
   };
 
