@@ -3467,7 +3467,7 @@ export const municipiosMap_02: FilteringValuesFilter = {
   "Salamanca": arraySalamancaMunicipios_tags,
   "Sevilla": arraySevillaMunicipios_tags,
   "Zaragoza": arrayZaragozaMunicipios_tags,
-  // "Avila": arrayAvilaMunicipios_tags, // Exist in provincias-data_01.tsx?
+  "Ávila": arrayAvilaMunicipios_tags,
   "Tarragona": arrayTarragonaMunicipios_tags,
   "Teruel": arrayTeruelMunicipios_tags,
 };

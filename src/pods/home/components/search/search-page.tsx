@@ -14,6 +14,8 @@ import {
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
   filterArrayProvincencies,
+  municipiosMap_01,
+  municipiosMap_02,
   newArrayComunidades_tags_01,
   newArrayMunicipios_tags_01,
   newArrayMunicipios_tags_02,
@@ -107,6 +109,28 @@ export const SearchPage: React.FC<Props> = (props) => {
       }
     });
 
+    //
+    let newMunicipios: string[] = formData?.municipios_tags;
+    formData.provincia_tags.forEach((province) => {
+      let municipiosValues: string[] = [];
+      if (municipiosMap_01[province]) {
+        municipiosValues = municipiosMap_01[province].map(
+          (item: ValuesFilter) => item?.value
+        );
+      } else if (municipiosMap_02[province]) {
+        municipiosValues = municipiosMap_02[province].map(
+          (item: ValuesFilter) => item?.value
+        );
+      }
+      const hasSelectedMunicipios = municipiosValues.some((municipio) =>
+        formData.municipios_tags.includes(municipio)
+      );
+
+      if (!hasSelectedMunicipios) {
+        newMunicipios.push(...municipiosValues);
+      }
+    });
+
     console.log("submit", formData);
     const exactFilters = [""];
     const rangeFilters = [""];
@@ -124,7 +148,7 @@ export const SearchPage: React.FC<Props> = (props) => {
           : "",
       comunidades_tags: formData?.comunidades_tags,
       provincia_tags: newProvinces, // formData?.provincia_tags,
-      municipios_tags: formData?.municipios_tags,
+      municipios_tags: newMunicipios, // formData?.municipios_tags,
     };
 
     fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {

@@ -5111,7 +5111,7 @@ export const newArrayMunicipios_tags_01: ValuesFilter[] = [
 ];
 
 //
-export const municipiosMap_02: FilteringValuesFilter = {
+export const municipiosMap_01: FilteringValuesFilter = {
   "Alicante": arrayAlicanteMunicipios_tags,
   "Albacete": arrayAlbaceteMunicipios_tags,
   "Almería": arrayAlmeriaMunicipios_tags,
@@ -5125,7 +5125,7 @@ export const municipiosMap_02: FilteringValuesFilter = {
   "Castellón": arrayCastellonMunicipios_tags,
   "Ceuta": arrayCeutaMunicipios_tags,
   "Ciudad Real": arrayCiudadRealMunicipios_tags,
-  // "Cordoba": arrayCordobaMunicipios_tags, //  Exist in provincias-data_01.tsx?
+  "Córdoba": arrayCordobaMunicipios_tags,
   "Cuenca": arrayCuencaMunicipios_tags,
   "Girona": arrayGironaMunicipios_tags,
   "Granada": arrayGranadaMunicipios_tags,
@@ -5155,7 +5155,7 @@ export function filterArrayMunicipios_01(items: string[]): ValuesFilter[] | [] {
   }
 
   return items.reduce((acc, item) => {
-    const municipios = municipiosMap_02[item];
+    const municipios = municipiosMap_01[item];
     if (municipios) {
       acc.push(...municipios);
     }
