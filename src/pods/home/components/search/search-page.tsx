@@ -9,17 +9,12 @@ import {
   ValuesFilter,
 } from "@/core";
 import {
-  // arrayAndaluciaProvincias_tags,
-  // arrayComunidadValencianaProvincias_tags,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
   filterArrayProvincencies,
   municipiosMap_01,
   municipiosMap_02,
   newArrayComunidades_tags_01,
-  // newArrayMunicipios_tags_01,
-  // newArrayMunicipios_tags_02,
-  // newArrayProvincias_tags_02,
   provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
@@ -157,13 +152,6 @@ export const SearchPage: React.FC<Props> = (props) => {
     });
   };
 
-  // console.log(
-  //   "Filtering fn",
-  //   filterArrayProvincencies(["Andalucía", "Galicia"])
-  // );
-
-  console.log("CCAA", formData?.comunidades_tags);
-
   return (
     <div id={state?.theme} className="rootSearchPage">
       <h3>{t("search.search_title")}</h3>
@@ -256,7 +244,6 @@ export const SearchPage: React.FC<Props> = (props) => {
               ...filterArrayProvincencies(formData?.comunidades_tags)?.sort(
                 (a, b) => a?.text.localeCompare(b.text)
               ),
-              // ...newArrayProvincias_tags_02,
             ]}
             multiple
           />
@@ -267,7 +254,11 @@ export const SearchPage: React.FC<Props> = (props) => {
             handleChange={handleChangeMultiple("municipios_tags")}
             valuesFilter={[
               {
-                text: t("general.cancel_all"),
+                text: t(
+                  formData?.provincia_tags?.length > 0
+                    ? "general.cancel_all"
+                    : "search.choose_province"
+                ),
                 value: "",
               },
               ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort(
