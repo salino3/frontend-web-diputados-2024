@@ -6,13 +6,21 @@ import {
   FormData,
   GlobalContext,
   MyState,
+  ValuesFilter,
 } from "@/core";
 import {
+  arrayAndaluciaProvincias_tags,
+  arrayComunidadValencianaProvincias_tags,
+  filterArrayMunicipios_01,
+  filterArrayMunicipios_02,
   filterArrayProvincencies,
+  municipiosMap_01,
+  municipiosMap_02,
   newArrayComunidades_tags_01,
   newArrayMunicipios_tags_01,
   newArrayMunicipios_tags_02,
   newArrayProvincias_tags_02,
+  provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
@@ -49,8 +57,8 @@ export const SearchPage: React.FC<Props> = (props) => {
     (key: keyof FormData) => (event: ChangeEvent<HTMLSelectElement>) => {
       const { options } = event.target;
       const selectedValues = Array.from(options)
-        .filter((option) => option.selected)
-        .map((option) => option.value);
+        .filter((option) => option?.selected)
+        .map((option) => option?.value);
 
       // Actualizamos el estado con los valores seleccionados, agregando nuevos valores y eliminando los desmarcados
       setFormData((prevFormData) => {
@@ -85,6 +93,44 @@ export const SearchPage: React.FC<Props> = (props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    let newProvinces: string[] = formData?.provincia_tags;
+    formData.comunidades_tags.forEach((comunidad) => {
+      if (provinciasMap[comunidad]) {
+        const provinciasValues = provinciasMap[comunidad].map(
+          (item: ValuesFilter) => item?.value
+        );
+        const hasSelectedProvinces = provinciasValues.some((provincia) =>
+          formData.provincia_tags.includes(provincia)
+        );
+
+        if (!hasSelectedProvinces) {
+          newProvinces.push(...provinciasValues);
+        }
+      }
+    });
+
+    //
+    let newMunicipios: string[] = formData?.municipios_tags;
+    formData.provincia_tags.forEach((province) => {
+      let municipiosValues: string[] = [];
+      if (municipiosMap_01[province]) {
+        municipiosValues = municipiosMap_01[province].map(
+          (item: ValuesFilter) => item?.value
+        );
+      } else if (municipiosMap_02[province]) {
+        municipiosValues = municipiosMap_02[province].map(
+          (item: ValuesFilter) => item?.value
+        );
+      }
+      const hasSelectedMunicipios = municipiosValues.some((municipio) =>
+        formData.municipios_tags.includes(municipio)
+      );
+
+      if (!hasSelectedMunicipios) {
+        newMunicipios.push(...municipiosValues);
+      }
+    });
+
     console.log("submit", formData);
     const exactFilters = [""];
     const rangeFilters = [""];
@@ -101,8 +147,8 @@ export const SearchPage: React.FC<Props> = (props) => {
           ? formData?.Grupo_Parlamentario
           : "",
       comunidades_tags: formData?.comunidades_tags,
-      provincia_tags: formData?.provincia_tags,
-      municipios_tags: formData?.municipios_tags,
+      provincia_tags: newProvinces, // formData?.provincia_tags,
+      municipios_tags: newMunicipios, // formData?.municipios_tags,
     };
 
     fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {
@@ -188,7 +234,9 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...newArrayComunidades_tags_01,
+              ...newArrayComunidades_tags_01?.sort((a, b) =>
+                a?.text.localeCompare(b.text)
+              ),
             ]}
           />
           <CustomInputSelect
@@ -205,7 +253,9 @@ export const SearchPage: React.FC<Props> = (props) => {
                 ),
                 value: "",
               },
-              ...filterArrayProvincencies(formData?.comunidades_tags),
+              ...filterArrayProvincencies(formData?.comunidades_tags)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
+              ),
               // ...newArrayProvincias_tags_02,
             ]}
             multiple
@@ -220,8 +270,12 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...newArrayMunicipios_tags_01,
-              ...newArrayMunicipios_tags_02,
+              ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
+              ),
+              ...filterArrayMunicipios_02(formData?.provincia_tags)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
+              ),
             ]}
             multiple
           />

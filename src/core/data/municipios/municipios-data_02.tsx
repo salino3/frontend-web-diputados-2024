@@ -1,4 +1,4 @@
-import { ValuesFilter } from "@/core/interfaces";
+import { FilteringValuesFilter, ValuesFilter } from "@/core/interfaces";
 
 // 36)
 export const arrayPalenciaMunicipios_tags: ValuesFilter[] = [
@@ -3451,3 +3451,37 @@ export const newArrayMunicipios_tags_02: ValuesFilter[] = [
   ...arrayPontevedraMunicipios_tags,
   ...arrayZamoraMunicipios_tags,
 ];
+
+//
+export const municipiosMap_02: FilteringValuesFilter = {
+  "Pontevedra": arrayPontevedraMunicipios_tags,
+  "Zamora": arrayZamoraMunicipios_tags,
+  "Valencia": arrayValenciaMunicipios_tags,
+  "Segovia": arraySegoviaMunicipios_tags,
+  "Palencia": arrayPalenciaMunicipios_tags,
+  "Las Palmas": arrayLasPalmasMunicipios_tags,
+  "Valladolid": arrayValladolidMunicipios_tags,
+  "La Rioja": arrayRiojaLaMunicipios_tags,
+  "Soria": arraySoriaMunicipios_tags,
+  "Santa Cruz de Tenerife": arraySantaCruzdeTenerifeMunicipios_tags,
+  "Salamanca": arraySalamancaMunicipios_tags,
+  "Sevilla": arraySevillaMunicipios_tags,
+  "Zaragoza": arrayZaragozaMunicipios_tags,
+  "Ávila": arrayAvilaMunicipios_tags,
+  "Tarragona": arrayTarragonaMunicipios_tags,
+  "Teruel": arrayTeruelMunicipios_tags,
+};
+
+export function filterArrayMunicipios_02(items: string[]): ValuesFilter[] | [] {
+  if (items.length == 0) {
+    return [];
+  }
+
+  return items.reduce((acc, item) => {
+    const municipios = municipiosMap_02[item];
+    if (municipios) {
+      acc.push(...municipios);
+    }
+    return acc;
+  }, [] as ValuesFilter[]);
+}
