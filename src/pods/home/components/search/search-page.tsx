@@ -9,17 +9,17 @@ import {
   ValuesFilter,
 } from "@/core";
 import {
-  arrayAndaluciaProvincias_tags,
-  arrayComunidadValencianaProvincias_tags,
+  // arrayAndaluciaProvincias_tags,
+  // arrayComunidadValencianaProvincias_tags,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
   filterArrayProvincencies,
   municipiosMap_01,
   municipiosMap_02,
   newArrayComunidades_tags_01,
-  newArrayMunicipios_tags_01,
-  newArrayMunicipios_tags_02,
-  newArrayProvincias_tags_02,
+  // newArrayMunicipios_tags_01,
+  // newArrayMunicipios_tags_02,
+  // newArrayProvincias_tags_02,
   provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
