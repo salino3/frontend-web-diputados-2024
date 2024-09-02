@@ -152,32 +152,32 @@ export const newArrayProvincias_tags_02: ValuesFilter[] = [
   ...arrayNavarraProvincias_tags,
 ];
 
+export const provinciasMap: FilteringValuesFilter = {
+  "Andalucía": arrayAndaluciaProvincias_tags,
+  "Aragón": arrayAragonProvincias_tags,
+  "Asturias": arrayAsturiasProvincias_tags,
+  "Baleares": arrayBalearesProvincias_tags,
+  "Canarias": arrayCanariasProvincias_tags,
+  "Cantabria": arrayCantabriaProvincias_tags,
+  "Castilla y León": arrayCastillayLeonProvincias_tags,
+  "Castilla-La Mancha": arrayCastillaLaManchaProvincias_tags,
+  "Cataluña": arrayCataluñaProvincias_tags,
+  "Ceuta": arrayCeutaProvincias_tags,
+  "Comunitat Valenciana": arrayComunidadValencianaProvincias_tags,
+  "Extremadura": arrayExtremaduraProvincias_tags,
+  "Euskadi": arrayEuskadiProvincias_tags,
+  "Galicia": arrayGaliciaProvincias_tags,
+  "La Rioja": arrayLaRiojaProvincias_tags,
+  "Madrid": arrayMadridProvincias_tags,
+  "Melilla": arrayMelillaProvincias_tags,
+  "Murcia": arrayMurciaProvincias_tags,
+  "Navarra": arrayNavarraProvincias_tags,
+};
+
 export function filterArrayProvincencies(items: string[]): ValuesFilter[] | [] {
   if (items.length == 0) {
     return [];
   }
-
-  const provinciasMap: FilteringValuesFilter = {
-    "Andalucía": arrayAndaluciaProvincias_tags,
-    "Aragón": arrayAragonProvincias_tags,
-    "Asturias": arrayAsturiasProvincias_tags,
-    "Baleares": arrayBalearesProvincias_tags,
-    "Canarias": arrayCanariasProvincias_tags,
-    "Cantabria": arrayCantabriaProvincias_tags,
-    "Castilla y León": arrayCastillayLeonProvincias_tags,
-    "Castilla-La Mancha": arrayCastillaLaManchaProvincias_tags,
-    "Cataluña": arrayCataluñaProvincias_tags,
-    "Ceuta": arrayCeutaProvincias_tags,
-    "Comunitat Valenciana": arrayComunidadValencianaProvincias_tags,
-    "Extremadura": arrayExtremaduraProvincias_tags,
-    "Euskadi": arrayEuskadiProvincias_tags,
-    "Galicia": arrayGaliciaProvincias_tags,
-    "La Rioja": arrayLaRiojaProvincias_tags,
-    "Madrid": arrayMadridProvincias_tags,
-    "Melilla": arrayMelillaProvincias_tags,
-    "Murcia": arrayMurciaProvincias_tags,
-    "Navarra": arrayNavarraProvincias_tags,
-  };
 
   return items.reduce((acc, item) => {
     const provincias = provinciasMap[item];

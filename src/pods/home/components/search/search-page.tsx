@@ -16,6 +16,7 @@ import {
   newArrayMunicipios_tags_01,
   newArrayMunicipios_tags_02,
   newArrayProvincias_tags_02,
+  provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
@@ -52,8 +53,8 @@ export const SearchPage: React.FC<Props> = (props) => {
     (key: keyof FormData) => (event: ChangeEvent<HTMLSelectElement>) => {
       const { options } = event.target;
       const selectedValues = Array.from(options)
-        .filter((option) => option.selected)
-        .map((option) => option.value);
+        .filter((option) => option?.selected)
+        .map((option) => option?.value);
 
       // Actualizamos el estado con los valores seleccionados, agregando nuevos valores y eliminando los desmarcados
       setFormData((prevFormData) => {
@@ -89,30 +90,21 @@ export const SearchPage: React.FC<Props> = (props) => {
     event.preventDefault();
 
     let newProvinces: string[] = formData?.provincia_tags;
-    if (
-      formData?.comunidades_tags.includes("Andalucía") &&
-      !arrayAndaluciaProvincias_tags
-        .map((item: ValuesFilter) => item.value)
-        .some((provincia) => formData?.provincia_tags.includes(provincia))
-    ) {
-      newProvinces.push(
-        ...arrayAndaluciaProvincias_tags.map((item: ValuesFilter) => item.value)
-      );
-    }
-    if (
-      formData?.comunidades_tags.includes("Comunitat Valenciana") &&
-      !arrayComunidadValencianaProvincias_tags
-        .map((item: ValuesFilter) => item.value)
-        .some((provincia) => formData?.provincia_tags.includes(provincia))
-    ) {
-      newProvinces.push(
-        ...arrayComunidadValencianaProvincias_tags.map(
-          (item: ValuesFilter) => item.value
-        )
-      );
-    } else {
-      console.log("No one");
-    }
+    formData.comunidades_tags.forEach((comunidad) => {
+      const provincias = provinciasMap[comunidad];
+      if (provincias) {
+        const provinciasValues = provincias.map(
+          (item: ValuesFilter) => item?.value
+        );
+        const hasSelectedProvinces = provinciasValues.some((provincia) =>
+          formData.provincia_tags.includes(provincia)
+        );
+
+        if (!hasSelectedProvinces) {
+          newProvinces.push(...provinciasValues);
+        }
+      }
+    });
 
     console.log("submit", formData);
     const exactFilters = [""];
