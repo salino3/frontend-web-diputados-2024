@@ -130,28 +130,6 @@ export const arrayNavarraProvincias_tags: ValuesFilter[] = [
   { text: "Navarra/Nafarroa", value: "Navarra" },
 ];
 
-export const newArrayProvincias_tags_02: ValuesFilter[] = [
-  ...arrayAndaluciaProvincias_tags,
-  ...arrayAragonProvincias_tags,
-  ...arrayAsturiasProvincias_tags,
-  ...arrayBalearesProvincias_tags,
-  ...arrayCanariasProvincias_tags,
-  ...arrayCantabriaProvincias_tags,
-  ...arrayCastillayLeonProvincias_tags,
-  ...arrayCastillaLaManchaProvincias_tags,
-  ...arrayCataluñaProvincias_tags,
-  ...arrayCeutaProvincias_tags,
-  ...arrayComunidadValencianaProvincias_tags,
-  ...arrayExtremaduraProvincias_tags,
-  ...arrayEuskadiProvincias_tags,
-  ...arrayGaliciaProvincias_tags,
-  ...arrayLaRiojaProvincias_tags,
-  ...arrayMadridProvincias_tags,
-  ...arrayMelillaProvincias_tags,
-  ...arrayMurciaProvincias_tags,
-  ...arrayNavarraProvincias_tags,
-];
-
 //
 export const provinciasMap: FilteringValuesFilter = {
   "Andalucía": arrayAndaluciaProvincias_tags,

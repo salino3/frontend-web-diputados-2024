@@ -43,7 +43,8 @@
     "all": "Todo",
     "apply": "Aplicar",
     "remove": "Remover",
-    "choose_region": "Elije una Comunidad"
+    "choose_region": "Elije una comunidad",
+    "choose_province": "Elije una provincia"
   },
   "table": {
     "table_title": "Respuestas"

@@ -3433,25 +3433,6 @@ export const arrayAvilaMunicipios_tags: ValuesFilter[] = [
   { text: "Zapardiel de la Ribera", value: "Zapardiel de la Ribera" },
 ];
 
-export const newArrayMunicipios_tags_02: ValuesFilter[] = [
-  ...arrayPalenciaMunicipios_tags,
-  ...arrayLasPalmasMunicipios_tags,
-  ...arrayValladolidMunicipios_tags,
-  ...arrayRiojaLaMunicipios_tags,
-  ...arraySoriaMunicipios_tags,
-  ...arraySantaCruzdeTenerifeMunicipios_tags,
-  ...arraySalamancaMunicipios_tags,
-  ...arraySevillaMunicipios_tags,
-  ...arrayValenciaMunicipios_tags,
-  ...arrayZaragozaMunicipios_tags,
-  ...arraySegoviaMunicipios_tags,
-  ...arrayAvilaMunicipios_tags,
-  ...arrayTarragonaMunicipios_tags,
-  ...arrayTeruelMunicipios_tags,
-  ...arrayPontevedraMunicipios_tags,
-  ...arrayZamoraMunicipios_tags,
-];
-
 //
 export const municipiosMap_02: FilteringValuesFilter = {
   "Pontevedra": arrayPontevedraMunicipios_tags,

@@ -42,7 +42,8 @@
     "all": "All",
     "apply": "Apply",
     "remove": "Remove",
-    "choose_region": "Choose a Region"
+    "choose_region": "Choose a region",
+    "choose_province": "Choose a province"
   },
   "table": {
     "table_title": "Answers"
