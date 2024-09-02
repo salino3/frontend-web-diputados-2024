@@ -91,9 +91,8 @@ export const SearchPage: React.FC<Props> = (props) => {
 
     let newProvinces: string[] = formData?.provincia_tags;
     formData.comunidades_tags.forEach((comunidad) => {
-      const provincias = provinciasMap[comunidad];
-      if (provincias) {
-        const provinciasValues = provincias.map(
+      if (provinciasMap[comunidad]) {
+        const provinciasValues = provinciasMap[comunidad].map(
           (item: ValuesFilter) => item?.value
         );
         const hasSelectedProvinces = provinciasValues.some((provincia) =>
