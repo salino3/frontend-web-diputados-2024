@@ -6,8 +6,10 @@ import {
   FormData,
   GlobalContext,
   MyState,
+  ValuesFilter,
 } from "@/core";
 import {
+  arrayAndaluciaProvincias_tags,
   filterArrayProvincencies,
   newArrayComunidades_tags_01,
   newArrayMunicipios_tags_01,
@@ -85,6 +87,21 @@ export const SearchPage: React.FC<Props> = (props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    let newProvinces: string[] = formData?.provincia_tags;
+    if (
+      formData?.comunidades_tags.includes("Andalucía") &&
+      !arrayAndaluciaProvincias_tags
+        .map((item: ValuesFilter) => item.value)
+        .some((provincia) => formData?.provincia_tags.includes(provincia))
+    ) {
+      console.log("Yes");
+      newProvinces.push(
+        ...arrayAndaluciaProvincias_tags.map((item: ValuesFilter) => item.value)
+      );
+    } else {
+      console.log("No");
+    }
+
     console.log("submit", formData);
     const exactFilters = [""];
     const rangeFilters = [""];
@@ -101,7 +118,7 @@ export const SearchPage: React.FC<Props> = (props) => {
           ? formData?.Grupo_Parlamentario
           : "",
       comunidades_tags: formData?.comunidades_tags,
-      provincia_tags: formData?.provincia_tags,
+      provincia_tags: newProvinces, // formData?.provincia_tags,
       municipios_tags: formData?.municipios_tags,
     };
 
