@@ -10,6 +10,7 @@ import {
 } from "@/core";
 import {
   arrayAndaluciaProvincias_tags,
+  arrayComunidadValencianaProvincias_tags,
   filterArrayProvincencies,
   newArrayComunidades_tags_01,
   newArrayMunicipios_tags_01,
@@ -94,12 +95,23 @@ export const SearchPage: React.FC<Props> = (props) => {
         .map((item: ValuesFilter) => item.value)
         .some((provincia) => formData?.provincia_tags.includes(provincia))
     ) {
-      console.log("Yes");
       newProvinces.push(
         ...arrayAndaluciaProvincias_tags.map((item: ValuesFilter) => item.value)
       );
+    }
+    if (
+      formData?.comunidades_tags.includes("Comunitat Valenciana") &&
+      !arrayComunidadValencianaProvincias_tags
+        .map((item: ValuesFilter) => item.value)
+        .some((provincia) => formData?.provincia_tags.includes(provincia))
+    ) {
+      newProvinces.push(
+        ...arrayComunidadValencianaProvincias_tags.map(
+          (item: ValuesFilter) => item.value
+        )
+      );
     } else {
-      console.log("No");
+      console.log("No one");
     }
 
     console.log("submit", formData);

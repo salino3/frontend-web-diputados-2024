@@ -168,7 +168,7 @@ export function filterArrayProvincencies(items: string[]): ValuesFilter[] | [] {
     "Castilla-La Mancha": arrayCastillaLaManchaProvincias_tags,
     "Cataluña": arrayCataluñaProvincias_tags,
     "Ceuta": arrayCeutaProvincias_tags,
-    "Comunidad Valenciana": arrayComunidadValencianaProvincias_tags,
+    "Comunitat Valenciana": arrayComunidadValencianaProvincias_tags,
     "Extremadura": arrayExtremaduraProvincias_tags,
     "Euskadi": arrayEuskadiProvincias_tags,
     "Galicia": arrayGaliciaProvincias_tags,
