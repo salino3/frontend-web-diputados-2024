@@ -11,6 +11,8 @@ import {
 import {
   arrayAndaluciaProvincias_tags,
   arrayComunidadValencianaProvincias_tags,
+  filterArrayMunicipios_01,
+  filterArrayMunicipios_02,
   filterArrayProvincencies,
   newArrayComunidades_tags_01,
   newArrayMunicipios_tags_01,
@@ -244,11 +246,11 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...newArrayMunicipios_tags_01?.sort((a, b) =>
-                a?.text.localeCompare(b.text)
+              ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
               ),
-              ...newArrayMunicipios_tags_02?.sort((a, b) =>
-                a?.text.localeCompare(b.text)
+              ...filterArrayMunicipios_02(formData?.provincia_tags)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
               ),
             ]}
             multiple

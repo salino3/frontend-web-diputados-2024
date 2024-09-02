@@ -3453,7 +3453,7 @@ export const newArrayMunicipios_tags_02: ValuesFilter[] = [
 ];
 
 //
-export const municipiosMap: FilteringValuesFilter = {
+export const municipiosMap_02: FilteringValuesFilter = {
   "Pontevedra": arrayPontevedraMunicipios_tags,
   "Zamora": arrayZamoraMunicipios_tags,
   "Valencia": arrayValenciaMunicipios_tags,
@@ -3478,7 +3478,7 @@ export function filterArrayMunicipios_02(items: string[]): ValuesFilter[] | [] {
   }
 
   return items.reduce((acc, item) => {
-    const municipios = municipiosMap[item];
+    const municipios = municipiosMap_02[item];
     if (municipios) {
       acc.push(...municipios);
     }
