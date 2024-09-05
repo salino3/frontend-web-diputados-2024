@@ -2,11 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  arrayComunidades_tags,
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
-  arrayMunicipios_tags,
-  arrayProvincia_tags,
   CongresoPreguntas,
   GlobalContext,
   MyState,
@@ -15,6 +12,12 @@ import {
 import { TableComponet, typesFilter } from "@/common/table";
 import { Button } from "@/common";
 import "./table-page.styles.scss";
+import {
+  newArrayComunidades_tags_01,
+  newArrayProvincias_tags_01,
+  newArrayMunicipios_tags_01,
+  newArrayMunicipios_tags_02,
+} from "@/core/data";
 
 interface Row {
   key?: string;
@@ -42,7 +45,7 @@ export const TablePage: React.FC<Props> = (props) => {
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
 
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [pageSize, setPageSize] = useState<number>(10);
   const [flag, setFlag] = useState<boolean>(false);
 
   // Filters
@@ -162,7 +165,7 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayComunidades_tags.sort((a, b) =>
+        ...newArrayComunidades_tags_01.sort((a, b) =>
           a?.text?.localeCompare(b?.text)
         ),
       ],
@@ -190,7 +193,9 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayProvincia_tags.sort((a, b) => a?.text?.localeCompare(b?.text)),
+        ...newArrayProvincias_tags_01.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
       ],
       setFilter: setFilterProvinciasTags,
       filter: filterProvinciasTags,
@@ -218,7 +223,12 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayMunicipios_tags.sort((a, b) => a?.text?.localeCompare(b?.text)),
+        ...newArrayMunicipios_tags_01.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
+        ...newArrayMunicipios_tags_02.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
       ],
       setFilter: setFilterMunicipiosTags,
       filter: filterMunicipiosTags,
