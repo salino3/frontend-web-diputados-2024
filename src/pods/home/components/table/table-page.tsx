@@ -86,36 +86,7 @@ export const TablePage: React.FC<Props> = (props) => {
       setFilter: setFilterContenido,
       filter: filterContenido,
     },
-    {
-      key: "diputados_autores",
-      title: t("general.author_deputies"),
-      tooltip: (item: string) => {
-        if (item === undefined || item === null || item.trim() === "") {
-          return "-";
-        }
-        const cleanedItem = item.replace(/['"]/g, "");
-        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
-      },
-      valuesFilter: [
-        {
-          text: t("general.cancel_all"),
-          value: "",
-        },
-        ...arrayDiputados_autores?.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
-        ),
-      ],
-      typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterDiputadosAutores,
-      filter: filterDiputadosAutores,
-      render: (item: string) => {
-        if (item === undefined || item === null || item.trim() === "") {
-          return "-";
-        }
-        const cleanedItem = item.replace(/['"]/g, "");
-        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
-      },
-    },
+
     {
       key: "Grupo_Parlamentario",
       title: t("general.parliamentary_group"),
@@ -138,6 +109,36 @@ export const TablePage: React.FC<Props> = (props) => {
           a?.text?.localeCompare(b?.text)
         ),
       ],
+      render: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+    },
+    {
+      key: "diputados_autores",
+      title: t("general.author_deputies"),
+      tooltip: (item: string) => {
+        if (item === undefined || item === null || item.trim() === "") {
+          return "-";
+        }
+        const cleanedItem = item.replace(/['"]/g, "");
+        return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
+      },
+      valuesFilter: [
+        {
+          text: t("general.cancel_all"),
+          value: "",
+        },
+        ...arrayDiputados_autores?.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
+      ],
+      typeFilter: typesFilter?.multiselect,
+      setFilter: setFilterDiputadosAutores,
+      filter: filterDiputadosAutores,
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -223,11 +224,8 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...newArrayMunicipios_tags_01.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
-        ),
-        ...newArrayMunicipios_tags_02.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
+        ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
+          (a, b) => a?.text?.localeCompare(b?.text)
         ),
       ],
       setFilter: setFilterMunicipiosTags,
