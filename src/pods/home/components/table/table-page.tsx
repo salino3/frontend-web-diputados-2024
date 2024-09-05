@@ -2,11 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  arrayComunidades_tags,
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
-  arrayMunicipios_tags,
-  arrayProvincia_tags,
   CongresoPreguntas,
   GlobalContext,
   MyState,
@@ -18,6 +15,8 @@ import "./table-page.styles.scss";
 import {
   newArrayComunidades_tags_01,
   newArrayProvincias_tags_01,
+  newArrayMunicipios_tags_01,
+  newArrayMunicipios_tags_02,
 } from "@/core/data";
 
 interface Row {
@@ -224,7 +223,12 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayMunicipios_tags.sort((a, b) => a?.text?.localeCompare(b?.text)),
+        ...newArrayMunicipios_tags_01.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
+        ...newArrayMunicipios_tags_02.sort((a, b) =>
+          a?.text?.localeCompare(b?.text)
+        ),
       ],
       setFilter: setFilterMunicipiosTags,
       filter: filterMunicipiosTags,
