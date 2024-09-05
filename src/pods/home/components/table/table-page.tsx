@@ -42,7 +42,7 @@ export const TablePage: React.FC<Props> = (props) => {
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
 
   const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [pageSize, setPageSize] = useState<number>(10);
   const [flag, setFlag] = useState<boolean>(false);
 
   // Filters
