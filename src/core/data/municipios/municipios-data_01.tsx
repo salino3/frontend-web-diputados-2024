@@ -5115,7 +5115,7 @@ export const municipiosMap_01: FilteringValuesFilter = {
   "Badajoz": arrayBadajozMunicipios_tags,
   "Barcelona": arrayBarcelonaMunicipios_tags,
   "Burgos": arrayBurgosMunicipios_tags,
-  // "Caceres": arrayCaceresMunicipios_tags, //  Exist in provincias-data_01.tsx?
+  "Cáceres": arrayCaceresMunicipios_tags,
   "Cantabria": arrayCantabriaMunicipios_tags,
   "Castellón": arrayCastellonMunicipios_tags,
   "Ceuta": arrayCeutaMunicipios_tags,
@@ -5138,7 +5138,7 @@ export const municipiosMap_01: FilteringValuesFilter = {
   "Navarra": arrayNavarraMunicipios_tags,
   "Ourense": arrayOurenseMunicipios_tags,
   "Bizkaia": arrayBizkaiaMunicipios_tags,
-  // "Balears Illes": arrayBalearsIllesMunicipios_tags, //  Exist in provincias-data_01.tsx?
+  "Baleares": arrayBalearsIllesMunicipios_tags,
   "Coruña": arrayCoruñaMunicipios_tags,
   "Gipuzkoa": arrayGipuzkoaMunicipios_tags,
   "Cádiz": arrayCádizMunicipios_tags,

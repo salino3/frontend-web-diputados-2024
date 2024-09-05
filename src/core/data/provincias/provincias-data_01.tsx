@@ -26,9 +26,10 @@ export const arrayAsturiasProvincias_tags: ValuesFilter[] = [
 
 // 4)
 export const arrayBalearesProvincias_tags: ValuesFilter[] = [
-  { text: "Palma de Mallorca", value: "Mallorca" },
-  { text: "Ibiza/Eivissa", value: "Eivissa" },
-  { text: "Menorca", value: "Menorca" },
+  // { text: "Palma de Mallorca", value: "Mallorca" },
+  // { text: "Ibiza/Eivissa", value: "Eivissa" },
+  // { text: "Menorca", value: "Menorca" },
+  { text: "Islas Baleares/Illes Balears", value: "Baleares" },
 ];
 
 // 5)
