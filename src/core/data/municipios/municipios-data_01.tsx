@@ -1911,7 +1911,7 @@ export const arrayCiudadRealMunicipios_tags: ValuesFilter[] = [
 ];
 
 // 15)
-export const arrayCoruñaMunicipios_tags: ValuesFilter[] = [
+export const arrayCorunaMunicipios_tags: ValuesFilter[] = [
   { text: "Abegondo", value: "Abegondo" },
   { text: "Ames", value: "Ames" },
   { text: "Aranga", value: "Aranga" },
@@ -5139,7 +5139,7 @@ export const municipiosMap_01: FilteringValuesFilter = {
   "Ourense": arrayOurenseMunicipios_tags,
   "Bizkaia": arrayBizkaiaMunicipios_tags,
   "Baleares": arrayBalearsIllesMunicipios_tags,
-  "Coruña": arrayCoruñaMunicipios_tags,
+  "Coruña": arrayCorunaMunicipios_tags,
   "Gipuzkoa": arrayGipuzkoaMunicipios_tags,
   "Cádiz": arrayCádizMunicipios_tags,
 };
