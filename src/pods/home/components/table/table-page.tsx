@@ -15,7 +15,10 @@ import {
 import { TableComponet, typesFilter } from "@/common/table";
 import { Button } from "@/common";
 import "./table-page.styles.scss";
-import { newArrayProvincias_tags_01 } from "@/core/data";
+import {
+  newArrayComunidades_tags_01,
+  newArrayProvincias_tags_01,
+} from "@/core/data";
 
 interface Row {
   key?: string;
@@ -163,7 +166,7 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayComunidades_tags.sort((a, b) =>
+        ...newArrayComunidades_tags_01.sort((a, b) =>
           a?.text?.localeCompare(b?.text)
         ),
       ],
