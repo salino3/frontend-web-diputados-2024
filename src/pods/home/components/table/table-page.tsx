@@ -303,15 +303,10 @@ export const TablePage: React.FC<Props> = (props) => {
       console.log("Body:", body);
       const exactFilters = [""];
       const rangeFilters = [""];
-      if (
-        Object.values(body).some(
-          (value: any) => value !== "" && value !== null && value !== undefined
-        )
-      ) {
-        fetchApi(page, pageSize, body, exactFilters, rangeFilters).then(() => {
-          console.log("CALL", refreshTable);
-        });
-      }
+
+      fetchApi(page, pageSize, body, exactFilters, rangeFilters).then(() => {
+        console.log("CALL", refreshTable);
+      });
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
