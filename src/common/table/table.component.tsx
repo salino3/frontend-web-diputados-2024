@@ -209,7 +209,8 @@ export const TableComponet: React.FC<TableProps> = ({
     <div id={state?.theme} className="table_x02_rootTableComponet">
       <div className="table_x02_containerTable">
         <span className="table_x02_totalResults">
-          {t("table_info.total_results")}: {totalData || t("no_data")}
+          {t("table_info.total_results")}:{" "}
+          {totalData || t("table_info.no_data")}
         </span>
         <table className="table">
           <thead>
