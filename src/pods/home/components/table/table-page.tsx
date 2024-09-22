@@ -240,7 +240,7 @@ export const TablePage: React.FC<Props> = (props) => {
     },
     {
       key: "url",
-      title: t("general.action"),
+      title: t("general.link"),
       render: (_: any, row: CongresoPreguntas) => {
         return (
           <div className="boxBtnRow">
