@@ -19,7 +19,7 @@
     "link": "Link"
   },
   "header": {
-    "title": "Questions in the Congress of Deputies",
+    "title": "Congress of Deputies",
     "languages": "Languages",
     "light_mode": "Light Mode",
     "dark_mode": "Dark Mode"
@@ -42,7 +42,8 @@
     "all": "All",
     "apply": "Apply",
     "remove": "Remove",
-    "choose_region": "Choose a Region"
+    "choose_region": "Choose a region",
+    "choose_province": "Choose a province"
   },
   "table": {
     "table_title": "Answers"

@@ -1,4 +1,4 @@
-import { ValuesFilter } from "../../interfaces";
+import { FilteringValuesFilter, ValuesFilter } from "../../interfaces";
 
 // 1)
 export const arrayAlbaceteMunicipios_tags: ValuesFilter[] = [
@@ -1911,7 +1911,7 @@ export const arrayCiudadRealMunicipios_tags: ValuesFilter[] = [
 ];
 
 // 15)
-export const arrayCoruñaMunicipios_tags: ValuesFilter[] = [
+export const arrayCorunaMunicipios_tags: ValuesFilter[] = [
   { text: "Abegondo", value: "Abegondo" },
   { text: "Ames", value: "Ames" },
   { text: "Aranga", value: "Aranga" },
@@ -5104,3 +5104,56 @@ export const newArrayMunicipios_tags_01: ValuesFilter[] = [
   ...arrayNavarraMunicipios_tags,
   ...arrayOurenseMunicipios_tags,
 ];
+
+//
+export const municipiosMap_01: FilteringValuesFilter = {
+  "Alicante": arrayAlicanteMunicipios_tags,
+  "Albacete": arrayAlbaceteMunicipios_tags,
+  "Almería": arrayAlmeriaMunicipios_tags,
+  "Álava": arrayArabaMunicipios_tags,
+  "Asturias": arrayAsturiasMunicipios_tags,
+  "Badajoz": arrayBadajozMunicipios_tags,
+  "Barcelona": arrayBarcelonaMunicipios_tags,
+  "Burgos": arrayBurgosMunicipios_tags,
+  "Cáceres": arrayCaceresMunicipios_tags,
+  "Cantabria": arrayCantabriaMunicipios_tags,
+  "Castellón": arrayCastellonMunicipios_tags,
+  "Ceuta": arrayCeutaMunicipios_tags,
+  "Ciudad Real": arrayCiudadRealMunicipios_tags,
+  "Córdoba": arrayCordobaMunicipios_tags,
+  "Cuenca": arrayCuencaMunicipios_tags,
+  "Girona": arrayGironaMunicipios_tags,
+  "Granada": arrayGranadaMunicipios_tags,
+  "Guadalajara": arrayGuadalajaraMunicipios_tags,
+  "Huelva": arrayHuelvaMunicipios_tags,
+  "Huesca": arrayHuescaMunicipios_tags,
+  "Jaén": arrayJaenMunicipios_tags,
+  "León": arrayLeonMunicipios_tags,
+  "Lleida": arrayLleidaMunicipios_tags,
+  "Lugo": arrayLugoMunicipios_tags,
+  "Madrid": arrayMadridMunicipios_tags,
+  "Málaga": arrayMalagaMunicipios_tags,
+  "Melilla": arrayMelillaMunicipios_tags,
+  "Murcia": arrayMurciaMunicipios_tags,
+  "Navarra": arrayNavarraMunicipios_tags,
+  "Ourense": arrayOurenseMunicipios_tags,
+  "Bizkaia": arrayBizkaiaMunicipios_tags,
+  "Baleares": arrayBalearsIllesMunicipios_tags,
+  "Coruña": arrayCorunaMunicipios_tags,
+  "Gipuzkoa": arrayGipuzkoaMunicipios_tags,
+  "Cádiz": arrayCádizMunicipios_tags,
+};
+
+export function filterArrayMunicipios_01(items: string[]): ValuesFilter[] | [] {
+  if (items.length == 0) {
+    return [];
+  }
+
+  return items.reduce((acc, item) => {
+    const municipios = municipiosMap_01[item];
+    if (municipios) {
+      acc.push(...municipios);
+    }
+    return acc;
+  }, [] as ValuesFilter[]);
+}
