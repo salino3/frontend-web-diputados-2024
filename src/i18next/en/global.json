@@ -7,9 +7,9 @@
     "save": "Save",
     "close": "Close",
     "expedient": "Expedient",
-    "presented": "Presentadas",
+    "presented": "Presented",
     "content": "Content",
-    "author_deputies": "Author Deputies",
+    "author_deputies": "Deputies",
     "parliamentary_group": "Parliamentary Group",
     "communities_tags": "Communities",
     "provinces_tags": "Provinces",
@@ -19,7 +19,7 @@
     "link": "Link"
   },
   "header": {
-    "title": "Congress of Deputies",
+    "title": "Searching",
     "languages": "Languages",
     "light_mode": "Light Mode",
     "dark_mode": "Dark Mode"

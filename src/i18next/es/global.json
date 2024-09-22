@@ -7,13 +7,13 @@
     "save": "Guardar",
     "close": "Cerrar",
     "expedient": "Expediente",
-    "presented": "Presented",
+    "presented": "Fecha Presentación",
     "content": "Contenido",
-    "author_deputies": "Autores Deputados",
+    "author_deputies": "Diputados",
     "parliamentary_group": "Grupos parlamentarios",
     "communities_tags": "Comunidades",
     "provinces_tags": "Provincias",
-    "municipalities_tags": "Municipalidades",
+    "municipalities_tags": "Municipios",
     "page": "Página",
     "of": "de",
     "cancel_all": "* cancelar todos",
@@ -21,13 +21,13 @@
     "link": "Enlace"
   },
   "header": {
-    "title": "Congreso de los Diputados",
+    "title": "Preguntas en el Congreso",
     "languages": "Idiomas",
     "light_mode": "Modo claro",
     "dark_mode": "Modo oscuro"
   },
   "home": {
-    "title": "Preguntas en el Congreso de los Diputados",
+    "title": "Búsqueda",
     "previsualization": "Previsualización disponible en",
     "search": "Buscar",
     "table": "Respuestas"
