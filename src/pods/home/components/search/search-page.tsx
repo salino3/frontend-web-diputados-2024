@@ -1,14 +1,9 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
 import {
-  arrayDiputados_autores,
-  arrayGrupo_Parlamentario,
-  FormData,
-  GlobalContext,
-  MyState,
-  ValuesFilter,
-} from "@/core";
-import {
+  arrayGruposParlamentarios_tags,
+  filterArrayDeputies,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
   filterArrayProvincencies,
@@ -187,7 +182,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 text: t("general.cancel_all"),
                 value: "",
               },
-              ...arrayGrupo_Parlamentario?.sort((a, b) =>
+              ...arrayGruposParlamentarios_tags?.sort((a, b) =>
                 a?.text.localeCompare(b.text)
               ),
             ]}
@@ -200,11 +195,15 @@ export const SearchPage: React.FC<Props> = (props) => {
             handleChange={handleChangeMultiple("diputados_autores")}
             valuesFilter={[
               {
-                text: t("general.cancel_all"),
+                text: t(
+                  formData?.Grupo_Parlamentario?.length > 0
+                    ? "general.cancel_all"
+                    : "search.choose_deputies"
+                ),
                 value: "",
               },
-              ...arrayDiputados_autores?.sort((a, b) =>
-                a?.text.localeCompare(b.text)
+              ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort(
+                (a, b) => a?.text.localeCompare(b.text)
               ),
             ]}
             multiple
@@ -212,7 +211,6 @@ export const SearchPage: React.FC<Props> = (props) => {
         </div>
         <div className="containerInputs4">
           <CustomInputSelect
-            multiple
             lbl={t("general.communities_tags")}
             name="comunidades_tags"
             inputValue={formData?.comunidades_tags}
@@ -226,6 +224,7 @@ export const SearchPage: React.FC<Props> = (props) => {
                 a?.text.localeCompare(b.text)
               ),
             ]}
+            multiple
           />
           <CustomInputSelect
             lbl={t("general.provinces_tags")}
