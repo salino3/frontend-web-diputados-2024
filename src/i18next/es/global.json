@@ -44,7 +44,8 @@
     "apply": "Aplicar",
     "remove": "Remover",
     "choose_region": "Elije una comunidad",
-    "choose_province": "Elije una provincia"
+    "choose_province": "Elije una provincia",
+    "choose_deputies": "Elije un grupo parlamentario"
   },
   "table": {
     "table_title": "Respuestas"

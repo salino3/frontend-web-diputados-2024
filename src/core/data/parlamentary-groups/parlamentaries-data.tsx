@@ -12,6 +12,6 @@ export const arrayGruposParlamentarios_tags: ValuesFilter[] = [
   { text: "Grupo Parlamentario Popular", value: "G.P. Popular en el Congreso" },
   { text: "Grupo Parlamentario Repúblicano", value: "G.P. Republicano" },
   { text: "Grupo Parlamentario Socialista", value: "G.P. Socialista" },
-  //   { text: "Grupo Parlamentario del PNV", value: "G.P. Vasco (EAJ-PNV)" },
+  { text: "Grupo Parlamentario del PNV", value: "G.P. Vasco (EAJ-PNV)" },
   { text: "Grupo Parlamentario Vox", value: "G.P. VOX" },
 ];

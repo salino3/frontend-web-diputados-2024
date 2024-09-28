@@ -608,6 +608,22 @@ export const arrayGrupoParlamentarioVox_tag: ValuesFilter[] = [
   { text: "Ángel López Maraver", value: "Ángel López Maraver" },
 ];
 
+// 10)
+export const arrayGrupoParlamentarioVasco_tag: ValuesFilter[] = [
+  { text: "Aitor Esteban Bravo", value: "Aitor Esteban Bravo" },
+  {
+    text: "Idoia Sagastizabal Unzetabarrenetxea",
+    value: "Idoia Sagastizabal Unzetabarrenetxea",
+  },
+  {
+    text: "Joseba Andoni Agirretxea Urresti",
+    value: "Joseba Andoni Agirretxea Urresti",
+  },
+  { text: "Josune Gorospe Elezcano", value: "Josune Gorospe Elezcano" },
+  { text: "Mikel Legarda Uriarte", value: "Mikel Legarda Uriarte" },
+  { text: "Íñigo Barandiaran Benito", value: "Íñigo Barandiaran Benito" },
+];
+
 export const newArrayDeputies_tag_01: ValuesFilter[] = [
   ...arrayGrupoParlamentarioEHBildu_tag,
   ...arrayGrupoParlamentarioCiudadanos_tag,
@@ -618,6 +634,7 @@ export const newArrayDeputies_tag_01: ValuesFilter[] = [
   ...arrayGrupoParlamentarioRepublicano_tag,
   ...arrayGrupoParlamentarioSocialista_tag,
   ...arrayGrupoParlamentarioVox_tag,
+  ...arrayGrupoParlamentarioVasco_tag,
 ];
 
 //
@@ -632,8 +649,8 @@ export const deputiesMap: FilteringValuesFilter = {
   "G.P. Republicano": arrayGrupoParlamentarioRepublicano_tag,
   //
   "G.P. Socialista": arrayGrupoParlamentarioSocialista_tag,
-  //   "G.P. Vasco (EAJ-PNV)":  ,
   "G.P. VOX": arrayGrupoParlamentarioVox_tag,
+  "G.P. Vasco (EAJ-PNV)": arrayGrupoParlamentarioVasco_tag,
 };
 
 export function filterArrayDeputies(items: string[]): ValuesFilter[] | [] {
