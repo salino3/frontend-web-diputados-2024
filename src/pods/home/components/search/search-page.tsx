@@ -1,13 +1,6 @@
 import React, { ChangeEvent, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  arrayDiputados_autores,
-  arrayGrupo_Parlamentario,
-  FormData,
-  GlobalContext,
-  MyState,
-  ValuesFilter,
-} from "@/core";
+import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
 import {
   arrayGruposParlamentarios_tags,
   filterArrayDeputies,
