@@ -1,4 +1,4 @@
-import { ValuesFilter } from "@/core/interfaces";
+import { FilteringValuesFilter, ValuesFilter } from "@/core/interfaces";
 
 // 1)
 export const arrayGrupoParlamentarioEHBildu_tag: ValuesFilter[] = [
@@ -607,3 +607,45 @@ export const arrayGrupoParlamentarioVox_tag: ValuesFilter[] = [
   },
   { text: "Ángel López Maraver", value: "Ángel López Maraver" },
 ];
+
+export const newArrayDeputies_tag_01: ValuesFilter[] = [
+  ...arrayGrupoParlamentarioEHBildu_tag,
+  ...arrayGrupoParlamentarioCiudadanos_tag,
+  ...arrayGrupoParlamentarioMixto_tag,
+  ...arrayGrupoParlamentarioPlural_tag,
+  ...arrayGrupoParlamentarioConfederalUnidasPodemosEnComun_tag,
+  ...arrayGrupoParlamentarioPopular_tag,
+  ...arrayGrupoParlamentarioRepublicano_tag,
+  ...arrayGrupoParlamentarioSocialista_tag,
+  ...arrayGrupoParlamentarioVox_tag,
+];
+
+//
+export const deputiesMap: FilteringValuesFilter = {
+  "G.P. Confederal de Unidas Podemos-En Comú Podem-Galicia en Común":
+    arrayGrupoParlamentarioConfederalUnidasPodemosEnComun_tag,
+  "G.P. Ciudadanos": arrayGrupoParlamentarioCiudadanos_tag,
+  "G.P. EH Bildu": arrayGrupoParlamentarioEHBildu_tag,
+  "G.P. Mixto": arrayGrupoParlamentarioMixto_tag,
+  "G.P. Plural": arrayGrupoParlamentarioPlural_tag,
+  "G.P. Popular en el Congreso": arrayGrupoParlamentarioPopular_tag,
+  "G.P. Republicano": arrayGrupoParlamentarioRepublicano_tag,
+  //
+  "G.P. Socialista": arrayGrupoParlamentarioSocialista_tag,
+  //   "G.P. Vasco (EAJ-PNV)":  ,
+  "G.P. VOX": arrayGrupoParlamentarioVox_tag,
+};
+
+export function filterArrayDeputies(items: string[]): ValuesFilter[] | [] {
+  if (items.length == 0) {
+    return [];
+  }
+
+  return items.reduce((acc, item) => {
+    const deputies = deputiesMap[item];
+    if (deputies) {
+      acc.push(...deputies);
+    }
+    return acc;
+  }, [] as ValuesFilter[]);
+}
