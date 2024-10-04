@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
 import {
   arrayGruposParlamentarios_tags,
+  deputiesMap,
   filterArrayDeputies,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
@@ -83,6 +84,23 @@ export const SearchPage: React.FC<Props> = (props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    let newDeputies: string[] = formData?.diputados_autores;
+    formData?.Grupo_Parlamentario.forEach((parlamentary) => {
+      if (deputiesMap[parlamentary]) {
+        const deputiesValues = deputiesMap[parlamentary].map(
+          (item: ValuesFilter) => item?.value
+        );
+        const hasSelectedDeputies = deputiesValues.some((deputy) =>
+          formData.diputados_autores.includes(deputy)
+        );
+
+        if (!hasSelectedDeputies) {
+          newDeputies.push(...deputiesValues);
+        }
+      }
+    });
+
+    //
     let newProvinces: string[] = formData?.provincia_tags;
     formData.comunidades_tags.forEach((comunidad) => {
       if (provinciasMap[comunidad]) {
@@ -128,10 +146,10 @@ export const SearchPage: React.FC<Props> = (props) => {
       Expediente: formData?.Expediente,
       Contenido: formData?.Contenido,
       Presentadas: formData?.Presentadas,
-      diputados_autores:
-        formData?.diputados_autores?.length > 0
-          ? formData?.diputados_autores
-          : "",
+      diputados_autores: newDeputies,
+      // formData?.diputados_autores?.length > 0
+      //   ? formData?.diputados_autores
+      //   : "",
       Grupo_Parlamentario:
         formData?.Grupo_Parlamentario?.length > 0
           ? formData?.Grupo_Parlamentario
@@ -146,6 +164,27 @@ export const SearchPage: React.FC<Props> = (props) => {
       setRefreshTable(false);
     });
   };
+
+  //
+  useEffect(() => {
+    if (formData?.Grupo_Parlamentario?.length == 0) {
+      setFormData((prev) => ({ ...prev, diputados_autores: [] }));
+    }
+  }, [formData?.Grupo_Parlamentario]);
+
+  //
+  useEffect(() => {
+    if (formData?.provincia_tags?.length == 0) {
+      setFormData((prev) => ({ ...prev, municipios_tags: [] }));
+    }
+  }, [formData?.provincia_tags]);
+
+  //
+  useEffect(() => {
+    if (formData?.comunidades_tags?.length == 0) {
+      setFormData((prev) => ({ ...prev, provincia_tags: [] }));
+    }
+  }, [formData?.comunidades_tags]);
 
   return (
     <div id={state?.theme} className="rootSearchPage">
