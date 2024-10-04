@@ -558,7 +558,6 @@ export const arrayGrupoParlamentarioVox_tag: ValuesFilter[] = [
   { text: "Lourdes Méndez Monasterio", value: "Lourdes Méndez Monasterio" },
   { text: "Luis Gestoso de Miguel", value: "Luis Gestoso de Miguel" },
   { text: "Macarena Olona Choclán", value: "Macarena Olona Choclán" },
-  { text: "Macarena Olona Choclán", value: "Macarena Olona Choclán" },
   { text: "Manuel Mariscal Zabala", value: "Manuel Mariscal Zabala" },
   { text: "Manuel Mestre Barea", value: "Manuel Mestre Barea" },
   {
