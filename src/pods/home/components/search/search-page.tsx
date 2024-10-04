@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
 import {
@@ -146,6 +146,27 @@ export const SearchPage: React.FC<Props> = (props) => {
       setRefreshTable(false);
     });
   };
+
+  //
+  useEffect(() => {
+    if (formData?.Grupo_Parlamentario?.length == 0) {
+      setFormData((prev) => ({ ...prev, diputados_autores: [] }));
+    }
+  }, [formData?.Grupo_Parlamentario]);
+
+  //
+  useEffect(() => {
+    if (formData?.provincia_tags?.length == 0) {
+      setFormData((prev) => ({ ...prev, municipios_tags: [] }));
+    }
+  }, [formData?.provincia_tags]);
+
+  //
+  useEffect(() => {
+    if (formData?.comunidades_tags?.length == 0) {
+      setFormData((prev) => ({ ...prev, provincia_tags: [] }));
+    }
+  }, [formData?.comunidades_tags]);
 
   return (
     <div id={state?.theme} className="rootSearchPage">
