@@ -5,6 +5,7 @@ import {
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
   CongresoPreguntas,
+  FormData,
   GlobalContext,
   MyState,
   ValuesFilter,
@@ -35,10 +36,12 @@ interface Row {
 interface Props {
   refreshTable: boolean;
   setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
 export const TablePage: React.FC<Props> = (props) => {
-  const { refreshTable, setRefreshTable } = props;
+  const { refreshTable, setRefreshTable, formData, setFormData } = props;
 
   const [t] = useTranslation("global");
 
@@ -49,17 +52,37 @@ export const TablePage: React.FC<Props> = (props) => {
   const [flag, setFlag] = useState<boolean>(false);
 
   // Filters
-  const [filterExpediente, setFilterExpediente] = useState<string>("");
-  const [filterContenido, setFilterContenido] = useState<string>("");
-  const [filterPresentada, setFilterPresentada] = useState<string>("");
-  const [filterDiputadosAutores, setFilterDiputadosAutores] =
-    useState<string>("");
-  const [filterGrupoParlamentario, setFilterGrupoParlamentario] =
-    useState<string>("");
-  const [filterComunidadesTags, setFilterComunidadesTags] =
-    useState<string>("");
-  const [filterProvinciasTags, setFilterProvinciasTags] = useState<string>("");
-  const [filterMunicipiosTags, setFilterMunicipiosTags] = useState<string>("");
+  const [filterExpediente, setFilterExpediente] = useState<string>(
+    formData?.Expediente
+  );
+  const [filterContenido, setFilterContenido] = useState<string>(
+    formData?.Contenido
+  );
+  const [filterPresentada, setFilterPresentada] = useState<string>(
+    formData?.Presentadas
+  );
+  const [filterDiputadosAutores, setFilterDiputadosAutores] = useState<
+    string[] | string
+  >(formData?.diputados_autores?.length > 0 ? formData?.diputados_autores : "");
+  const [filterGrupoParlamentario, setFilterGrupoParlamentario] = useState<
+    string[] | string
+  >(
+    formData?.Grupo_Parlamentario?.length > 0
+      ? formData?.Grupo_Parlamentario
+      : ""
+  );
+  const [filterComunidadesTags, setFilterComunidadesTags] = useState<
+    string[] | string
+  >(formData?.comunidades_tags?.length > 0 ? formData?.comunidades_tags : "");
+  const [filterProvinciasTags, setFilterProvinciasTags] = useState<
+    string[] | string
+  >(formData?.provincia_tags?.length > 0 ? formData?.provincia_tags : "");
+  const [filterMunicipiosTags, setFilterMunicipiosTags] = useState<
+    string[] | string
+  >(formData?.municipios_tags?.length > 0 ? formData?.municipios_tags : "");
+
+  let today = new Date();
+  let toISODate = today.toISOString().substr(0, 10);
 
   const array: Row[] = [
     {
@@ -74,9 +97,19 @@ export const TablePage: React.FC<Props> = (props) => {
       key: "Presentada",
       title: t("general.presented"),
       tooltip: (item: string) => item,
-      typeFilter: typesFilter?.text,
+      render: (dateString: string) => {
+        const dateObject = new Date(dateString);
+        const formattedDate = dateObject.toLocaleDateString("es-ES", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+        return formattedDate;
+      },
+      typeFilter: typesFilter?.date,
       setFilter: setFilterPresentada,
       filter: filterPresentada,
+      maxDate: toISODate,
     },
     {
       key: "Contenido",
@@ -256,23 +289,23 @@ export const TablePage: React.FC<Props> = (props) => {
   useEffect(() => {
     if (refreshTable) {
       let parlamentGroupCorrected =
-        filterGrupoParlamentario != "" ? filterGrupoParlamentario : "";
+        filterGrupoParlamentario?.length > 0 ? filterGrupoParlamentario : "";
       //
       let deputiesAuthorsCorrected =
-        filterDiputadosAutores != "" ? filterDiputadosAutores : "";
+        filterDiputadosAutores?.length > 0 ? filterDiputadosAutores : "";
 
       // let deputiesComunidadesCorrected =
       //   filterComunidadesTags != ""
       //     ? "['" + filterComunidadesTags + "']"
       //     : filterComunidadesTags;
       let filterComunidadesCorrected =
-        filterComunidadesTags != "" ? filterComunidadesTags : "";
+        filterComunidadesTags?.length > 0 ? filterComunidadesTags : "";
       //
       let filterProvinciasCorrected =
-        filterProvinciasTags != "" ? filterProvinciasTags : "";
+        filterProvinciasTags?.length > 0 ? filterProvinciasTags : "";
       //
       let filterMuniciosCorrected =
-        filterMunicipiosTags != "" ? filterMunicipiosTags : "";
+        filterMunicipiosTags?.length > 0 ? filterMunicipiosTags : "";
 
       const body = {
         Expediente: filterExpediente,
@@ -302,7 +335,7 @@ export const TablePage: React.FC<Props> = (props) => {
       };
       console.log("Body:", body);
       const exactFilters = [""];
-      const rangeFilters = [""];
+      const rangeFilters = ["Presentada"];
 
       fetchApi(page, pageSize, body, exactFilters, rangeFilters).then(() => {
         console.log("CALL", refreshTable);

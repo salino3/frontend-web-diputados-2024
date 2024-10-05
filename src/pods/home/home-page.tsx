@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { GlobalContext, MyState } from "@/core";
+import { FormData, GlobalContext, MyState } from "@/core";
 import { SearchPage, TablePage } from "./components";
 import "./home-page.styles.scss";
 
@@ -18,6 +18,17 @@ export const HomePage: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<string>("search");
   const [refreshTable, setRefreshTable] = useState<boolean>(false);
 
+  const [formData, setFormData] = useState<FormData>({
+    Expediente: "",
+    Contenido: "",
+    Presentadas: "",
+    diputados_autores: [],
+    Grupo_Parlamentario: [],
+    comunidades_tags: [],
+    provincia_tags: [],
+    municipios_tags: [],
+  });
+
   const tabs: Tabs[] = [
     {
       id: "search",
@@ -26,6 +37,8 @@ export const HomePage: React.FC = () => {
         <SearchPage
           setSelectedTab={setSelectedTab}
           setRefreshTable={setRefreshTable}
+          formData={formData}
+          setFormData={setFormData}
         />
       ),
     },
@@ -36,6 +49,8 @@ export const HomePage: React.FC = () => {
         <TablePage
           refreshTable={refreshTable}
           setRefreshTable={setRefreshTable}
+          formData={formData}
+          setFormData={setFormData}
         />
       ),
     },
