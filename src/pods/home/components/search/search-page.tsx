@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
 import {
@@ -19,24 +19,15 @@ import "./search-page.styles.scss";
 interface Props {
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
   setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
 export const SearchPage: React.FC<Props> = (props) => {
-  const { setSelectedTab, setRefreshTable } = props;
+  const { setSelectedTab, setRefreshTable, formData, setFormData } = props;
   const [t] = useTranslation("global");
 
   const { fetchApi, state } = useContext<MyState>(GlobalContext);
-
-  const [formData, setFormData] = useState<FormData>({
-    Expediente: "",
-    Contenido: "",
-    Presentadas: "",
-    diputados_autores: [],
-    Grupo_Parlamentario: [],
-    comunidades_tags: [],
-    provincia_tags: [],
-    municipios_tags: [],
-  });
 
   const handleChange =
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
