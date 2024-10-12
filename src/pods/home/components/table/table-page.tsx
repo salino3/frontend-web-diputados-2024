@@ -10,15 +10,17 @@ import {
   MyState,
   ValuesFilter,
 } from "@/core";
-import { TableComponet, typesFilter } from "@/common/table";
-import { Button } from "@/common";
-import "./table-page.styles.scss";
 import {
   newArrayComunidades_tags_01,
   newArrayProvincias_tags_01,
   newArrayMunicipios_tags_01,
   newArrayMunicipios_tags_02,
+  filterArrayDeputies,
+  arrayGruposParlamentarios_tags,
 } from "@/core/data";
+import { TableComponet, typesFilter } from "@/common/table";
+import { Button } from "@/common";
+import "./table-page.styles.scss";
 
 interface Row {
   key?: string;
@@ -150,8 +152,8 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayGrupo_Parlamentario.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
+        ...arrayGruposParlamentarios_tags?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
         ),
       ],
       render: (item: string) => {
@@ -177,8 +179,8 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayDiputados_autores?.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
+        ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
         ),
       ],
       typeFilter: typesFilter?.multiselect,
