@@ -73,9 +73,9 @@ export const TablePage: React.FC<Props> = (props) => {
   //     ? formData?.Grupo_Parlamentario
   //     : ""
   // );
-  const [filterComunidadesTags, setFilterComunidadesTags] = useState<
-    string[] | string
-  >(formData?.comunidades_tags?.length > 0 ? formData?.comunidades_tags : "");
+  // const [filterComunidadesTags, setFilterComunidadesTags] = useState<
+  //   string[] | string
+  // >(formData?.comunidades_tags?.length > 0 ? formData?.comunidades_tags : "");
   const [filterProvinciasTags, setFilterProvinciasTags] = useState<
     string[] | string
   >(formData?.provincia_tags?.length > 0 ? formData?.provincia_tags : "");
@@ -210,8 +210,9 @@ export const TablePage: React.FC<Props> = (props) => {
       },
 
       typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterComunidadesTags,
-      filter: filterComunidadesTags,
+      setFilter: (value: string) =>
+        handleFilterChange("comunidades_tags", value),
+      filter: formData?.comunidades_tags,
       valuesFilter: [
         {
           text: t("general.cancel_all"),
@@ -316,8 +317,8 @@ export const TablePage: React.FC<Props> = (props) => {
       //   filterComunidadesTags != ""
       //     ? "['" + filterComunidadesTags + "']"
       //     : filterComunidadesTags;
-      let filterComunidadesCorrected =
-        filterComunidadesTags?.length > 0 ? filterComunidadesTags : "";
+      // let filterComunidadesCorrected =
+      //   filterComunidadesTags?.length > 0 ? filterComunidadesTags : "";
       //
       let filterProvinciasCorrected =
         filterProvinciasTags?.length > 0 ? filterProvinciasTags : "";
@@ -340,8 +341,8 @@ export const TablePage: React.FC<Props> = (props) => {
             : "",
 
         comunidades_tags:
-          filterComunidadesCorrected && filterComunidadesCorrected?.length > 0
-            ? filterComunidadesCorrected
+          formData?.comunidades_tags && formData?.comunidades_tags?.length > 0
+            ? formData?.comunidades_tags
             : "",
         provincia_tags:
           filterProvinciasCorrected && filterProvinciasCorrected?.length > 0
