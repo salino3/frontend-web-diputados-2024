@@ -52,12 +52,12 @@ export const TablePage: React.FC<Props> = (props) => {
   const [flag, setFlag] = useState<boolean>(false);
 
   // Filters
-  const [filterExpediente, setFilterExpediente] = useState<string>(
-    formData?.Expediente
-  );
-  const [filterContenido, setFilterContenido] = useState<string>(
-    formData?.Contenido
-  );
+  // const [filterExpediente, setFilterExpediente] = useState<string>(
+  //   formData?.Expediente
+  // );
+  // const [filterContenido, setFilterContenido] = useState<string>(
+  //   formData?.Contenido
+  // );
   const [filterPresentada, setFilterPresentada] = useState<string>(
     formData?.Presentadas
   );
@@ -81,6 +81,14 @@ export const TablePage: React.FC<Props> = (props) => {
     string[] | string
   >(formData?.municipios_tags?.length > 0 ? formData?.municipios_tags : "");
 
+  // Generic setter
+  const handleFilterChange = (key: keyof FormData, value: any) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [key]: value,
+    }));
+  };
+
   let today = new Date();
   let toISODate = today.toISOString().substr(0, 10);
 
@@ -90,8 +98,8 @@ export const TablePage: React.FC<Props> = (props) => {
       title: t("general.expedient"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
-      setFilter: setFilterExpediente,
-      filter: filterExpediente,
+      setFilter: (value: string) => handleFilterChange("Expediente", value),
+      filter: formData?.Expediente,
     },
     {
       key: "Presentada",
@@ -116,8 +124,8 @@ export const TablePage: React.FC<Props> = (props) => {
       title: t("general.content"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
-      setFilter: setFilterContenido,
-      filter: filterContenido,
+      setFilter: (value: string) => handleFilterChange("Contenido", value),
+      filter: formData?.Contenido,
     },
 
     {
@@ -308,8 +316,8 @@ export const TablePage: React.FC<Props> = (props) => {
         filterMunicipiosTags?.length > 0 ? filterMunicipiosTags : "";
 
       const body = {
-        Expediente: filterExpediente,
-        Contenido: filterContenido,
+        Expediente: formData?.Expediente,
+        Contenido: formData?.Contenido,
         Presentada: filterPresentada,
         diputados_autores:
           deputiesAuthorsCorrected && deputiesAuthorsCorrected?.length > 0

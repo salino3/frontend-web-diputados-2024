@@ -175,6 +175,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     if (formData?.comunidades_tags?.length == 0) {
       setFormData((prev) => ({ ...prev, provincia_tags: [] }));
     }
+    setRefreshTable(false);
   }, [formData?.comunidades_tags]);
 
   return (
