@@ -59,7 +59,7 @@ export const TablePage: React.FC<Props> = (props) => {
   //   formData?.Contenido
   // );
   const [filterPresentada, setFilterPresentada] = useState<string>(
-    formData?.Presentadas
+    formData?.Presentada
   );
   const [filterDiputadosAutores, setFilterDiputadosAutores] = useState<
     string[] | string
@@ -115,8 +115,8 @@ export const TablePage: React.FC<Props> = (props) => {
         return formattedDate;
       },
       typeFilter: typesFilter?.date,
-      setFilter: setFilterPresentada,
-      filter: filterPresentada,
+      setFilter: (value: string) => handleFilterChange("Presentada", value),
+      filter: formData?.Presentada,
       maxDate: toISODate,
     },
     {

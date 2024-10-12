@@ -136,7 +136,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     const body = {
       Expediente: formData?.Expediente,
       Contenido: formData?.Contenido,
-      Presentadas: formData?.Presentadas,
+      Presentada: formData?.Presentada,
       diputados_autores: newDeputies,
       // formData?.diputados_autores?.length > 0
       //   ? formData?.diputados_autores
@@ -199,9 +199,9 @@ export const SearchPage: React.FC<Props> = (props) => {
         <div className="containerInputs3">
           <CustomInputText
             lbl={t("general.presented")}
-            name="Presentadas"
-            inputValue={formData?.Presentadas}
-            handleChange={handleChange("Presentadas")}
+            name="Presentada"
+            inputValue={formData?.Presentada}
+            handleChange={handleChange("Presentada")}
           />
           <CustomInputSelect
             lbl={t("general.parliamentary_group")}
@@ -314,7 +314,7 @@ export const SearchPage: React.FC<Props> = (props) => {
               setFormData({
                 Expediente: "",
                 Contenido: "",
-                Presentadas: "",
+                Presentada: "",
                 diputados_autores: [],
                 Grupo_Parlamentario: [],
                 comunidades_tags: [],
