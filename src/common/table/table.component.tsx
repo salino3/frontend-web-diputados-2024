@@ -145,36 +145,40 @@ export const TableComponet: React.FC<TableProps> = ({
       (option) => option.value
     );
 
-    setFiltersTable((prevFilters: any[]) =>
-      prevFilters.map((filter, i) => {
-        if (i === index) {
-          const updatedFilter = { ...filter };
-          let currentFilters = updatedFilter.filter;
+    setFiltersTable(
+      (prevFilters: any[]) =>
+        prevFilters &&
+        prevFilters?.length > 0 &&
+        prevFilters.map((filter, i) => {
+          if (i === index) {
+            const updatedFilter = { ...filter };
+            let currentFilters = updatedFilter.filter || [];
 
-          selectedOptions.forEach((option: string) => {
-            const index = currentFilters.indexOf(option);
-            if (index !== -1) {
-              currentFilters = currentFilters.filter(
-                (item: string) => item !== option
-              );
+            selectedOptions.forEach((option: string) => {
+              const index = currentFilters.indexOf(option);
+              if (index !== -1) {
+                currentFilters = currentFilters.filter(
+                  (item: string) => item !== option
+                );
+              } else {
+                currentFilters = [...currentFilters, option];
+              }
+            });
+
+            updatedFilter.filter = currentFilters;
+            console.log("updated", updatedFilter);
+            if (updatedFilter?.filter?.includes("")) {
+              const cancelButton =
+                document.getElementById(`table_x02_cancelBtn`);
+              if (cancelButton) {
+                cancelButton.click();
+              }
             } else {
-              currentFilters = [...currentFilters, option];
+              return updatedFilter;
             }
-          });
-
-          updatedFilter.filter = currentFilters;
-          console.log("updated", updatedFilter);
-          if (updatedFilter?.filter?.includes("")) {
-            const cancelButton = document.getElementById(`table_x02_cancelBtn`);
-            if (cancelButton) {
-              cancelButton.click();
-            }
-          } else {
-            return updatedFilter;
           }
-        }
-        return filter;
-      })
+          return filter;
+        })
     );
   };
 
