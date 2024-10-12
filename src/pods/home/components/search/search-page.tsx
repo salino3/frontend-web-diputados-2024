@@ -132,7 +132,7 @@ export const SearchPage: React.FC<Props> = (props) => {
 
     console.log("submit", formData);
     const exactFilters = [""];
-    const rangeFilters = [""];
+    const rangeFilters = ["Presentada"];
     const body = {
       Expediente: formData?.Expediente,
       Contenido: formData?.Contenido,

@@ -58,12 +58,12 @@ export const TablePage: React.FC<Props> = (props) => {
   // const [filterContenido, setFilterContenido] = useState<string>(
   //   formData?.Contenido
   // );
-  const [filterPresentada, setFilterPresentada] = useState<string>(
-    formData?.Presentada
-  );
-  const [filterDiputadosAutores, setFilterDiputadosAutores] = useState<
-    string[] | string
-  >(formData?.diputados_autores?.length > 0 ? formData?.diputados_autores : "");
+  // const [filterPresentada, setFilterPresentada] = useState<string>(
+  //   formData?.Presentada
+  // );
+  // const [filterDiputadosAutores, setFilterDiputadosAutores] = useState<
+  //   string[] | string
+  // >(formData?.diputados_autores?.length > 0 ? formData?.diputados_autores : "");
   const [filterGrupoParlamentario, setFilterGrupoParlamentario] = useState<
     string[] | string
   >(
@@ -127,7 +127,6 @@ export const TablePage: React.FC<Props> = (props) => {
       setFilter: (value: string) => handleFilterChange("Contenido", value),
       filter: formData?.Contenido,
     },
-
     {
       key: "Grupo_Parlamentario",
       title: t("general.parliamentary_group"),
@@ -178,8 +177,12 @@ export const TablePage: React.FC<Props> = (props) => {
         ),
       ],
       typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterDiputadosAutores,
-      filter: filterDiputadosAutores,
+      setFilter: (value: string) =>
+        handleFilterChange("diputados_autores", value),
+      filter:
+        formData?.diputados_autores && formData?.diputados_autores?.length > 0
+          ? formData?.diputados_autores
+          : "",
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -299,8 +302,8 @@ export const TablePage: React.FC<Props> = (props) => {
       let parlamentGroupCorrected =
         filterGrupoParlamentario?.length > 0 ? filterGrupoParlamentario : "";
       //
-      let deputiesAuthorsCorrected =
-        filterDiputadosAutores?.length > 0 ? filterDiputadosAutores : "";
+      // let deputiesAuthorsCorrected =
+      //   filterDiputadosAutores?.length > 0 ? filterDiputadosAutores : "";
 
       // let deputiesComunidadesCorrected =
       //   filterComunidadesTags != ""
@@ -318,10 +321,10 @@ export const TablePage: React.FC<Props> = (props) => {
       const body = {
         Expediente: formData?.Expediente,
         Contenido: formData?.Contenido,
-        Presentada: filterPresentada,
+        Presentada: formData?.Presentada,
         diputados_autores:
-          deputiesAuthorsCorrected && deputiesAuthorsCorrected?.length > 0
-            ? deputiesAuthorsCorrected
+          formData?.diputados_autores && formData?.diputados_autores?.length > 0
+            ? formData?.diputados_autores
             : "",
         Grupo_Parlamentario:
           parlamentGroupCorrected && parlamentGroupCorrected?.length > 0
