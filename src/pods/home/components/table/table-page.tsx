@@ -64,13 +64,13 @@ export const TablePage: React.FC<Props> = (props) => {
   // const [filterDiputadosAutores, setFilterDiputadosAutores] = useState<
   //   string[] | string
   // >(formData?.diputados_autores?.length > 0 ? formData?.diputados_autores : "");
-  const [filterGrupoParlamentario, setFilterGrupoParlamentario] = useState<
-    string[] | string
-  >(
-    formData?.Grupo_Parlamentario?.length > 0
-      ? formData?.Grupo_Parlamentario
-      : ""
-  );
+  // const [filterGrupoParlamentario, setFilterGrupoParlamentario] = useState<
+  //   string[] | string
+  // >(
+  //   formData?.Grupo_Parlamentario?.length > 0
+  //     ? formData?.Grupo_Parlamentario
+  //     : ""
+  // );
   const [filterComunidadesTags, setFilterComunidadesTags] = useState<
     string[] | string
   >(formData?.comunidades_tags?.length > 0 ? formData?.comunidades_tags : "");
@@ -138,8 +138,13 @@ export const TablePage: React.FC<Props> = (props) => {
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
       typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterGrupoParlamentario,
-      filter: filterGrupoParlamentario,
+      setFilter: (value: string) =>
+        handleFilterChange("Grupo_Parlamentario", value),
+      filter:
+        formData?.Grupo_Parlamentario &&
+        formData?.Grupo_Parlamentario?.length > 0
+          ? formData?.Grupo_Parlamentario
+          : "",
       valuesFilter: [
         {
           text: t("general.cancel_all"),
@@ -299,8 +304,8 @@ export const TablePage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (refreshTable) {
-      let parlamentGroupCorrected =
-        filterGrupoParlamentario?.length > 0 ? filterGrupoParlamentario : "";
+      // let parlamentGroupCorrected =
+      //   filterGrupoParlamentario?.length > 0 ? filterGrupoParlamentario : "";
       //
       // let deputiesAuthorsCorrected =
       //   filterDiputadosAutores?.length > 0 ? filterDiputadosAutores : "";
@@ -327,8 +332,9 @@ export const TablePage: React.FC<Props> = (props) => {
             ? formData?.diputados_autores
             : "",
         Grupo_Parlamentario:
-          parlamentGroupCorrected && parlamentGroupCorrected?.length > 0
-            ? parlamentGroupCorrected
+          formData?.Grupo_Parlamentario &&
+          formData?.Grupo_Parlamentario?.length > 0
+            ? formData?.Grupo_Parlamentario
             : "",
 
         comunidades_tags:
