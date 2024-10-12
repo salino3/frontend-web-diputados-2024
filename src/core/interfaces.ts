@@ -59,7 +59,7 @@ export const initialState: State = {
 export interface FormData {
   Expediente: string;
   Contenido: string;
-  Presentadas: string;
+  Presentada: string;
   diputados_autores: string[];
   Grupo_Parlamentario: string[];
   comunidades_tags: string[];

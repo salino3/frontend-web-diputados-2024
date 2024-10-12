@@ -21,7 +21,7 @@ export const HomePage: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     Expediente: "",
     Contenido: "",
-    Presentadas: "",
+    Presentada: "",
     diputados_autores: [],
     Grupo_Parlamentario: [],
     comunidades_tags: [],
