@@ -59,7 +59,7 @@ export const initialState: State = {
 export interface FormData {
   Expediente: string;
   Contenido: string;
-  Presentada: string;
+  Presentada: DateData;
   diputados_autores: string[];
   Grupo_Parlamentario: string[];
   comunidades_tags: string[];
@@ -74,4 +74,9 @@ export interface FilteringValuesFilter {
 export interface ValuesFilter {
   text: string;
   value: any;
+}
+
+export interface DateData {
+  min: number;
+  max: number;
 }
