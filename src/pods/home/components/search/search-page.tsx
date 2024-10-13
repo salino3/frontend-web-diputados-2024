@@ -221,6 +221,7 @@ export const SearchPage: React.FC<Props> = (props) => {
 
         <div className="containerInputs3">
           <InputRange
+            Styles="boxInputDates_023"
             lbl={t("general.presented")}
             name="Presentada"
             inputValue={formData.Presentada}
