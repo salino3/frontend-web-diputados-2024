@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { GlobalContext, MyState } from "@/core";
 import "./range-input.styles.scss";
 
 interface PropsInput {
@@ -14,6 +15,7 @@ interface PropsInput {
   minDate?: any;
   maxDate?: any;
   name: string;
+  autoFocus?: boolean;
 }
 
 export const InputRange: React.FC<PropsInput> = ({
@@ -25,8 +27,11 @@ export const InputRange: React.FC<PropsInput> = ({
   name,
   minDate,
   maxDate,
+  autoFocus = true,
 }) => {
   const [t] = useTranslation("global");
+
+  const { state } = useContext<MyState>(GlobalContext);
 
   let inputs;
 
@@ -76,13 +81,19 @@ export const InputRange: React.FC<PropsInput> = ({
         <div className="table_x02_boxInputsRange">
           <label
             htmlFor={name}
+            style={{
+              color:
+                !autoFocus && state?.theme == "dark"
+                  ? "var(--color-seven)"
+                  : "var(--color-four)",
+            }}
             className="table_x02_inputLabel table_x02_shrink"
           >
-            {"Date min"}
+            {t("table_info.date_min")}
           </label>
           <input
             min={minDate || null}
-            autoFocus
+            autoFocus={autoFocus}
             type="date"
             id={`${name}-min`}
             className="table_x02_inputText"
@@ -93,9 +104,15 @@ export const InputRange: React.FC<PropsInput> = ({
 
           <label
             htmlFor={name}
+            style={{
+              color:
+                !autoFocus && state?.theme == "dark"
+                  ? "var(--color-seven)"
+                  : "var(--color-four)",
+            }}
             className="table_x02_inputLabel_02 table_x02_shrink_02"
           >
-            {"Date max"}
+            {t("table_info.date_max")}
           </label>
           <input
             max={maxDate || null}

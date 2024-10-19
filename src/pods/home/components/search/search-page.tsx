@@ -172,7 +172,7 @@ export const SearchPage: React.FC<Props> = (props) => {
 
     fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {
       setSelectedTab("table");
-      setRefreshTable(false);
+      // setRefreshTable(false);
     });
   };
 
@@ -227,6 +227,7 @@ export const SearchPage: React.FC<Props> = (props) => {
             inputValue={formData.Presentada}
             handleChange={handleChangeDate("Presentada")}
             type="date"
+            autoFocus={false}
             maxDate={toISODate}
           />
           <CustomInputSelect

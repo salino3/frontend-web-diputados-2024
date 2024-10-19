@@ -25,7 +25,8 @@
       background: white;
       appearance: none;
       transition: height 0.3s ease;
-      overflow: hidden;
+      // overflow: hidden;
+      overflow-y: auto;
     }
 
     .bottomTitleInputSelect {
@@ -35,7 +36,7 @@
     .inputSelect.focus {
       bottom: 0px;
       box-shadow: #ffec1f 0px 0px 16px;
-      overflow-y: auto;
+      // overflow-y: auto;
     }
 
     .openInputMultiselect {
