@@ -90,7 +90,10 @@ export const TablePage: React.FC<Props> = (props) => {
       },
       typeFilter: typesFilter?.date,
       setFilter: (value: string) => handleFilterChange("Presentada", value),
-      filter: formData?.Presentada,
+      filter:
+        formData?.Presentada?.min === 0 && formData?.Presentada?.max === 0
+          ? ""
+          : formData?.Presentada,
       maxDate: toISODate,
     },
     {
