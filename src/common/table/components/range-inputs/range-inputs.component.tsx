@@ -14,6 +14,7 @@ interface PropsInput {
   minDate?: any;
   maxDate?: any;
   name: string;
+  autoFocus?: boolean;
 }
 
 export const InputRange: React.FC<PropsInput> = ({
@@ -25,6 +26,7 @@ export const InputRange: React.FC<PropsInput> = ({
   name,
   minDate,
   maxDate,
+  autoFocus = true,
 }) => {
   const [t] = useTranslation("global");
 
@@ -82,7 +84,7 @@ export const InputRange: React.FC<PropsInput> = ({
           </label>
           <input
             min={minDate || null}
-            autoFocus
+            autoFocus={autoFocus}
             type="date"
             id={`${name}-min`}
             className="table_x02_inputText"
