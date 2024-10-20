@@ -7,7 +7,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import SearchIcon from "@mui/icons-material/Search";
 import { CustomInputText, InputRange } from "./components";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { FormData, GlobalContext, MyState } from "@/core";
+import { GlobalContext, MyState } from "@/core";
 import "./table.styles.scss";
 
 interface TableProps {
@@ -21,7 +21,6 @@ interface TableProps {
   setPage?: React.Dispatch<React.SetStateAction<number>>;
   setPageSize?: React.Dispatch<React.SetStateAction<number>>;
   rowPerPages?: number[];
-  formData: FormData;
 }
 
 interface TypesFilter {
@@ -53,7 +52,6 @@ export const TableComponet: React.FC<TableProps> = ({
   setPage,
   setPageSize,
   rowPerPages = [5, 10, 25, 50],
-  formData,
 }) => {
   const [t] = useTranslation("global");
   const { state } = useContext<MyState>(GlobalContext);
@@ -163,13 +161,31 @@ export const TableComponet: React.FC<TableProps> = ({
                 // Clear the current filter for this column
                 currentFilters = []; // Or use `filter` to clear the filter
                 updatedFilter.filter = currentFilters;
-
+                console.log("prevFilters", prevFilters);
                 if (index === 3) {
                   const deputiesFilter = prevFilters[4];
                   if (deputiesFilter) {
                     deputiesFilter.filter = []; // Clear the diputados_autores filter
                   }
-                } // If you need to visually clear the input, you can click the cancel button
+                }
+                if (index === 5) {
+                  const deputiesFilter = prevFilters[6];
+                  const deputiesFilter2 = prevFilters[7];
+                  if (deputiesFilter) {
+                    deputiesFilter.filter = [];
+                  }
+                  if (deputiesFilter2) {
+                    deputiesFilter2.filter = [];
+                  }
+                }
+                if (index === 6) {
+                  const deputiesFilter = prevFilters[7];
+                  if (deputiesFilter) {
+                    deputiesFilter.filter = [];
+                  }
+                }
+
+                // If you need to visually clear the input, you can click the cancel button
                 const cancelButton =
                   document.getElementById(`table_x02_cancelBtn`);
                 if (cancelButton) {
@@ -243,13 +259,6 @@ export const TableComponet: React.FC<TableProps> = ({
       }
     });
   }, [flagMultiselectChange]);
-
-  //
-  useEffect(() => {
-    if (formData?.Grupo_Parlamentario?.length === 0) {
-      filtersTable[4] = "";
-    }
-  }, [formData?.Grupo_Parlamentario]);
 
   return (
     <div id={state?.theme} className="table_x02_rootTableComponet">
@@ -344,9 +353,11 @@ export const TableComponet: React.FC<TableProps> = ({
                           onClick={() => toggleFilterOpen(index)}
                           style={{
                             cursor: "pointer",
-                            color: filtersTable[index]?.filter
-                              ? "var(--color-one)"
-                              : "",
+                            color:
+                              filtersTable[index]?.filter &&
+                              filtersTable[index]?.filter?.length > 0
+                                ? "var(--color-one)"
+                                : "",
                           }}
                         />
                       )}
