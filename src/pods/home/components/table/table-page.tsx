@@ -154,10 +154,9 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        // ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
-        //   a?.text.localeCompare(b.text)
-        // ),
-        ...newArrayDeputies_tag_01,
+        ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
       ],
       typeFilter: typesFilter?.multiselect,
       setFilter: (value: string) =>
@@ -333,6 +332,7 @@ export const TablePage: React.FC<Props> = (props) => {
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
+  console.log("formData", formData);
 
   return (
     <div id={state?.theme} className="rootTablePage">
@@ -349,6 +349,7 @@ export const TablePage: React.FC<Props> = (props) => {
           rowPerPages={[5, 10, 25]}
           totalData={state?.data?.totalProducts || 0}
           columns={state?.data?.products || []}
+          formData={formData}
         />
       </div>
     </div>

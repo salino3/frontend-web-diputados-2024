@@ -7,7 +7,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import SearchIcon from "@mui/icons-material/Search";
 import { CustomInputText, InputRange } from "./components";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { GlobalContext, MyState } from "@/core";
+import { FormData, GlobalContext, MyState } from "@/core";
 import "./table.styles.scss";
 
 interface TableProps {
@@ -21,6 +21,7 @@ interface TableProps {
   setPage?: React.Dispatch<React.SetStateAction<number>>;
   setPageSize?: React.Dispatch<React.SetStateAction<number>>;
   rowPerPages?: number[];
+  formData: FormData;
 }
 
 interface TypesFilter {
@@ -52,6 +53,7 @@ export const TableComponet: React.FC<TableProps> = ({
   setPage,
   setPageSize,
   rowPerPages = [5, 10, 25, 50],
+  formData,
 }) => {
   const [t] = useTranslation("global");
   const { state } = useContext<MyState>(GlobalContext);
@@ -61,6 +63,8 @@ export const TableComponet: React.FC<TableProps> = ({
 
   const popupRefs = useRef<any[]>([]);
 
+  const [flagMultiselectChange, setFlagMultiselectChange] =
+    useState<boolean>(false);
   const [filtersTable, setFiltersTable] = useState<any>(
     row.map((r, index) => {
       return {
@@ -180,6 +184,8 @@ export const TableComponet: React.FC<TableProps> = ({
           return filter;
         })
     );
+
+    setFlagMultiselectChange(!flagMultiselectChange);
   };
 
   const handleReset = (index: number) => {
@@ -208,6 +214,22 @@ export const TableComponet: React.FC<TableProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    // Update the filters in the parent component
+    filtersTable.forEach((filter: any) => {
+      if (filter?.setFilter) {
+        filter?.setFilter(filter.filter);
+      }
+    });
+  }, [flagMultiselectChange]);
+
+  //
+  useEffect(() => {
+    if (formData?.Grupo_Parlamentario?.length === 0) {
+      filtersTable[4] = "";
+    }
+  }, [formData?.Grupo_Parlamentario]);
 
   return (
     <div id={state?.theme} className="table_x02_rootTableComponet">
