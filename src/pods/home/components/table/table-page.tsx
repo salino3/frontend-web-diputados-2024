@@ -19,6 +19,8 @@ import {
   arrayGruposParlamentarios_tags,
   filterArrayProvincencies,
   newArrayDeputies_tag_01,
+  filterArrayMunicipios_01,
+  filterArrayMunicipios_02,
 } from "@/core/data";
 import { TableComponet, typesFilter } from "@/common/table";
 import { Button } from "@/common";
@@ -154,10 +156,9 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        // ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
-        //   a?.text.localeCompare(b.text)
-        // ),
-        ...newArrayDeputies_tag_01,
+        ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
       ],
       typeFilter: typesFilter?.multiselect,
       setFilter: (value: string) =>
@@ -225,10 +226,9 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        // ...filterArrayProvincencies(formData?.comunidades_tags)?.sort((a, b) =>
-        //   a?.text.localeCompare(b.text)
-        // ),
-        ...newArrayProvincias_tags_01,
+        ...filterArrayProvincencies(formData?.comunidades_tags)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
       ],
       setFilter: (value: string) => handleFilterChange("provincia_tags", value),
       filter:
@@ -262,8 +262,13 @@ export const TablePage: React.FC<Props> = (props) => {
         // ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
         //   (a, b) => a?.text?.localeCompare(b?.text)
         // ),
-        ...newArrayMunicipios_tags_01,
-        ...newArrayMunicipios_tags_02,
+
+        ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
+        ...filterArrayMunicipios_02(formData?.provincia_tags)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
       ],
       setFilter: (value: string) =>
         handleFilterChange("municipios_tags", value),
@@ -333,6 +338,7 @@ export const TablePage: React.FC<Props> = (props) => {
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
+  console.log("formData", formData);
 
   return (
     <div id={state?.theme} className="rootTablePage">

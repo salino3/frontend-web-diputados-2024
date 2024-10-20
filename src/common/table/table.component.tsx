@@ -61,6 +61,8 @@ export const TableComponet: React.FC<TableProps> = ({
 
   const popupRefs = useRef<any[]>([]);
 
+  const [flagMultiselectChange, setFlagMultiselectChange] =
+    useState<boolean>(false);
   const [filtersTable, setFiltersTable] = useState<any>(
     row.map((r, index) => {
       return {
@@ -155,8 +157,46 @@ export const TableComponet: React.FC<TableProps> = ({
             let currentFilters = updatedFilter.filter || [];
 
             selectedOptions.forEach((option: string) => {
-              const index = currentFilters.indexOf(option);
-              if (index !== -1) {
+              if (option === "") {
+                // Clear the current filter for this column
+                currentFilters = []; // Or use `filter` to clear the filter
+                updatedFilter.filter = currentFilters;
+                console.log("prevFilters", prevFilters);
+                if (index === 3) {
+                  const deputiesFilter = prevFilters[4];
+                  if (deputiesFilter) {
+                    deputiesFilter.filter = []; // Clear the diputados_autores filter
+                  }
+                }
+                if (index === 5) {
+                  const deputiesFilter = prevFilters[6];
+                  const deputiesFilter2 = prevFilters[7];
+                  if (deputiesFilter) {
+                    deputiesFilter.filter = [];
+                  }
+                  if (deputiesFilter2) {
+                    deputiesFilter2.filter = [];
+                  }
+                }
+                if (index === 6) {
+                  const deputiesFilter = prevFilters[7];
+                  if (deputiesFilter) {
+                    deputiesFilter.filter = [];
+                  }
+                }
+
+                // If you need to visually clear the input, you can click the cancel button
+                const cancelButton =
+                  document.getElementById(`table_x02_cancelBtn`);
+                if (cancelButton) {
+                  cancelButton.click();
+                }
+
+                return updatedFilter; // Exit the iteration
+              }
+
+              const optionIndex = currentFilters.indexOf(option);
+              if (optionIndex !== -1) {
                 currentFilters = currentFilters.filter(
                   (item: string) => item !== option
                 );
@@ -180,6 +220,8 @@ export const TableComponet: React.FC<TableProps> = ({
           return filter;
         })
     );
+
+    setFlagMultiselectChange(!flagMultiselectChange);
   };
 
   const handleReset = (index: number) => {
@@ -208,6 +250,15 @@ export const TableComponet: React.FC<TableProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    // Update the filters in the parent component
+    filtersTable.forEach((filter: any) => {
+      if (filter?.setFilter) {
+        filter?.setFilter(filter.filter);
+      }
+    });
+  }, [flagMultiselectChange]);
 
   return (
     <div id={state?.theme} className="table_x02_rootTableComponet">
@@ -302,9 +353,11 @@ export const TableComponet: React.FC<TableProps> = ({
                           onClick={() => toggleFilterOpen(index)}
                           style={{
                             cursor: "pointer",
-                            color: filtersTable[index]?.filter
-                              ? "var(--color-one)"
-                              : "",
+                            color:
+                              filtersTable[index]?.filter &&
+                              filtersTable[index]?.filter?.length > 0
+                                ? "var(--color-one)"
+                                : "",
                           }}
                         />
                       )}
