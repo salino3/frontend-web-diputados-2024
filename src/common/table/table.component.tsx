@@ -159,8 +159,28 @@ export const TableComponet: React.FC<TableProps> = ({
             let currentFilters = updatedFilter.filter || [];
 
             selectedOptions.forEach((option: string) => {
-              const index = currentFilters.indexOf(option);
-              if (index !== -1) {
+              if (option === "") {
+                // Clear the current filter for this column
+                currentFilters = []; // Or use `filter` to clear the filter
+                updatedFilter.filter = currentFilters;
+
+                if (index === 3) {
+                  const deputiesFilter = prevFilters[4];
+                  if (deputiesFilter) {
+                    deputiesFilter.filter = []; // Clear the diputados_autores filter
+                  }
+                } // If you need to visually clear the input, you can click the cancel button
+                const cancelButton =
+                  document.getElementById(`table_x02_cancelBtn`);
+                if (cancelButton) {
+                  cancelButton.click();
+                }
+
+                return updatedFilter; // Exit the iteration
+              }
+
+              const optionIndex = currentFilters.indexOf(option);
+              if (optionIndex !== -1) {
                 currentFilters = currentFilters.filter(
                   (item: string) => item !== option
                 );
