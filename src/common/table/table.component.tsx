@@ -60,6 +60,7 @@ export const TableComponet: React.FC<TableProps> = ({
   const keysToFilter = row.map((r) => r.key);
 
   const popupRefs = useRef<any[]>([]);
+  const detailsRef = useRef<HTMLDetailsElement | null>(null);
 
   const [flagMultiselectChange, setFlagMultiselectChange] =
     useState<boolean>(false);
@@ -260,6 +261,23 @@ export const TableComponet: React.FC<TableProps> = ({
     });
   }, [flagMultiselectChange]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        detailsRef.current &&
+        !detailsRef.current.contains(event.target as Node)
+      ) {
+        detailsRef.current.removeAttribute("open");
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div id={state?.theme} className="table_x02_rootTableComponet">
       <div className="table_x02_containerTable">
@@ -444,6 +462,7 @@ export const TableComponet: React.FC<TableProps> = ({
                 <span className="table_x02_spanChoosePages_02">{pageSize}</span>
               </div>
               <details
+                ref={detailsRef}
                 id="detailsPagesTable"
                 className="table_x02_detailsPages"
               >
