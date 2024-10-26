@@ -98,7 +98,7 @@ export const TableComponet: React.FC<TableProps> = ({
         return prevFilters;
       }
       return prevFilters.map((filter: any, i: number) =>
-        i === index ? { ...filter, open: !filter.open } : filter
+        i === index ? { ...filter, open: !filter?.open } : filter
       );
     });
   };
@@ -108,7 +108,7 @@ export const TableComponet: React.FC<TableProps> = ({
     // Update the filters in the parent component
     filtersTable.forEach((filter: any) => {
       if (filter?.setFilter) {
-        filter?.setFilter(filter.filter);
+        filter?.setFilter(filter?.filter);
       }
     });
     setPage && setPage(1);
@@ -349,14 +349,16 @@ export const TableComponet: React.FC<TableProps> = ({
                             >
                               {t("general.confirm")}
                             </button>
-                            <button
-                              type="reset"
-                              id="table_x02_cancelBtn"
-                              onClick={() => handleReset(index)}
-                              className="btn secundaryBtn table_x02_btnFilter"
-                            >
-                              {t("general.cancel")}
-                            </button>
+                            {r?.typeFilter !== "multiselect" && (
+                              <button
+                                type="reset"
+                                id="table_x02_cancelBtn"
+                                onClick={() => handleReset(index)}
+                                className="btn secundaryBtn table_x02_btnFilter"
+                              >
+                                {t("general.cancel")}
+                              </button>
+                            )}
                           </div>
                         </form>
                       </div>
