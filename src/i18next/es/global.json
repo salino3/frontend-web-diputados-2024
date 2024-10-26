@@ -7,7 +7,7 @@
     "save": "Guardar",
     "close": "Cerrar",
     "expedient": "Expediente",
-    "presented": "Fecha Presentación",
+    "presented": "Fecha Presentación (dd/mm/yyyy)",
     "content": "Contenido",
     "author_deputies": "Diputados",
     "parliamentary_group": "Grupos parlamentarios",
@@ -54,6 +54,8 @@
     "total_results": "Resultados totales",
     "no_data": "No datos",
     "rows_per_page": "Filas por página",
-    "error_type_input": "Error: Tipo input invalido"
+    "error_type_input": "Error: Tipo input invalido",
+    "date_min": "Fecha mínima",
+    "date_max": "Fecha máxima"
   }
 }

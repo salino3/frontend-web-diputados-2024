@@ -7,7 +7,7 @@
     "save": "Save",
     "close": "Close",
     "expedient": "Expedient",
-    "presented": "Presented",
+    "presented": "Presented (dd/mm/yyyy)",
     "content": "Content",
     "author_deputies": "Deputies",
     "parliamentary_group": "Parliamentary Group",
@@ -53,6 +53,8 @@
     "total_results": "Total Results",
     "no_data": "No data",
     "rows_per_page": " Rows per page",
-    "error_type_input": "Error: Invalid input type"
+    "error_type_input": "Error: Invalid input type",
+    "date_min": "Date Min",
+    "date_max": "Date Max"
   }
 }

@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
 import {
   arrayGruposParlamentarios_tags,
+  deputiesMap,
   filterArrayDeputies,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
@@ -14,33 +15,38 @@ import {
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import "./search-page.styles.scss";
+import { InputRange } from "@/common/table";
 
 interface Props {
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
   setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
 export const SearchPage: React.FC<Props> = (props) => {
-  const { setSelectedTab, setRefreshTable } = props;
+  const { setSelectedTab, setRefreshTable, formData, setFormData } = props;
   const [t] = useTranslation("global");
 
   const { fetchApi, state } = useContext<MyState>(GlobalContext);
-
-  const [formData, setFormData] = useState<FormData>({
-    Expediente: "",
-    Contenido: "",
-    Presentadas: "",
-    diputados_autores: [],
-    Grupo_Parlamentario: [],
-    comunidades_tags: [],
-    provincia_tags: [],
-    municipios_tags: [],
-  });
 
   const handleChange =
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
       setFormData({ ...formData, [key]: value });
+    };
+
+  const handleChangeDate =
+    (name: string) =>
+    (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+      const { value } = event.target;
+      setFormData((prev) => ({
+        ...prev,
+        Presentada: {
+          ...prev.Presentada,
+          [index === 0 ? "min" : "max"]: value, // Actualiza min o max según el índice
+        },
+      }));
     };
 
   const handleChangeMultiple =
@@ -83,55 +89,78 @@ export const SearchPage: React.FC<Props> = (props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    let newProvinces: string[] = formData?.provincia_tags;
-    formData.comunidades_tags.forEach((comunidad) => {
-      if (provinciasMap[comunidad]) {
-        const provinciasValues = provinciasMap[comunidad].map(
-          (item: ValuesFilter) => item?.value
-        );
-        const hasSelectedProvinces = provinciasValues.some((provincia) =>
-          formData.provincia_tags.includes(provincia)
-        );
+    let newDeputies: string[] = formData?.diputados_autores;
+    formData?.Grupo_Parlamentario &&
+      formData?.Grupo_Parlamentario?.length > 0 &&
+      formData?.Grupo_Parlamentario.forEach((parlamentary) => {
+        if (deputiesMap[parlamentary]) {
+          const deputiesValues = deputiesMap[parlamentary].map(
+            (item: ValuesFilter) => item?.value
+          );
+          const hasSelectedDeputies = deputiesValues.some((deputy) =>
+            formData.diputados_autores.includes(deputy)
+          );
 
-        if (!hasSelectedProvinces) {
-          newProvinces.push(...provinciasValues);
+          if (!hasSelectedDeputies) {
+            newDeputies.push(...deputiesValues);
+          }
         }
-      }
-    });
+      });
+
+    //
+    let newProvinces: string[] = formData?.provincia_tags;
+    formData.comunidades_tags &&
+      formData.comunidades_tags?.length > 0 &&
+      formData.comunidades_tags.forEach((comunidad) => {
+        if (provinciasMap[comunidad]) {
+          const provinciasValues = provinciasMap[comunidad].map(
+            (item: ValuesFilter) => item?.value
+          );
+          const hasSelectedProvinces = provinciasValues.some((provincia) =>
+            formData.provincia_tags.includes(provincia)
+          );
+
+          if (!hasSelectedProvinces) {
+            newProvinces.push(...provinciasValues);
+          }
+        }
+      });
 
     //
     let newMunicipios: string[] = formData?.municipios_tags;
-    formData.provincia_tags.forEach((province) => {
-      let municipiosValues: string[] = [];
-      if (municipiosMap_01[province]) {
-        municipiosValues = municipiosMap_01[province].map(
-          (item: ValuesFilter) => item?.value
+    formData.provincia_tags &&
+      formData.provincia_tags?.length > 0 &&
+      formData.provincia_tags.forEach((province) => {
+        let municipiosValues: string[] = [];
+        if (municipiosMap_01[province]) {
+          municipiosValues = municipiosMap_01[province].map(
+            (item: ValuesFilter) => item?.value
+          );
+        } else if (municipiosMap_02[province]) {
+          municipiosValues = municipiosMap_02[province].map(
+            (item: ValuesFilter) => item?.value
+          );
+        }
+        const hasSelectedMunicipios = municipiosValues.some((municipio) =>
+          formData.municipios_tags.includes(municipio)
         );
-      } else if (municipiosMap_02[province]) {
-        municipiosValues = municipiosMap_02[province].map(
-          (item: ValuesFilter) => item?.value
-        );
-      }
-      const hasSelectedMunicipios = municipiosValues.some((municipio) =>
-        formData.municipios_tags.includes(municipio)
-      );
 
-      if (!hasSelectedMunicipios) {
-        newMunicipios.push(...municipiosValues);
-      }
-    });
+        if (!hasSelectedMunicipios) {
+          newMunicipios.push(...municipiosValues);
+        }
+      });
 
     console.log("submit", formData);
     const exactFilters = [""];
-    const rangeFilters = [""];
+    const rangeFilters = ["Presentada"];
     const body = {
       Expediente: formData?.Expediente,
       Contenido: formData?.Contenido,
-      Presentadas: formData?.Presentadas,
-      diputados_autores:
-        formData?.diputados_autores?.length > 0
-          ? formData?.diputados_autores
-          : "",
+      Presentada: formData?.Presentada,
+      diputados_autores: newDeputies,
+      // formData?.diputados_autores?.length > 0
+      //   ? formData?.diputados_autores
+      //   : "",
       Grupo_Parlamentario:
         formData?.Grupo_Parlamentario?.length > 0
           ? formData?.Grupo_Parlamentario
@@ -143,9 +172,34 @@ export const SearchPage: React.FC<Props> = (props) => {
 
     fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {
       setSelectedTab("table");
-      setRefreshTable(false);
+      // setRefreshTable(false);
     });
   };
+
+  //
+  useEffect(() => {
+    if (formData?.Grupo_Parlamentario?.length == 0) {
+      setFormData((prev) => ({ ...prev, diputados_autores: [] }));
+    }
+  }, [formData?.Grupo_Parlamentario]);
+
+  //
+  useEffect(() => {
+    if (formData?.provincia_tags?.length == 0) {
+      setFormData((prev) => ({ ...prev, municipios_tags: [] }));
+    }
+  }, [formData?.provincia_tags]);
+
+  //
+  useEffect(() => {
+    if (formData?.comunidades_tags?.length == 0) {
+      setFormData((prev) => ({ ...prev, provincia_tags: [] }));
+    }
+    setRefreshTable(false);
+  }, [formData?.comunidades_tags]);
+
+  let today = new Date();
+  let toISODate = today.toISOString().substr(0, 10);
 
   return (
     <div id={state?.theme} className="rootSearchPage">
@@ -166,11 +220,15 @@ export const SearchPage: React.FC<Props> = (props) => {
         />
 
         <div className="containerInputs3">
-          <CustomInputText
+          <InputRange
+            Styles="boxInputDates_023"
             lbl={t("general.presented")}
-            name="Presentadas"
-            inputValue={formData?.Presentadas}
-            handleChange={handleChange("Presentadas")}
+            name="Presentada"
+            inputValue={formData.Presentada}
+            handleChange={handleChangeDate("Presentada")}
+            type="date"
+            autoFocus={false}
+            maxDate={toISODate}
           />
           <CustomInputSelect
             lbl={t("general.parliamentary_group")}
@@ -283,7 +341,10 @@ export const SearchPage: React.FC<Props> = (props) => {
               setFormData({
                 Expediente: "",
                 Contenido: "",
-                Presentadas: "",
+                Presentada: {
+                  min: 0,
+                  max: 0,
+                },
                 diputados_autores: [],
                 Grupo_Parlamentario: [],
                 comunidades_tags: [],

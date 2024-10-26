@@ -5,19 +5,26 @@ import {
   arrayDiputados_autores,
   arrayGrupo_Parlamentario,
   CongresoPreguntas,
+  FormData,
   GlobalContext,
   MyState,
   ValuesFilter,
 } from "@/core";
-import { TableComponet, typesFilter } from "@/common/table";
-import { Button } from "@/common";
-import "./table-page.styles.scss";
 import {
   newArrayComunidades_tags_01,
   newArrayProvincias_tags_01,
   newArrayMunicipios_tags_01,
   newArrayMunicipios_tags_02,
+  filterArrayDeputies,
+  arrayGruposParlamentarios_tags,
+  filterArrayProvincencies,
+  newArrayDeputies_tag_01,
+  filterArrayMunicipios_01,
+  filterArrayMunicipios_02,
 } from "@/core/data";
+import { TableComponet, typesFilter } from "@/common/table";
+import { Button } from "@/common";
+import "./table-page.styles.scss";
 
 interface Row {
   key?: string;
@@ -35,10 +42,12 @@ interface Row {
 interface Props {
   refreshTable: boolean;
   setRefreshTable: React.Dispatch<React.SetStateAction<boolean>>;
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 }
 
 export const TablePage: React.FC<Props> = (props) => {
-  const { refreshTable, setRefreshTable } = props;
+  const { refreshTable, setRefreshTable, formData, setFormData } = props;
 
   const [t] = useTranslation("global");
 
@@ -48,18 +57,16 @@ export const TablePage: React.FC<Props> = (props) => {
   const [pageSize, setPageSize] = useState<number>(10);
   const [flag, setFlag] = useState<boolean>(false);
 
-  // Filters
-  const [filterExpediente, setFilterExpediente] = useState<string>("");
-  const [filterContenido, setFilterContenido] = useState<string>("");
-  const [filterPresentada, setFilterPresentada] = useState<string>("");
-  const [filterDiputadosAutores, setFilterDiputadosAutores] =
-    useState<string>("");
-  const [filterGrupoParlamentario, setFilterGrupoParlamentario] =
-    useState<string>("");
-  const [filterComunidadesTags, setFilterComunidadesTags] =
-    useState<string>("");
-  const [filterProvinciasTags, setFilterProvinciasTags] = useState<string>("");
-  const [filterMunicipiosTags, setFilterMunicipiosTags] = useState<string>("");
+  // Generic setter
+  const handleFilterChange = (key: keyof FormData, value: any) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [key]: value,
+    }));
+  };
+
+  let today = new Date();
+  let toISODate = today.toISOString().substr(0, 10);
 
   const array: Row[] = [
     {
@@ -67,26 +74,38 @@ export const TablePage: React.FC<Props> = (props) => {
       title: t("general.expedient"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
-      setFilter: setFilterExpediente,
-      filter: filterExpediente,
+      setFilter: (value: string) => handleFilterChange("Expediente", value),
+      filter: formData?.Expediente,
     },
     {
       key: "Presentada",
       title: t("general.presented"),
       tooltip: (item: string) => item,
-      typeFilter: typesFilter?.text,
-      setFilter: setFilterPresentada,
-      filter: filterPresentada,
+      render: (dateString: string) => {
+        const dateObject = new Date(dateString);
+        const formattedDate = dateObject.toLocaleDateString("es-ES", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+        return formattedDate;
+      },
+      typeFilter: typesFilter?.date,
+      setFilter: (value: string) => handleFilterChange("Presentada", value),
+      filter:
+        formData?.Presentada?.min === 0 && formData?.Presentada?.max === 0
+          ? ""
+          : formData?.Presentada,
+      maxDate: toISODate,
     },
     {
       key: "Contenido",
       title: t("general.content"),
       tooltip: (item: string) => item,
       typeFilter: typesFilter?.text,
-      setFilter: setFilterContenido,
-      filter: filterContenido,
+      setFilter: (value: string) => handleFilterChange("Contenido", value),
+      filter: formData?.Contenido,
     },
-
     {
       key: "Grupo_Parlamentario",
       title: t("general.parliamentary_group"),
@@ -98,15 +117,20 @@ export const TablePage: React.FC<Props> = (props) => {
         return cleanedItem.substring(1, cleanedItem.length - 1) || "-";
       },
       typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterGrupoParlamentario,
-      filter: filterGrupoParlamentario,
+      setFilter: (value: string) =>
+        handleFilterChange("Grupo_Parlamentario", value),
+      filter:
+        formData?.Grupo_Parlamentario &&
+        formData?.Grupo_Parlamentario?.length > 0
+          ? formData?.Grupo_Parlamentario
+          : "",
       valuesFilter: [
         {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayGrupo_Parlamentario.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
+        ...arrayGruposParlamentarios_tags?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
         ),
       ],
       render: (item: string) => {
@@ -132,13 +156,17 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...arrayDiputados_autores?.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
+        ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
         ),
       ],
       typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterDiputadosAutores,
-      filter: filterDiputadosAutores,
+      setFilter: (value: string) =>
+        handleFilterChange("diputados_autores", value),
+      filter:
+        formData?.diputados_autores && formData?.diputados_autores?.length > 0
+          ? formData?.diputados_autores
+          : "",
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -159,8 +187,12 @@ export const TablePage: React.FC<Props> = (props) => {
       },
 
       typeFilter: typesFilter?.multiselect,
-      setFilter: setFilterComunidadesTags,
-      filter: filterComunidadesTags,
+      setFilter: (value: string) =>
+        handleFilterChange("comunidades_tags", value),
+      filter:
+        formData?.comunidades_tags && formData?.comunidades_tags?.length > 0
+          ? formData?.comunidades_tags
+          : "",
       valuesFilter: [
         {
           text: t("general.cancel_all"),
@@ -194,12 +226,15 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...newArrayProvincias_tags_01.sort((a, b) =>
-          a?.text?.localeCompare(b?.text)
+        ...filterArrayProvincencies(formData?.comunidades_tags)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
         ),
       ],
-      setFilter: setFilterProvinciasTags,
-      filter: filterProvinciasTags,
+      setFilter: (value: string) => handleFilterChange("provincia_tags", value),
+      filter:
+        formData?.provincia_tags && formData?.provincia_tags?.length > 0
+          ? formData?.provincia_tags
+          : "",
       render: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
@@ -224,12 +259,23 @@ export const TablePage: React.FC<Props> = (props) => {
           text: t("general.cancel_all"),
           value: "",
         },
-        ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
-          (a, b) => a?.text?.localeCompare(b?.text)
+        // ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
+        //   (a, b) => a?.text?.localeCompare(b?.text)
+        // ),
+
+        ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
+        ),
+        ...filterArrayMunicipios_02(formData?.provincia_tags)?.sort((a, b) =>
+          a?.text.localeCompare(b.text)
         ),
       ],
-      setFilter: setFilterMunicipiosTags,
-      filter: filterMunicipiosTags,
+      setFilter: (value: string) =>
+        handleFilterChange("municipios_tags", value),
+      filter:
+        formData?.municipios_tags && formData?.municipios_tags?.length > 0
+          ? formData?.municipios_tags
+          : "",
       render: (item: string) => {
         if (item === undefined || item === null || item?.trim() === "") {
           return "-";
@@ -255,54 +301,36 @@ export const TablePage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (refreshTable) {
-      let parlamentGroupCorrected =
-        filterGrupoParlamentario != "" ? filterGrupoParlamentario : "";
-      //
-      let deputiesAuthorsCorrected =
-        filterDiputadosAutores != "" ? filterDiputadosAutores : "";
-
-      // let deputiesComunidadesCorrected =
-      //   filterComunidadesTags != ""
-      //     ? "['" + filterComunidadesTags + "']"
-      //     : filterComunidadesTags;
-      let filterComunidadesCorrected =
-        filterComunidadesTags != "" ? filterComunidadesTags : "";
-      //
-      let filterProvinciasCorrected =
-        filterProvinciasTags != "" ? filterProvinciasTags : "";
-      //
-      let filterMuniciosCorrected =
-        filterMunicipiosTags != "" ? filterMunicipiosTags : "";
-
       const body = {
-        Expediente: filterExpediente,
-        Contenido: filterContenido,
-        Presentada: filterPresentada,
+        Expediente: formData?.Expediente,
+        Contenido: formData?.Contenido,
+        Presentada: formData?.Presentada,
         diputados_autores:
-          deputiesAuthorsCorrected && deputiesAuthorsCorrected?.length > 0
-            ? deputiesAuthorsCorrected
+          formData?.diputados_autores && formData?.diputados_autores?.length > 0
+            ? formData?.diputados_autores
             : "",
         Grupo_Parlamentario:
-          parlamentGroupCorrected && parlamentGroupCorrected?.length > 0
-            ? parlamentGroupCorrected
+          formData?.Grupo_Parlamentario &&
+          formData?.Grupo_Parlamentario?.length > 0
+            ? formData?.Grupo_Parlamentario
             : "",
 
         comunidades_tags:
-          filterComunidadesCorrected && filterComunidadesCorrected?.length > 0
-            ? filterComunidadesCorrected
+          formData?.comunidades_tags && formData?.comunidades_tags?.length > 0
+            ? formData?.comunidades_tags
             : "",
         provincia_tags:
-          filterProvinciasCorrected && filterProvinciasCorrected?.length > 0
-            ? filterProvinciasCorrected
+          formData?.provincia_tags && formData?.provincia_tags?.length > 0
+            ? formData?.provincia_tags
             : "",
         municipios_tags:
-          filterMuniciosCorrected && filterMuniciosCorrected?.length > 0
-            ? filterMuniciosCorrected
+          formData?.municipios_tags && formData?.municipios_tags?.length > 0
+            ? formData?.municipios_tags
             : "",
       };
       console.log("Body:", body);
       const exactFilters = [""];
-      const rangeFilters = [""];
+      const rangeFilters = ["Presentada"];
 
       fetchApi(page, pageSize, body, exactFilters, rangeFilters).then(() => {
         console.log("CALL", refreshTable);
@@ -310,6 +338,7 @@ export const TablePage: React.FC<Props> = (props) => {
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
+  console.log("formData", formData);
 
   return (
     <div id={state?.theme} className="rootTablePage">
