@@ -60,6 +60,7 @@ export const TableComponet: React.FC<TableProps> = ({
   const keysToFilter = row.map((r) => r.key);
 
   const popupRefs = useRef<any[]>([]);
+  const detailsRef = useRef<HTMLDetailsElement | null>(null);
 
   const [flagMultiselectChange, setFlagMultiselectChange] =
     useState<boolean>(false);
@@ -86,9 +87,10 @@ export const TableComponet: React.FC<TableProps> = ({
       return values;
     });
 
+  const one: number = totalData > 0 ? 1 : 0;
   const totalPages: number = Math.ceil(totalData / pageSize);
-  const startRow = (page - 1) * pageSize + 1;
-  const endRow = Math.min(page * pageSize, totalData);
+  const startRow: number = (page - 1) * pageSize + one;
+  const endRow: number = Math.min(page * pageSize, totalData);
 
   //
   const toggleFilterOpen = (index: number) => {
@@ -97,7 +99,7 @@ export const TableComponet: React.FC<TableProps> = ({
         return prevFilters;
       }
       return prevFilters.map((filter: any, i: number) =>
-        i === index ? { ...filter, open: !filter.open } : filter
+        i === index ? { ...filter, open: !filter?.open } : filter
       );
     });
   };
@@ -107,7 +109,7 @@ export const TableComponet: React.FC<TableProps> = ({
     // Update the filters in the parent component
     filtersTable.forEach((filter: any) => {
       if (filter?.setFilter) {
-        filter?.setFilter(filter.filter);
+        filter?.setFilter(filter?.filter);
       }
     });
     setPage && setPage(1);
@@ -260,6 +262,23 @@ export const TableComponet: React.FC<TableProps> = ({
     });
   }, [flagMultiselectChange]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        detailsRef.current &&
+        !detailsRef.current.contains(event.target as Node)
+      ) {
+        detailsRef.current.removeAttribute("open");
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div id={state?.theme} className="table_x02_rootTableComponet">
       <div className="table_x02_containerTable">
@@ -331,14 +350,16 @@ export const TableComponet: React.FC<TableProps> = ({
                             >
                               {t("general.confirm")}
                             </button>
-                            <button
-                              type="reset"
-                              id="table_x02_cancelBtn"
-                              onClick={() => handleReset(index)}
-                              className="btn secundaryBtn table_x02_btnFilter"
-                            >
-                              {t("general.cancel")}
-                            </button>
+                            {r?.typeFilter !== "multiselect" && (
+                              <button
+                                type="reset"
+                                id="table_x02_cancelBtn"
+                                onClick={() => handleReset(index)}
+                                className="btn secundaryBtn table_x02_btnFilter"
+                              >
+                                {t("general.cancel")}
+                              </button>
+                            )}
                           </div>
                         </form>
                       </div>
@@ -444,14 +465,12 @@ export const TableComponet: React.FC<TableProps> = ({
                 <span className="table_x02_spanChoosePages_02">{pageSize}</span>
               </div>
               <details
+                ref={detailsRef}
                 id="detailsPagesTable"
                 className="table_x02_detailsPages"
               >
                 <summary></summary>
-                <div
-                  id="containerPagesTable"
-                  className="table_x02_containerPages"
-                >
+                <div id={state?.theme} className="table_x02_containerPages">
                   {rowPerPages &&
                     rowPerPages?.length > 0 &&
                     rowPerPages.map((item: number) => (
