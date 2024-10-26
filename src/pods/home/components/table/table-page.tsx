@@ -338,7 +338,6 @@ export const TablePage: React.FC<Props> = (props) => {
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
-  console.log("formData", formData);
 
   return (
     <div id={state?.theme} className="rootTablePage">
