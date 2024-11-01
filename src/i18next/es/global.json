@@ -8,6 +8,7 @@
     "close": "Cerrar",
     "expedient": "Expediente",
     "presented": "Fecha Presentación (dd/mm/aaaa)",
+    "invalid_date": "Fecha invalida",
     "content": "Contenido",
     "author_deputies": "Diputados",
     "parliamentary_group": "Grupos parlamentarios",
