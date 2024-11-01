@@ -375,8 +375,10 @@ export const TableComponet: React.FC<TableProps> = ({
                           style={{
                             cursor: "pointer",
                             color:
-                              filtersTable[index]?.filter &&
-                              filtersTable[index]?.filter?.length > 0
+                              filtersTable[index]?.filter?.min ||
+                              filtersTable[index]?.filter?.max ||
+                              (filtersTable[index]?.filter &&
+                                filtersTable[index]?.filter?.length > 0)
                                 ? "var(--color-one)"
                                 : "",
                           }}
