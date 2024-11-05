@@ -49,7 +49,7 @@ interface Props {
 export const TablePage: React.FC<Props> = (props) => {
   const { refreshTable, setRefreshTable, formData, setFormData } = props;
 
-  const [t] = useTranslation("global");
+  const [t, i18next] = useTranslation("global");
 
   const { state, fetchApi } = useContext<MyState>(GlobalContext);
 
@@ -68,6 +68,16 @@ export const TablePage: React.FC<Props> = (props) => {
   let today = new Date();
   let toISODate = today.toISOString().substr(0, 10);
 
+  // const parseDateString = (dateString: string): Date => {
+  //   const parts = dateString.split("/");
+
+  //   if (parts.length !== 3) {
+  //     return new Date(NaN);
+  //   }
+  //   const [day, month, year] = dateString.split("/").map(Number);
+  //   return new Date(year, month - 1, day);
+  // };
+
   const array: Row[] = [
     {
       key: "Expediente",
@@ -80,16 +90,24 @@ export const TablePage: React.FC<Props> = (props) => {
     {
       key: "Presentada",
       title: t("general.presented"),
-      tooltip: (item: string) => item,
-      render: (dateString: string) => {
-        const dateObject = new Date(dateString);
-        const formattedDate = dateObject.toLocaleDateString("es-ES", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        });
-        return formattedDate;
-      },
+      tooltip: (item: string) => (item ? item : t("general.invalid_date")),
+      render: (dateString: string) =>
+        dateString ? dateString : t("general.invalid_date"),
+      // render: (dateString: string) => {
+      //   const dateObject = parseDateString(dateString || "");
+
+      //   if (isNaN(dateObject.getTime())) {
+      //     return t("general.invalid_date");
+      //   }
+
+      //   const formattedDate = dateObject.toLocaleDateString(i18next?.language, {
+      //     year: "numeric",
+      //     month: "2-digit",
+      //     day: "2-digit",
+      //   });
+
+      //   return formattedDate;
+      // },
       typeFilter: typesFilter?.date,
       setFilter: (value: string) => handleFilterChange("Presentada", value),
       filter:
@@ -338,6 +356,8 @@ export const TablePage: React.FC<Props> = (props) => {
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
+
+  console.log("CALL2", state?.data?.products);
 
   return (
     <div id={state?.theme} className="rootTablePage">

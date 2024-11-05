@@ -8,6 +8,7 @@
     "close": "Close",
     "expedient": "Expedient",
     "presented": "Presented (dd/mm/yyyy)",
+    "invalid_date": "Invalid date",
     "content": "Content",
     "author_deputies": "Deputies",
     "parliamentary_group": "Parliamentary Group",

@@ -45,15 +45,10 @@ export const arrayGrupoParlamentarioCiudadanos_tag: ValuesFilter[] = [
 // 3)
 export const arrayGrupoParlamentarioMixto_tag: ValuesFilter[] = [
   { text: "Albert Botran Pahissa", value: "Albert Botran Pahissa" },
-  {
-    text: "Ana María Oramas González-Moro",
+  { text: "Ana María Oramas González-Moro",
     value: "Ana María Oramas González-Moro",
   },
   { text: "Carlos García Adanero", value: "Carlos García Adanero" },
-  {
-    text: "Isidro Manuel Martínez Oblanca",
-    value: "Isidro Manuel Martínez Oblanca",
-  },
   {
     text: "Isidro Manuel Martínez Oblanca",
     value: "Isidro Manuel Martínez Oblanca",
@@ -66,9 +61,7 @@ export const arrayGrupoParlamentarioMixto_tag: ValuesFilter[] = [
   },
   { text: "Mireia Vehí Cantenys", value: "Mireia Vehí Cantenys" },
   { text: "Néstor Rego Candamil", value: "Néstor Rego Candamil" },
-  { text: "Néstor Rego Candamil", value: "Néstor Rego Candamil" },
   { text: "Pablo Cambronero Piqueras", value: "Pablo Cambronero Piqueras" },
-  { text: "Pedro Quevedo Iturbe", value: "Pedro Quevedo Iturbe" },
   { text: "Pedro Quevedo Iturbe", value: "Pedro Quevedo Iturbe" },
   { text: "Sergio Sayas López", value: "Sergio Sayas López" },
   { text: "Tomás Guitarte Gimeno", value: "Tomás Guitarte Gimeno" },
@@ -78,23 +71,16 @@ export const arrayGrupoParlamentarioMixto_tag: ValuesFilter[] = [
 export const arrayGrupoParlamentarioPlural_tag: ValuesFilter[] = [
   { text: "Concep Cañadell Salvia", value: "Concep Cañadell Salvia" },
   { text: "Ferran Bel Accensi", value: "Ferran Bel Accensi" },
-  { text: "Ferran Bel Accensi", value: "Ferran Bel Accensi" },
   { text: "Genís Boadella Esteve", value: "Genís Boadella Esteve" },
   { text: "Inés Sabanés Nadal", value: "Inés Sabanés Nadal" },
-  {
-    text: "Jaume Alonso-Cuevillas i Sayrol",
-    value: "Jaume Alonso-Cuevillas i Sayrol",
-  },
-  { text: "Joan Baldoví Roda", value: "Joan Baldoví Roda" },
+  { text: "Jaume Alonso-Cuevillas i Sayrol",value: "Jaume Alonso-Cuevillas i Sayrol"},
   { text: "Joan Baldoví Roda", value: "Joan Baldoví Roda" },
   { text: "Josep Pagès i Massó", value: "Josep Pagès i Massó" },
-  { text: "Laura Borràs Castanyer", value: "Laura Borràs Castanyer" },
   { text: "Laura Borràs Castanyer", value: "Laura Borràs Castanyer" },
   { text: "Maria Josep Picó Garcés", value: "Maria Josep Picó Garcés" },
   { text: "Mariona Illamola Dausà", value: "Mariona Illamola Dausà" },
   { text: "Míriam Nogueras i Camero", value: "Míriam Nogueras i Camero" },
   { text: "Pilar Calvo Gómez", value: "Pilar Calvo Gómez" },
-  { text: "Sergi Miquel i Valentí", value: "Sergi Miquel i Valentí" },
   { text: "Sergi Miquel i Valentí", value: "Sergi Miquel i Valentí" },
   { text: "Íñigo Errejón Galván", value: "Íñigo Errejón Galván" },
 ];
