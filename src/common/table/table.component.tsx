@@ -5,9 +5,10 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import SearchIcon from "@mui/icons-material/Search";
-import { CustomInputText, InputRange } from "./components";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { GlobalContext, MyState } from "@/core";
+import { CustomInputText, InputRange } from "./components";
+import { Button } from "../button-app";
+import { FormData, GlobalContext, MyState } from "@/core";
 import "./table.styles.scss";
 
 interface TableProps {
@@ -30,6 +31,11 @@ interface TypesFilter {
   date: string;
   multiselect: string;
   range: string;
+}
+
+interface Filter {
+  key: keyof FormData;
+  filter: number;
 }
 
 export const typesFilter: TypesFilter = {
@@ -91,6 +97,20 @@ export const TableComponet: React.FC<TableProps> = ({
   const totalPages: number = Math.ceil(totalData / pageSize);
   const startRow: number = (page - 1) * pageSize + one;
   const endRow: number = Math.min(page * pageSize, totalData);
+
+  const initialFilters: FormData = {
+    Expediente: "",
+    Contenido: "",
+    Presentada: {
+      min: 0,
+      max: 0,
+    },
+    diputados_autores: [],
+    Grupo_Parlamentario: [],
+    comunidades_tags: [],
+    provincia_tags: [],
+    municipios_tags: [],
+  };
 
   //
   const toggleFilterOpen = (index: number) => {
@@ -234,6 +254,20 @@ export const TableComponet: React.FC<TableProps> = ({
     );
   };
 
+  //
+  const clearFilters = () => {
+    setFiltersTable((prevFilters: Filter[]) =>
+      prevFilters.map((filter) => {
+        return {
+          ...filter,
+          filter: Array.isArray(initialFilters[filter.key])
+            ? []
+            : initialFilters[filter.key] || "",
+        };
+      })
+    );
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       popupRefs.current.forEach((ref, index) => {
@@ -282,10 +316,18 @@ export const TableComponet: React.FC<TableProps> = ({
   return (
     <div id={state?.theme} className="table_x02_rootTableComponet">
       <div className="table_x02_containerTable">
-        <span className="table_x02_totalResults">
-          {t("table_info.total_results")}:{" "}
-          {totalData || t("table_info.no_data")}
-        </span>
+        <div className="table_x02_containerAboveTable">
+          <span className="table_x02_totalResults">
+            {t("table_info.total_results")}:{" "}
+            {totalData || t("table_info.no_data")}
+          </span>
+          <Button
+            click={clearFilters}
+            txt={t("table_info.clear_filters")}
+            type="reset"
+          />
+        </div>
+
         <table className="table">
           <thead>
             <tr>

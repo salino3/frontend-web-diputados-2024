@@ -11,14 +11,26 @@
     justify-content: center;
     align-items: stretch;
 
-    .table_x02_totalResults {
+    .table_x02_containerAboveTable {
       display: flex;
+      flex-direction: row;
+      gap: 3rem;
       align-items: center;
-      justify-content: start;
-      padding-left: 1rem;
-      font-weight: bold;
-      font-size: 20px;
-      min-width: max-content;
+      justify-content: flex-start;
+      width: fit-content;
+      padding: 0 0 0.2rem 1rem;
+      .table_x02_totalResults {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-weight: bold;
+        font-size: 20px;
+        min-width: max-content;
+      }
+
+      button {
+        padding: 0 1rem;
+      }
     }
 
     .table {
