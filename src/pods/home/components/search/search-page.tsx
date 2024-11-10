@@ -14,8 +14,8 @@ import {
   provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
-import "./search-page.styles.scss";
 import { InputRange } from "@/common/table";
+import "./search-page.styles.scss";
 
 interface Props {
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
@@ -89,66 +89,70 @@ export const SearchPage: React.FC<Props> = (props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    let newDeputies: string[] = formData?.diputados_autores;
-    formData?.Grupo_Parlamentario &&
-      formData?.Grupo_Parlamentario?.length > 0 &&
-      formData?.Grupo_Parlamentario.forEach((parlamentary) => {
-        if (deputiesMap[parlamentary]) {
-          const deputiesValues = deputiesMap[parlamentary].map(
-            (item: ValuesFilter) => item?.value
-          );
-          const hasSelectedDeputies = deputiesValues.some((deputy) =>
-            formData.diputados_autores.includes(deputy)
-          );
+    // #region - Logic searching every elements
 
-          if (!hasSelectedDeputies) {
-            newDeputies.push(...deputiesValues);
-          }
-        }
-      });
+    // let newDeputies: string[] = formData?.diputados_autores;
+    // formData?.Grupo_Parlamentario &&
+    //   formData?.Grupo_Parlamentario?.length > 0 &&
+    //   formData?.Grupo_Parlamentario.forEach((parlamentary) => {
+    //     if (deputiesMap[parlamentary]) {
+    //       const deputiesValues = deputiesMap[parlamentary].map(
+    //         (item: ValuesFilter) => item?.value
+    //       );
+    //       const hasSelectedDeputies = deputiesValues.some((deputy) =>
+    //         formData.diputados_autores.includes(deputy)
+    //       );
 
-    //
-    let newProvinces: string[] = formData?.provincia_tags;
-    formData.comunidades_tags &&
-      formData.comunidades_tags?.length > 0 &&
-      formData.comunidades_tags.forEach((comunidad) => {
-        if (provinciasMap[comunidad]) {
-          const provinciasValues = provinciasMap[comunidad].map(
-            (item: ValuesFilter) => item?.value
-          );
-          const hasSelectedProvinces = provinciasValues.some((provincia) =>
-            formData.provincia_tags.includes(provincia)
-          );
-
-          if (!hasSelectedProvinces) {
-            newProvinces.push(...provinciasValues);
-          }
-        }
-      });
+    //       if (!hasSelectedDeputies) {
+    //         newDeputies.push(...deputiesValues);
+    //       }
+    //     }
+    //   });
 
     //
-    let newMunicipios: string[] = formData?.municipios_tags;
-    formData.provincia_tags &&
-      formData.provincia_tags?.length > 0 &&
-      formData.provincia_tags.forEach((province) => {
-        let municipiosValues: string[] = [];
-        if (municipiosMap_01[province]) {
-          municipiosValues = municipiosMap_01[province].map(
-            (item: ValuesFilter) => item?.value
-          );
-        } else if (municipiosMap_02[province]) {
-          municipiosValues = municipiosMap_02[province].map(
-            (item: ValuesFilter) => item?.value
-          );
-        }
-        const hasSelectedMunicipios = municipiosValues.some((municipio) =>
-          formData.municipios_tags.includes(municipio)
-        );
+    // let newProvinces: string[] = formData?.provincia_tags;
+    // formData.comunidades_tags &&
+    //   formData.comunidades_tags?.length > 0 &&
+    //   formData.comunidades_tags.forEach((comunidad) => {
+    //     if (provinciasMap[comunidad]) {
+    //       const provinciasValues = provinciasMap[comunidad].map(
+    //         (item: ValuesFilter) => item?.value
+    //       );
+    //       const hasSelectedProvinces = provinciasValues.some((provincia) =>
+    //         formData.provincia_tags.includes(provincia)
+    //       );
 
-        if (!hasSelectedMunicipios) {
-          newMunicipios.push(...municipiosValues);
-        }
-      });
+    //       if (!hasSelectedProvinces) {
+    //         newProvinces.push(...provinciasValues);
+    //       }
+    //     }
+    //   });
+
+    //
+    // let newMunicipios: string[] = formData?.municipios_tags;
+    // formData.provincia_tags &&
+    //   formData.provincia_tags?.length > 0 &&
+    //   formData.provincia_tags.forEach((province) => {
+    //     let municipiosValues: string[] = [];
+    //     if (municipiosMap_01[province]) {
+    //       municipiosValues = municipiosMap_01[province].map(
+    //         (item: ValuesFilter) => item?.value
+    //       );
+    //     } else if (municipiosMap_02[province]) {
+    //       municipiosValues = municipiosMap_02[province].map(
+    //         (item: ValuesFilter) => item?.value
+    //       );
+    //     }
+    //     const hasSelectedMunicipios = municipiosValues.some((municipio) =>
+    //       formData.municipios_tags.includes(municipio)
+    //     );
+
+    //     if (!hasSelectedMunicipios) {
+    //       newMunicipios.push(...municipiosValues);
+    //     }
+    //   });
+
+    // #endregion
 
     console.log("submit", formData);
     const exactFilters = [""];
@@ -157,17 +161,22 @@ export const SearchPage: React.FC<Props> = (props) => {
       Expediente: formData?.Expediente,
       Contenido: formData?.Contenido,
       Presentada: formData?.Presentada,
-      diputados_autores: newDeputies,
-      // formData?.diputados_autores?.length > 0
-      //   ? formData?.diputados_autores
-      //   : "",
       Grupo_Parlamentario:
         formData?.Grupo_Parlamentario?.length > 0
           ? formData?.Grupo_Parlamentario
           : "",
+      diputados_autores:
+        //  newDeputies,
+        formData?.diputados_autores?.length > 0
+          ? formData?.diputados_autores
+          : "",
       comunidades_tags: formData?.comunidades_tags,
-      provincia_tags: newProvinces, // formData?.provincia_tags,
-      municipios_tags: newMunicipios, // formData?.municipios_tags,
+      provincia_tags:
+        //  newProvinces,
+        formData?.provincia_tags,
+      municipios_tags:
+        // newMunicipios,
+        formData?.municipios_tags,
     };
 
     fetchApi(1, 10, body, exactFilters, rangeFilters).then(() => {
