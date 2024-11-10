@@ -8,15 +8,22 @@
   justify-content: start;
   gap: 1rem;
   padding: 1rem;
-  overflow: auto;
+  overflow: hidden;
 
-  .titleTable_89 {
-    text-align: center;
+  .containerTablePage {
     width: 100%;
-  }
-  .boxBtnRow {
-    a {
-      text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    .titleTable_89 {
+      text-align: center;
+      width: 100%;
+    }
+    .boxBtnRow {
+      a {
+        text-decoration: none;
+      }
     }
   }
 }
