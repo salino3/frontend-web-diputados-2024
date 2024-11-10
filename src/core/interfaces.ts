@@ -45,6 +45,7 @@ export interface MyState {
     exactFilters?: string[] | any,
     rangeFilters?: string[] | any
   ) => any;
+  initialFilters: FormData;
 }
 
 export const initialState: State = {

@@ -22,6 +22,7 @@ interface TableProps {
   setPage?: React.Dispatch<React.SetStateAction<number>>;
   setPageSize?: React.Dispatch<React.SetStateAction<number>>;
   rowPerPages?: number[];
+  initialFilters: FormData;
 }
 
 interface TypesFilter {
@@ -58,6 +59,7 @@ export const TableComponet: React.FC<TableProps> = ({
   setPage,
   setPageSize,
   rowPerPages = [5, 10, 25, 50],
+  initialFilters,
 }) => {
   const [t] = useTranslation("global");
   const { state } = useContext<MyState>(GlobalContext);
@@ -97,20 +99,6 @@ export const TableComponet: React.FC<TableProps> = ({
   const totalPages: number = Math.ceil(totalData / pageSize);
   const startRow: number = (page - 1) * pageSize + one;
   const endRow: number = Math.min(page * pageSize, totalData);
-
-  const initialFilters: FormData = {
-    Expediente: "",
-    Contenido: "",
-    Presentada: {
-      min: 0,
-      max: 0,
-    },
-    diputados_autores: [],
-    Grupo_Parlamentario: [],
-    comunidades_tags: [],
-    provincia_tags: [],
-    municipios_tags: [],
-  };
 
   //
   const toggleFilterOpen = (index: number) => {

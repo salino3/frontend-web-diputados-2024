@@ -13,24 +13,12 @@ interface Tabs {
 export const HomePage: React.FC = () => {
   const [t] = useTranslation("global");
 
-  const { state } = useContext<MyState>(GlobalContext);
+  const { state, initialFilters } = useContext<MyState>(GlobalContext);
 
   const [selectedTab, setSelectedTab] = useState<string>("search");
   const [refreshTable, setRefreshTable] = useState<boolean>(false);
 
-  const [formData, setFormData] = useState<FormData>({
-    Expediente: "",
-    Contenido: "",
-    Presentada: {
-      min: 0,
-      max: 0,
-    },
-    diputados_autores: [],
-    Grupo_Parlamentario: [],
-    comunidades_tags: [],
-    provincia_tags: [],
-    municipios_tags: [],
-  });
+  const [formData, setFormData] = useState<FormData>(initialFilters);
 
   const tabs: Tabs[] = [
     {

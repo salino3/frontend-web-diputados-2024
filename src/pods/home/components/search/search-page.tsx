@@ -14,8 +14,8 @@ import {
   provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
-import "./search-page.styles.scss";
 import { InputRange } from "@/common/table";
+import "./search-page.styles.scss";
 
 interface Props {
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
@@ -28,7 +28,8 @@ export const SearchPage: React.FC<Props> = (props) => {
   const { setSelectedTab, setRefreshTable, formData, setFormData } = props;
   const [t] = useTranslation("global");
 
-  const { fetchApi, state } = useContext<MyState>(GlobalContext);
+  const { fetchApi, state, initialFilters } =
+    useContext<MyState>(GlobalContext);
 
   const handleChange =
     (key: keyof FormData) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -337,21 +338,7 @@ export const SearchPage: React.FC<Props> = (props) => {
             txt={t("search.search")}
           />
           <Button
-            click={() =>
-              setFormData({
-                Expediente: "",
-                Contenido: "",
-                Presentada: {
-                  min: 0,
-                  max: 0,
-                },
-                diputados_autores: [],
-                Grupo_Parlamentario: [],
-                comunidades_tags: [],
-                provincia_tags: [],
-                municipios_tags: [],
-              })
-            }
+            click={() => setFormData(initialFilters)}
             type="reset"
             txt={t("general.cancel")}
           />
