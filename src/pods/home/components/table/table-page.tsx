@@ -167,7 +167,11 @@ export const TablePage: React.FC<Props> = (props) => {
       },
       valuesFilter: [
         {
-          text: t("general.cancel_all"),
+          text: t(
+            formData?.Grupo_Parlamentario?.length > 0
+              ? "general.cancel_all"
+              : "search.choose_deputies"
+          ),
           value: "",
         },
         ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
@@ -237,7 +241,11 @@ export const TablePage: React.FC<Props> = (props) => {
       typeFilter: typesFilter?.multiselect,
       valuesFilter: [
         {
-          text: t("general.cancel_all"),
+          text: t(
+            formData?.comunidades_tags?.length > 0
+              ? "general.cancel_all"
+              : "search.choose_region"
+          ),
           value: "",
         },
         ...filterArrayProvincencies(formData?.comunidades_tags)?.sort((a, b) =>
@@ -270,7 +278,11 @@ export const TablePage: React.FC<Props> = (props) => {
       typeFilter: typesFilter?.multiselect,
       valuesFilter: [
         {
-          text: t("general.cancel_all"),
+          text: t(
+            formData?.provincia_tags?.length > 0
+              ? "general.cancel_all"
+              : "search.choose_province"
+          ),
           value: "",
         },
         // ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
