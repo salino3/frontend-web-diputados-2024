@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  arrayDiputados_autores,
-  arrayGrupo_Parlamentario,
   CongresoPreguntas,
   FormData,
   GlobalContext,
@@ -111,10 +109,7 @@ export const TablePage: React.FC<Props> = (props) => {
       // },
       typeFilter: typesFilter?.date,
       setFilter: (value: string) => handleFilterChange("Presentada", value),
-      filter:
-        formData?.Presentada?.min === 0 && formData?.Presentada?.max === 0
-          ? ""
-          : formData?.Presentada,
+      filter: formData?.Presentada,
       maxDate: toISODate,
     },
     {
@@ -172,7 +167,11 @@ export const TablePage: React.FC<Props> = (props) => {
       },
       valuesFilter: [
         {
-          text: t("general.cancel_all"),
+          text: t(
+            formData?.Grupo_Parlamentario?.length > 0
+              ? "general.cancel_all"
+              : "search.choose_deputies"
+          ),
           value: "",
         },
         ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort((a, b) =>
@@ -242,7 +241,11 @@ export const TablePage: React.FC<Props> = (props) => {
       typeFilter: typesFilter?.multiselect,
       valuesFilter: [
         {
-          text: t("general.cancel_all"),
+          text: t(
+            formData?.comunidades_tags?.length > 0
+              ? "general.cancel_all"
+              : "search.choose_region"
+          ),
           value: "",
         },
         ...filterArrayProvincencies(formData?.comunidades_tags)?.sort((a, b) =>
@@ -275,7 +278,11 @@ export const TablePage: React.FC<Props> = (props) => {
       typeFilter: typesFilter?.multiselect,
       valuesFilter: [
         {
-          text: t("general.cancel_all"),
+          text: t(
+            formData?.provincia_tags?.length > 0
+              ? "general.cancel_all"
+              : "search.choose_province"
+          ),
           value: "",
         },
         // ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
@@ -323,7 +330,10 @@ export const TablePage: React.FC<Props> = (props) => {
       const body = {
         Expediente: formData?.Expediente,
         Contenido: formData?.Contenido,
-        Presentada: formData?.Presentada,
+        Presentada: formData?.Presentada || {
+          min: "",
+          max: "",
+        },
         diputados_autores:
           formData?.diputados_autores && formData?.diputados_autores?.length > 0
             ? formData?.diputados_autores
@@ -351,14 +361,10 @@ export const TablePage: React.FC<Props> = (props) => {
       const exactFilters = [""];
       const rangeFilters = ["Presentada"];
 
-      fetchApi(page, pageSize, body, exactFilters, rangeFilters).then(() => {
-        console.log("CALL", refreshTable);
-      });
+      fetchApi(page, pageSize, body, exactFilters, rangeFilters);
     }
     setRefreshTable(true);
   }, [page, pageSize, flag]);
-
-  console.log("CALL2", state?.data?.products);
 
   return (
     <div id={state?.theme} className="rootTablePage">
