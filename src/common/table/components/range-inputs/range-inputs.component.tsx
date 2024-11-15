@@ -10,7 +10,7 @@ interface PropsInput {
     event: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => void;
-  inputValue?: { min: number; max: number };
+  inputValue?: { min: string; max: string };
   type: React.HTMLInputTypeAttribute | undefined;
   minDate?: any;
   maxDate?: any;

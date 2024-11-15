@@ -41,7 +41,7 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
         rangeFilters
       )
         .then((res) => {
-          console.log("execute endpoint!!");
+          console.log("execute endpoint!!", res);
           dispatch({
             type: "LOAD_DATA",
             payload: res?.questions,
@@ -65,8 +65,8 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
     Expediente: "",
     Contenido: "",
     Presentada: {
-      min: 0,
-      max: 0,
+      min: "",
+      max: "",
     },
     diputados_autores: [],
     Grupo_Parlamentario: [],
