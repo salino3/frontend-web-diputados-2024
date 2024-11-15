@@ -34,6 +34,7 @@
     }
 
     .table {
+      min-height: 300px;
       thead th:first-child {
         border-radius: 12px 0 0 0 !important;
       }
@@ -49,6 +50,7 @@
       thead tr th:last-child {
         border-radius: 0 12px 0 0 !important;
       }
+
       tbody tr,
       tbody th,
       tbody td {
