@@ -51,7 +51,8 @@ export const TablePage: React.FC<Props> = (props) => {
 
   const [t, i18next] = useTranslation("global");
 
-  const { state, fetchApi } = useContext<MyState>(GlobalContext);
+  const { state, fetchApi, initialFilters } =
+    useContext<MyState>(GlobalContext);
 
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
@@ -374,6 +375,7 @@ export const TablePage: React.FC<Props> = (props) => {
           rowPerPages={[5, 10, 25]}
           totalData={state?.data?.totalProducts || 0}
           columns={state?.data?.products || []}
+          initialFilters={initialFilters}
         />
       </div>
     </div>

@@ -1,7 +1,13 @@
 import React, { useCallback, useEffect } from "react";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Report } from "notiflix";
-import { ReducerApp, ServicesApp, initialState, GlobalContext } from ".";
+import {
+  ReducerApp,
+  ServicesApp,
+  initialState,
+  GlobalContext,
+  FormData,
+} from ".";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -54,8 +60,25 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
     fetchApi(1, 10);
   }, []);
 
+  // Clear filters data
+  const initialFilters: FormData = {
+    Expediente: "",
+    Contenido: "",
+    Presentada: {
+      min: 0,
+      max: 0,
+    },
+    diputados_autores: [],
+    Grupo_Parlamentario: [],
+    comunidades_tags: [],
+    provincia_tags: [],
+    municipios_tags: [],
+  };
+
   return (
-    <GlobalContext.Provider value={{ state, dispatch, toggleTheme, fetchApi }}>
+    <GlobalContext.Provider
+      value={{ state, dispatch, toggleTheme, fetchApi, initialFilters }}
+    >
       <div id={state.theme}>{children}</div>
     </GlobalContext.Provider>
   );
