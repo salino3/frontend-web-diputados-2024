@@ -1,21 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
+import { ApolloProvider } from "@apollo/client";
 import App from "./App.tsx";
 import { ProviderApp } from "./core/provider-app.tsx";
+import { apolloClient } from "./core/services-app.tsx";
 import global_es from "./i18next/es/global.json";
 import global_en from "./i18next/en/global.json";
 import global_it from "./i18next/it/global.json";
 import "./index.scss";
-
-// Config Apollo client
-const client = new ApolloClient({
-  uri: `${process.env.VITE_APP_BASE_BACK_GRAPHQL}/graphql`,
-  cache: new InMemoryCache(),
-});
 
 const storedLanguage = sessionStorage.getItem("selectedLanguage") || "es";
 
@@ -39,7 +34,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <I18nextProvider i18n={i18next}>
       <BrowserRouter>
-        <ApolloProvider client={client}>
+        <ApolloProvider client={apolloClient}>
           <ProviderApp>
             <App />
           </ProviderApp>

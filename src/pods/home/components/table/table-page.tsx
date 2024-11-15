@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  arrayDiputados_autores,
-  arrayGrupo_Parlamentario,
   CongresoPreguntas,
   FormData,
   GlobalContext,
@@ -53,7 +51,7 @@ export const TablePage: React.FC<Props> = (props) => {
 
   const { state, fetchApi, initialFilters } =
     useContext<MyState>(GlobalContext);
-
+  console.log("STATE", state);
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
   const [flag, setFlag] = useState<boolean>(false);
