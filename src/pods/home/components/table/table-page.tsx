@@ -10,13 +10,9 @@ import {
 } from "@/core";
 import {
   newArrayComunidades_tags_01,
-  newArrayProvincias_tags_01,
-  newArrayMunicipios_tags_01,
-  newArrayMunicipios_tags_02,
   filterArrayDeputies,
   arrayGruposParlamentarios_tags,
   filterArrayProvincencies,
-  newArrayDeputies_tag_01,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
 } from "@/core/data";
@@ -285,10 +281,6 @@ export const TablePage: React.FC<Props> = (props) => {
           ),
           value: "",
         },
-        // ...[...newArrayMunicipios_tags_01, ...newArrayMunicipios_tags_02].sort(
-        //   (a, b) => a?.text?.localeCompare(b?.text)
-        // ),
-
         ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort((a, b) =>
           a?.text.localeCompare(b.text)
         ),
