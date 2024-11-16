@@ -1,17 +1,13 @@
 import React, { ChangeEvent, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { FormData, GlobalContext, MyState, ValuesFilter } from "@/core";
+import { FormData, GlobalContext, MyState } from "@/core";
 import {
   arrayGruposParlamentarios_tags,
-  deputiesMap,
   filterArrayDeputies,
   filterArrayMunicipios_01,
   filterArrayMunicipios_02,
   filterArrayProvincencies,
-  municipiosMap_01,
-  municipiosMap_02,
   newArrayComunidades_tags_01,
-  provinciasMap,
 } from "@/core/data";
 import { Button, CustomInputSelect, CustomInputText } from "@/common";
 import { InputRange } from "@/common/table";
