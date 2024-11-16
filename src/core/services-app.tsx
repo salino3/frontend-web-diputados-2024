@@ -1,26 +1,3 @@
-// export const ServicesApp = () => {
-//   const fetchPaginatedData = (
-//     page = 0,
-//     pageSize = 10,
-//     body = {},
-//     exactFilters = [],
-//     rangeFilters = []
-//   ) => {
-//     // filter - filter-by-cache
-//     return axios.post(`${apisApp.baseBackend}/filter-by-cache`, {
-//       page,
-//       pageSize,
-//       body,
-//       exactFilters,
-//       rangeFilters,
-//     });
-//   };
-
-//   return {
-//     fetchPaginatedData,
-//   };
-// };
-
 import axios from "axios";
 import { apisApp } from "./apis";
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
