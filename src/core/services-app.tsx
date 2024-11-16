@@ -26,10 +26,17 @@ import { apisApp } from "./apis";
 import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 
 // Config Apollo client
-export const apolloClient = new ApolloClient({
-  uri: `${apisApp.baseBackendGraphQL}/graphql`,
-  cache: new InMemoryCache(),
-});
+export let apolloClient: ApolloClient<any> | null = null;
+
+const getApolloClient = () => {
+  if (!apolloClient) {
+    apolloClient = new ApolloClient({
+      uri: `${apisApp.baseBackendGraphQL}/graphql`,
+      cache: new InMemoryCache(),
+    });
+  }
+  return apolloClient;
+};
 
 export const ServicesApp = () => {
   const FETCH_PAGINATED_DATA = gql`
@@ -71,7 +78,7 @@ export const ServicesApp = () => {
     rangeFilters = []
   ) => {
     if (import.meta.env.VITE_API_TYPE === "GRAPHQL") {
-      const { data } = await apolloClient.query({
+      const { data } = await getApolloClient().query({
         query: FETCH_PAGINATED_DATA,
         variables: { page, pageSize, body, exactFilters, rangeFilters },
       });
