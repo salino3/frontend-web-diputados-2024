@@ -44,7 +44,7 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
           console.log("execute endpoint!!", res);
           dispatch({
             type: "LOAD_DATA",
-            payload: res?.questions,
+            payload: res,
           });
         })
         .catch((err) => {

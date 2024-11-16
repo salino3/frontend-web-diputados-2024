@@ -34,11 +34,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <I18nextProvider i18n={i18next}>
       <BrowserRouter>
-        <ApolloProvider client={apolloClient}>
+        {apolloClient ? (
+          <ApolloProvider client={apolloClient}>
+            <ProviderApp>
+              <App />
+            </ProviderApp>
+          </ApolloProvider>
+        ) : (
           <ProviderApp>
             <App />
           </ProviderApp>
-        </ApolloProvider>
+        )}
       </BrowserRouter>
     </I18nextProvider>
   </React.StrictMode>
