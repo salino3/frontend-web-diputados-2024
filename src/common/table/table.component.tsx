@@ -429,7 +429,11 @@ export const TableComponet: React.FC<TableProps> = ({
                       ? values[uniqueKey]
                       : rowIndex
                   }
-                  className={`table_x02_trTable`}
+                  className={`${
+                    state?.theme === "light"
+                      ? "table_x02_trTableLight"
+                      : "table_x02_trTableDark"
+                  }`}
                 >
                   {keysToFilter &&
                     keysToFilter?.length > 0 &&
