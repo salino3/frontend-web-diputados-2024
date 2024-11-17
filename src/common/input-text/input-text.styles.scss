@@ -45,10 +45,11 @@
     .inputText:focus + .inputAreaLabel,
     .shrink {
       top: 0;
-      left: 1rem;
+      left: 0rem;
       font-size: 0.8rem;
       transform: translateY(-110%);
       color: unset;
+      padding-bottom: 0.2rem;
     }
 
     .inputText:focus {
