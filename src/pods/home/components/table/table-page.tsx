@@ -43,7 +43,7 @@ interface Props {
 export const TablePage: React.FC<Props> = (props) => {
   const { refreshTable, setRefreshTable, formData, setFormData } = props;
 
-  const [t, i18next] = useTranslation("global");
+  const [t] = useTranslation("global");
 
   const { state, fetchApi, initialFilters } =
     useContext<MyState>(GlobalContext);

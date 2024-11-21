@@ -34,8 +34,7 @@ export const SearchPage: React.FC<Props> = (props) => {
     };
 
   const handleChangeDate =
-    (name: string) =>
-    (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    () => (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
       const { value } = event.target;
       setFormData((prev) => ({
         ...prev,
@@ -230,7 +229,7 @@ export const SearchPage: React.FC<Props> = (props) => {
             lbl={t("general.presented")}
             name="Presentada"
             inputValue={formData.Presentada}
-            handleChange={handleChangeDate("Presentada")}
+            handleChange={handleChangeDate()}
             type="date"
             autoFocus={false}
             maxDate={toISODate}
