@@ -45,7 +45,8 @@ export const arrayGrupoParlamentarioCiudadanos_tag: ValuesFilter[] = [
 // 3)
 export const arrayGrupoParlamentarioMixto_tag: ValuesFilter[] = [
   { text: "Albert Botran Pahissa", value: "Albert Botran Pahissa" },
-  { text: "Ana María Oramas González-Moro",
+  {
+    text: "Ana María Oramas González-Moro",
     value: "Ana María Oramas González-Moro",
   },
   { text: "Carlos García Adanero", value: "Carlos García Adanero" },
@@ -73,7 +74,10 @@ export const arrayGrupoParlamentarioPlural_tag: ValuesFilter[] = [
   { text: "Ferran Bel Accensi", value: "Ferran Bel Accensi" },
   { text: "Genís Boadella Esteve", value: "Genís Boadella Esteve" },
   { text: "Inés Sabanés Nadal", value: "Inés Sabanés Nadal" },
-  { text: "Jaume Alonso-Cuevillas i Sayrol",value: "Jaume Alonso-Cuevillas i Sayrol"},
+  {
+    text: "Jaume Alonso-Cuevillas i Sayrol",
+    value: "Jaume Alonso-Cuevillas i Sayrol",
+  },
   { text: "Joan Baldoví Roda", value: "Joan Baldoví Roda" },
   { text: "Josep Pagès i Massó", value: "Josep Pagès i Massó" },
   { text: "Laura Borràs Castanyer", value: "Laura Borràs Castanyer" },
@@ -609,18 +613,18 @@ export const arrayGrupoParlamentarioVasco_tag: ValuesFilter[] = [
   { text: "Íñigo Barandiaran Benito", value: "Íñigo Barandiaran Benito" },
 ];
 
-export const newArrayDeputies_tag_01: ValuesFilter[] = [
-  ...arrayGrupoParlamentarioEHBildu_tag,
-  ...arrayGrupoParlamentarioCiudadanos_tag,
-  ...arrayGrupoParlamentarioMixto_tag,
-  ...arrayGrupoParlamentarioPlural_tag,
-  ...arrayGrupoParlamentarioConfederalUnidasPodemosEnComun_tag,
-  ...arrayGrupoParlamentarioPopular_tag,
-  ...arrayGrupoParlamentarioRepublicano_tag,
-  ...arrayGrupoParlamentarioSocialista_tag,
-  ...arrayGrupoParlamentarioVox_tag,
-  ...arrayGrupoParlamentarioVasco_tag,
-];
+// export const newArrayDeputies_tag_01: ValuesFilter[] = [
+//   ...arrayGrupoParlamentarioEHBildu_tag,
+//   ...arrayGrupoParlamentarioCiudadanos_tag,
+//   ...arrayGrupoParlamentarioMixto_tag,
+//   ...arrayGrupoParlamentarioPlural_tag,
+//   ...arrayGrupoParlamentarioConfederalUnidasPodemosEnComun_tag,
+//   ...arrayGrupoParlamentarioPopular_tag,
+//   ...arrayGrupoParlamentarioRepublicano_tag,
+//   ...arrayGrupoParlamentarioSocialista_tag,
+//   ...arrayGrupoParlamentarioVox_tag,
+//   ...arrayGrupoParlamentarioVasco_tag,
+// ];
 
 //
 export const deputiesMap: FilteringValuesFilter = {

@@ -78,6 +78,6 @@ export interface ValuesFilter {
 }
 
 export interface DateData {
-  min: number;
-  max: number;
+  min: string;
+  max: string;
 }
