@@ -16,7 +16,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: 2.1rem;
+
       .table_x02_inputText,
       .table_x02_inputText_02 {
         border-radius: 0.5rem;
@@ -49,8 +50,9 @@
       .table_x02_inputText:focus + .table_x02_inputLabel,
       .table_x02_shrink {
         top: 0;
-        left: 1rem;
+        left: 1.5rem;
         font-size: 0.8rem;
+        top: -0.3rem;
         transform: translateY(-110%);
         color: black;
       }
@@ -61,10 +63,10 @@
 
       .table_x02_inputText_02:focus + .table_x02_inputLabel_02,
       .table_x02_shrink_02 {
-        top: 0;
-        left: 1rem;
+        top: -0.3rem;
+        left: 1.5rem;
         font-size: 0.8rem;
-        transform: translateY(310%);
+        transform: translateY(320%);
         color: black;
       }
 
