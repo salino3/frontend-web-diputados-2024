@@ -30,6 +30,7 @@ export const CustomInputText: React.FC<PropsInput> = ({
       input = (
         <select
           value={inputValue}
+          autoFocus
           onChange={handleChange}
           id={name}
           className="table_x02_inputText"
@@ -50,6 +51,7 @@ export const CustomInputText: React.FC<PropsInput> = ({
         <select
           multiple
           value={inputValue || []}
+          autoFocus
           onChange={handleChange}
           id={name}
           className="table_x02_inputTextMultiselect"
@@ -73,6 +75,7 @@ export const CustomInputText: React.FC<PropsInput> = ({
     default:
       input = (
         <input
+          autoFocus
           type={type}
           id={name}
           className="table_x02_inputText"
