@@ -4,7 +4,7 @@
   justify-content: start;
   align-items: center;
   width: 100%;
-  gap: 2rem;
+  gap: 1rem;
 
   .titleError404 {
     margin-top: 1rem;
@@ -12,6 +12,12 @@
 
   .routeError404 {
     display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
   }
 
   .boxImageError {
@@ -22,11 +28,13 @@
     width: 90vw;
     min-width: 300px;
     max-width: 500px;
+    border-radius: 5px;
 
     img {
       width: 90vw;
       min-width: 300px;
       max-width: 500px;
+      border-radius: 5px;
     }
   }
 }

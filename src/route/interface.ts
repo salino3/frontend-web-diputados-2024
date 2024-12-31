@@ -4,6 +4,6 @@ interface Route {
 }
 
 export const appRoute: Route = {
-  root: "/frontend-web-diputados-2024/",
+  root: "/frontend-web-diputados-2024",
   error_404: "/frontend-web-diputados-2024/*",
 };
