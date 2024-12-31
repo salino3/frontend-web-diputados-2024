@@ -38,3 +38,12 @@
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+  .containerError404 {
+    gap: 2rem;
+    .titleError404 {
+      font-size: 22px;
+    }
+  }
+}

@@ -59,5 +59,10 @@
     "date_min": "Fecha mínima",
     "date_max": "Fecha máxima",
     "clear_filters": "Limpiar filtros"
+  },
+  "error404": {
+    "title": "Error 404: Página no encontrada",
+    "back_home": "Volver al inicio",
+    "alt": "Imagen error 404"
   }
 }
