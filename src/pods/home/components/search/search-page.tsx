@@ -40,7 +40,7 @@ export const SearchPage: React.FC<Props> = (props) => {
         ...prev,
         Presentada: {
           ...prev.Presentada,
-          [index === 0 ? "min" : "max"]: value, // Actualiza min o max según el índice
+          [index === 0 ? "min" : "max"]: value, // Update min or max based for index
         },
       }));
     };
@@ -52,9 +52,9 @@ export const SearchPage: React.FC<Props> = (props) => {
         .filter((option) => option?.selected)
         .map((option) => option?.value);
 
-      // Actualizamos el estado con los valores seleccionados, agregando nuevos valores y eliminando los desmarcados
+      // We update the status with the selected values, adding new values ​​and removing the deleted ones
       setFormData((prevFormData) => {
-        const currentValues = prevFormData[key] as string[]; // Obtiene el array actual del estado
+        const currentValues = prevFormData[key] as string[]; // Get the current array of the state
 
         if (selectedValues.includes("")) {
           return {
@@ -65,7 +65,7 @@ export const SearchPage: React.FC<Props> = (props) => {
 
         const updatedValues = selectedValues.reduce(
           (acc: string[], value: string) => {
-            // Si el valor ya está en el array, lo quitamos; si no está, lo agregamos
+            // If the value already is in the array, we remove it; if it is not there, we add it
             if (acc.includes(value)) {
               return acc.filter((item) => item !== value);
             } else {
