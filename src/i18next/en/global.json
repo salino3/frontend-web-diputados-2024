@@ -58,5 +58,10 @@
     "date_min": "Date Min",
     "date_max": "Date Max",
     "clear_filters": "Clear filters"
+  },
+  "error404": {
+    "title": "Error 404: Page not found",
+    "back_home": "Back to home page",
+    "alt": "Image error 404"
   }
 }

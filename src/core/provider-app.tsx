@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Report } from "notiflix";
 import {
@@ -55,10 +55,6 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
     },
     []
   );
-
-  useEffect(() => {
-    fetchApi(1, 10);
-  }, []);
 
   // Clear filters data
   const initialFilters: FormData = {
