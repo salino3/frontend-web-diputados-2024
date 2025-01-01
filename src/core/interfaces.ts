@@ -5,7 +5,7 @@ interface LOAD_DATA {
 
 interface UPDATE_THEME {
   type: "UPDATE_THEME";
-  payload: string;
+  payload: "light" | "dark";
 }
 
 export type All_Actions = UPDATE_THEME | LOAD_DATA;
