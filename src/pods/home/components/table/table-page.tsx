@@ -316,7 +316,7 @@ export const TablePage: React.FC<Props> = (props) => {
       },
     },
   ];
-  console.log("STATE", state);
+
   useEffect(() => {
     if (refreshTable) {
       const body = {
@@ -349,7 +349,6 @@ export const TablePage: React.FC<Props> = (props) => {
             ? formData?.municipios_tags
             : "",
       };
-      console.log("Body:", body);
       const exactFilters = [""];
       const rangeFilters = ["Presentada"];
 
