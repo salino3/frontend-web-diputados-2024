@@ -474,9 +474,9 @@ export const TableComponet: React.FC<TableProps> = ({
                           {key && tooltip && (
                             <span
                               className={`${
-                                key == "Contenido" ||
-                                (key == "diputados_autores" &&
-                                  "table_x02_spanTooltip")
+                                key == "Contenido" || key == "diputados_autores"
+                                  ? "table_x02_spanTooltip"
+                                  : ""
                               }`}
                             >
                               {tooltip}
