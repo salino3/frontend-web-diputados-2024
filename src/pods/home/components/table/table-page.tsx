@@ -31,6 +31,7 @@ interface Row {
   setFilter?: any;
   minDate?: string | number | undefined;
   maxDate?: string | number | undefined;
+  formToRight?: boolean;
 }
 
 interface Props {
@@ -264,6 +265,7 @@ export const TablePage: React.FC<Props> = (props) => {
     {
       key: "municipios_tags",
       title: t("general.municipalities_tags"),
+      formToRight: true,
       tooltip: (item: string) => {
         if (item === undefined || item === null || item.trim() === "") {
           return "-";
