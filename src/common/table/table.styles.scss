@@ -142,11 +142,11 @@
       td .table_x02_spanTooltip {
         display: none;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         white-space: unset !important;
         min-width: 100% !important;
-        max-width: 500px !important;
+        max-width: 200px !important;
         z-index: 10;
       }
 
