@@ -332,7 +332,8 @@ export const TableComponet: React.FC<TableProps> = ({
                     {/* start Filter Pop up */}
                     {r?.typeFilter && filtersTable[index]?.open && (
                       <div
-                        className="table_x02_containerFormFilter"
+                        className={`table_x02_containerFormFilter 
+                        ${r?.formToRight ? "table_x02_formToRight" : ""}`}
                         ref={(el) => (popupRefs.current[index] = el)}
                       >
                         <form onSubmit={handleSubmit} id="table_x02_formFilter">
