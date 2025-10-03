@@ -41,7 +41,6 @@ export const ProviderApp: React.FC<Props> = ({ children }) => {
         rangeFilters
       )
         .then((res) => {
-          console.log("execute endpoint!!", res);
           dispatch({
             type: "LOAD_DATA",
             payload: res,

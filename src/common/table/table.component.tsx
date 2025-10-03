@@ -171,7 +171,7 @@ export const TableComponet: React.FC<TableProps> = ({
                 // Clear the current filter for this column
                 currentFilters = []; // Or use `filter` to clear the filter
                 updatedFilter.filter = currentFilters;
-                console.log("prevFilters", prevFilters);
+
                 if (index === 3) {
                   const deputiesFilter = prevFilters[4];
                   if (deputiesFilter) {
@@ -216,7 +216,7 @@ export const TableComponet: React.FC<TableProps> = ({
             });
 
             updatedFilter.filter = currentFilters;
-            console.log("updated", updatedFilter);
+
             if (updatedFilter?.filter?.includes("")) {
               const cancelButton =
                 document.getElementById(`table_x02_cancelBtn`);
