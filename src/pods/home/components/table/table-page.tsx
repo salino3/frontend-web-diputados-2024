@@ -132,7 +132,7 @@ export const TablePage: React.FC<Props> = (props) => {
         handleFilterChange("Grupo_Parlamentario", value),
       filter:
         formData?.Grupo_Parlamentario &&
-        formData?.Grupo_Parlamentario?.length > 0
+          formData?.Grupo_Parlamentario?.length > 0
           ? formData?.Grupo_Parlamentario
           : "",
       valuesFilter: [
@@ -334,7 +334,7 @@ export const TablePage: React.FC<Props> = (props) => {
             : "",
         Grupo_Parlamentario:
           formData?.Grupo_Parlamentario &&
-          formData?.Grupo_Parlamentario?.length > 0
+            formData?.Grupo_Parlamentario?.length > 0
             ? formData?.Grupo_Parlamentario
             : "",
 

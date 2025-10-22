@@ -205,144 +205,175 @@ export const SearchPage: React.FC<Props> = (props) => {
   let toISODate = today.toISOString().substr(0, 10);
 
   return (
-    <div id={state?.theme} className="rootSearchPage">
-      <h3>{t("search.search_title")}</h3>
-      <form id="formTableSearch" onSubmit={handleSubmit} action="/filter ">
-        <CustomInputText
-          lbl={t("general.expedient")}
-          name="Expediente"
-          inputValue={formData?.Expediente}
-          handleChange={handleChange("Expediente")}
-        />
-        <CustomInputText
-          lbl={t("general.content")}
-          name="Contenido"
-          textarea
-          inputValue={formData?.Contenido}
-          handleChange={handleChange("Contenido")}
-        />
+    <div id={state?.theme} className="modern-search-form">
+      <form onSubmit={handleSubmit} className="search-form">
+        {/* Text Inputs Section */}
+        <div className="form-section">
+          <div className="section-title">Información básica</div>
+          <div className="form-grid">
+            <div className="form-group">
+              <CustomInputText
+                lbl={t("general.expedient")}
+                name="Expediente"
+                inputValue={formData?.Expediente}
+                handleChange={handleChange("Expediente")}
+              />
+            </div>
+            <div className="form-group full-width">
+              <CustomInputText
+                lbl={t("general.content")}
+                name="Contenido"
+                textarea
+                inputValue={formData?.Contenido}
+                handleChange={handleChange("Contenido")}
+              />
+            </div>
+          </div>
+        </div>
 
-        <div className="containerInputs3">
-          <InputRange
-            Styles="boxInputDates_023"
-            lbl={t("general.presented")}
-            name="Presentada"
-            inputValue={formData.Presentada}
-            handleChange={handleChangeDate()}
-            type="date"
-            autoFocus={false}
-            maxDate={toISODate}
-          />
-          <CustomInputSelect
-            lbl={t("general.parliamentary_group")}
-            name="Grupo_Parlamentario"
-            inputValue={formData?.Grupo_Parlamentario}
-            handleChange={handleChangeMultiple("Grupo_Parlamentario")}
-            valuesFilter={[
-              {
-                text: t("general.cancel_all"),
-                value: "",
-              },
-              ...arrayGruposParlamentarios_tags?.sort((a, b) =>
-                a?.text.localeCompare(b.text)
-              ),
-            ]}
-            multiple
-          />
-          <CustomInputSelect
-            lbl={t("general.author_deputies")}
-            name="diputados_autores"
-            inputValue={formData?.diputados_autores}
-            handleChange={handleChangeMultiple("diputados_autores")}
-            valuesFilter={[
-              {
-                text: t(
-                  formData?.Grupo_Parlamentario?.length > 0
-                    ? "general.cancel_all"
-                    : "search.choose_deputies"
-                ),
-                value: "",
-              },
-              ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort(
-                (a, b) => a?.text.localeCompare(b.text)
-              ),
-            ]}
-            multiple
-          />
+        {/* Date and Political Filters */}
+        <div className="form-section">
+          <div className="section-title">Filtros políticos</div>
+          <div className="form-grid">
+            <div className="form-group">
+              <InputRange
+                Styles="modern-date-range"
+                lbl={t("general.presented")}
+                name="Presentada"
+                inputValue={formData.Presentada}
+                handleChange={handleChangeDate()}
+                type="date"
+                autoFocus={false}
+                maxDate={toISODate}
+              />
+            </div>
+            <div className="form-group">
+              <CustomInputSelect
+                lbl={t("general.parliamentary_group")}
+                name="Grupo_Parlamentario"
+                inputValue={formData?.Grupo_Parlamentario}
+                handleChange={handleChangeMultiple("Grupo_Parlamentario")}
+                valuesFilter={[
+                  {
+                    text: t("general.cancel_all"),
+                    value: "",
+                  },
+                  ...arrayGruposParlamentarios_tags?.sort((a, b) =>
+                    a?.text.localeCompare(b.text)
+                  ),
+                ]}
+                multiple
+              />
+            </div>
+            <div className="form-group">
+              <CustomInputSelect
+                lbl={t("general.author_deputies")}
+                name="diputados_autores"
+                inputValue={formData?.diputados_autores}
+                handleChange={handleChangeMultiple("diputados_autores")}
+                valuesFilter={[
+                  {
+                    text: t(
+                      formData?.Grupo_Parlamentario?.length > 0
+                        ? "general.cancel_all"
+                        : "search.choose_deputies"
+                    ),
+                    value: "",
+                  },
+                  ...filterArrayDeputies(formData?.Grupo_Parlamentario)?.sort(
+                    (a, b) => a?.text.localeCompare(b.text)
+                  ),
+                ]}
+                multiple
+              />
+            </div>
+          </div>
         </div>
-        <div className="containerInputs4">
-          <CustomInputSelect
-            lbl={t("general.communities_tags")}
-            name="comunidades_tags"
-            inputValue={formData?.comunidades_tags}
-            handleChange={handleChangeMultiple("comunidades_tags")}
-            valuesFilter={[
-              {
-                text: t("general.cancel_all"),
-                value: "",
-              },
-              ...newArrayComunidades_tags_01?.sort((a, b) =>
-                a?.text.localeCompare(b.text)
-              ),
-            ]}
-            multiple
-          />
-          <CustomInputSelect
-            lbl={t("general.provinces_tags")}
-            name="provincia_tags"
-            inputValue={formData?.provincia_tags}
-            handleChange={handleChangeMultiple("provincia_tags")}
-            valuesFilter={[
-              {
-                text: t(
-                  formData?.comunidades_tags?.length > 0
-                    ? "general.cancel_all"
-                    : "search.choose_region"
-                ),
-                value: "",
-              },
-              ...filterArrayProvincencies(formData?.comunidades_tags)?.sort(
-                (a, b) => a?.text.localeCompare(b.text)
-              ),
-            ]}
-            multiple
-          />
-          <CustomInputSelect
-            lbl={t("general.municipalities_tags")}
-            name="municipios_tags"
-            inputValue={formData?.municipios_tags}
-            handleChange={handleChangeMultiple("municipios_tags")}
-            valuesFilter={[
-              {
-                text: t(
-                  formData?.provincia_tags?.length > 0
-                    ? "general.cancel_all"
-                    : "search.choose_province"
-                ),
-                value: "",
-              },
-              ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort(
-                (a, b) => a?.text.localeCompare(b.text)
-              ),
-              ...filterArrayMunicipios_02(formData?.provincia_tags)?.sort(
-                (a, b) => a?.text.localeCompare(b.text)
-              ),
-            ]}
-            multiple
-          />
+
+        {/* Geographic Filters */}
+        <div className="form-section">
+          <div className="section-title">Filtros geográficos</div>
+          <div className="form-grid">
+            <div className="form-group">
+              <CustomInputSelect
+                lbl={t("general.communities_tags")}
+                name="comunidades_tags"
+                inputValue={formData?.comunidades_tags}
+                handleChange={handleChangeMultiple("comunidades_tags")}
+                valuesFilter={[
+                  {
+                    text: t("general.cancel_all"),
+                    value: "",
+                  },
+                  ...newArrayComunidades_tags_01?.sort((a, b) =>
+                    a?.text.localeCompare(b.text)
+                  ),
+                ]}
+                multiple
+              />
+            </div>
+            <div className="form-group">
+              <CustomInputSelect
+                lbl={t("general.provinces_tags")}
+                name="provincia_tags"
+                inputValue={formData?.provincia_tags}
+                handleChange={handleChangeMultiple("provincia_tags")}
+                valuesFilter={[
+                  {
+                    text: t(
+                      formData?.comunidades_tags?.length > 0
+                        ? "general.cancel_all"
+                        : "search.choose_region"
+                    ),
+                    value: "",
+                  },
+                  ...filterArrayProvincencies(formData?.comunidades_tags)?.sort(
+                    (a, b) => a?.text.localeCompare(b.text)
+                  ),
+                ]}
+                multiple
+              />
+            </div>
+            <div className="form-group">
+              <CustomInputSelect
+                lbl={t("general.municipalities_tags")}
+                name="municipios_tags"
+                inputValue={formData?.municipios_tags}
+                handleChange={handleChangeMultiple("municipios_tags")}
+                valuesFilter={[
+                  {
+                    text: t(
+                      formData?.provincia_tags?.length > 0
+                        ? "general.cancel_all"
+                        : "search.choose_province"
+                    ),
+                    value: "",
+                  },
+                  ...filterArrayMunicipios_01(formData?.provincia_tags)?.sort(
+                    (a, b) => a?.text.localeCompare(b.text)
+                  ),
+                  ...filterArrayMunicipios_02(formData?.provincia_tags)?.sort(
+                    (a, b) => a?.text.localeCompare(b.text)
+                  ),
+                ]}
+                multiple
+              />
+            </div>
+          </div>
         </div>
-        <div className="boxBtnsSearchForm">
+
+        {/* Action Buttons */}
+        <div className="form-actions">
           <Button
-            // customStyles={`primaryBtn ${
-            //   !valuesAreValids(formData) && "btnRequiredValues"
-            // }`}
             type="submit"
             txt={t("search.search")}
+            customStyles="modern-search-btn"
           />
           <Button
             click={() => setFormData(initialFilters)}
-            type="reset"
+            type="button"
             txt={t("general.cancel")}
+            customStyles="modern-cancel-btn"
           />
         </div>
       </form>
